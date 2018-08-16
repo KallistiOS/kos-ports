@@ -10,7 +10,8 @@ SHORT_DESC =        Block-sorting compression library
 DEPENDENCIES =
 
 # What files we need to download, and where from.
-DOWNLOAD_SITE = 	http://bzip.org/${PORTVERSION}
+# ~CA~ 8.16.18 - bzip.org is down, now points to an unofficial mirror on Github; verified distinfo matches.
+DOWNLOAD_SITE = 	https://github.com/nemequ/bzip2/releases/download/v1.0.6/${PORTVERSION}
 DOWNLOAD_FILES = 	bzip2-${PORTVERSION}.tar.gz
 
 TARGET =			libbz2.a
