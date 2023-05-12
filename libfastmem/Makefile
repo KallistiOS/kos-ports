@@ -3,7 +3,7 @@ PORTNAME = 			libfastmem
 PORTVERSION = 		1.0.0
 
 MAINTAINER =        Nobody
-LICENSE =           LGPL 2.1
+LICENSE =           LGPLv2.1
 SHORT_DESC =        Very optimized set of memory manipulation functions
 
 DEPENDENCIES =      
