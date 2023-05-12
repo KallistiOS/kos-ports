@@ -1,4 +1,4 @@
-TARGET = libfast.a
+TARGET = libfastmem.a
 OBJS = memcpy_fast.o memset_fast.o memmove_fast.o
 KOS_CFLAGS += -Iinclude
 

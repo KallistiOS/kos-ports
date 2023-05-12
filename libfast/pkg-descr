@@ -1,4 +1,0 @@
-libfast is a tiny library for KallistiOS that provides set of functions that
-are very optimized in terms of speed and/or memory usage. These functions can
-be used in remplacement of standard functions, but keep in mind that all
-functions provided in that library are suffixed with the "_fast" prefix.

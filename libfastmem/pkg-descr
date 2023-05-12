@@ -1,0 +1,3 @@
+libfastmem is a tiny library for KallistiOS that provides set of functions
+dedicated to memory manipulation, that are very optimized in terms of speed
+and/or memory.

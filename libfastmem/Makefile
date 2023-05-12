@@ -1,19 +1,19 @@
 # Port Metadata
-PORTNAME = 			libfast
+PORTNAME = 			libfastmem
 PORTVERSION = 		0.0.1
 
 MAINTAINER =        Nobody
 LICENSE =           LGPL 2.1
-SHORT_DESC =        Very optimized set of functions for the Sega Dreamcast
+SHORT_DESC =        Very optimized set of memory manipulation functions
 
 DEPENDENCIES =      
 
 # What files we need to download, and where from.
-GIT_REPOSITORY =    https://github.com/sega-dreamcast/libfast.git
+GIT_REPOSITORY =    https://github.com/sega-dreamcast/libfastmem.git
 
-TARGET =			libfast.a
-INSTALLED_HDRS =	include/fast.h
-HDR_INSTDIR =       fast
+TARGET =			libfastmem.a
+INSTALLED_HDRS =	include/fastmem.h
+HDR_INSTDIR =       fastmem
 
 # KOS Distributed extras (to be copied into the build tree)
 KOS_DISTFILES =		KOSMakefile.mk
