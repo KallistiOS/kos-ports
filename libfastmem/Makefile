@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME = 			libfastmem
-PORTVERSION = 		0.0.1
+PORTVERSION = 		1.0.0
 
 MAINTAINER =        Nobody
 LICENSE =           LGPL 2.1
