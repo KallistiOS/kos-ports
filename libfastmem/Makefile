@@ -2,7 +2,7 @@
 PORTNAME = 			libfastmem
 PORTVERSION = 		1.0.0
 
-MAINTAINER =        Nobody
+MAINTAINER =        SiZiOUS <sizious@gmail.com>
 LICENSE =           LGPLv2.1
 SHORT_DESC =        Very optimized set of memory manipulation functions
 
