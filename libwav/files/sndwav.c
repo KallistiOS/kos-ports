@@ -33,7 +33,7 @@ typedef struct {
 
     /* We either read the wav data from a file or 
        we read from a buffer */
-    FILE *wave_file;
+    file_t wave_file;
     const uint8_t *wave_buf;
 
     /* Contains the buffer that we are going to send
@@ -110,8 +110,8 @@ void wav_destroy(wav_stream_hnd_t hnd) {
     if(streams[hnd].shnd == SND_STREAM_INVALID)
         return;
 
-    if(streams[hnd].wave_file != NULL)
-        fclose(streams[hnd].wave_file);
+    if(streams[hnd].wave_file != FILEHND_INVALID)
+        fs_close(streams[hnd].wave_file);
 
     if(streams[hnd].drv_buf) {
         free(streams[hnd].drv_buf);
@@ -128,33 +128,33 @@ void wav_destroy(wav_stream_hnd_t hnd) {
 }
 
 wav_stream_hnd_t wav_create(const char *filename, int loop) {
-    FILE *file;
+    file_t file;
 
     if(filename == NULL)
         return SND_STREAM_INVALID;
 
-    file = fopen(filename, "rb");
+    file = fs_open(filename, O_RDONLY);
     
     return wav_create_fd(file, loop);
 }
 
-wav_stream_hnd_t wav_create_fd(FILE *file, int loop) {
+wav_stream_hnd_t wav_create_fd(file_t file, int loop) {
     WavFileInfo info;
     wav_stream_hnd_t index;
 
-    if(file == NULL)
+    if(file == FILEHND_INVALID)
         return SND_STREAM_INVALID;
 
     index = snd_stream_alloc(wav_file_callback, SND_STREAM_BUFFER_MAX); // SND_STREAM_BUFFER_MAX/4
 
     if(index == SND_STREAM_INVALID) {
-        fclose(file);
+        fs_close(file);
         snd_stream_destroy(index);
         return SND_STREAM_INVALID;
     }
     
     if(!wav_get_info_file(file, &info)) {
-        fclose(file);
+        fs_close(file);
         snd_stream_destroy(index);
         return SND_STREAM_INVALID;
     }
@@ -162,7 +162,7 @@ wav_stream_hnd_t wav_create_fd(FILE *file, int loop) {
     streams[index].drv_buf = memalign(32, SND_STREAM_BUFFER_MAX);
 
     if(streams[index].drv_buf == NULL) {
-        fclose(file);
+        fs_close(file);
         snd_stream_destroy(index);
         return SND_STREAM_INVALID;
     }
@@ -179,7 +179,7 @@ wav_stream_hnd_t wav_create_fd(FILE *file, int loop) {
     streams[index].data_length = info.data_length;
     streams[index].data_offset = info.data_offset;
     
-    fseek(streams[index].wave_file, streams[index].data_offset, SEEK_SET);
+    fs_seek(streams[index].wave_file, streams[index].data_offset, SEEK_SET);
     streams[index].status = SNDDEC_STATUS_READY;
     
     return index;
@@ -302,8 +302,8 @@ static void *sndwav_thread() {
                     break;
                 case SNDDEC_STATUS_STOPPING:
                     snd_stream_stop(streams[i].shnd);
-                    if(streams[i].wave_file != NULL)
-                        fseek(streams[i].wave_file, streams[i].data_offset, SEEK_SET);
+                    if(streams[i].wave_file != FILEHND_INVALID)
+                        fs_seek(streams[i].wave_file, streams[i].data_offset, SEEK_SET);
                     else
                         streams[i].buf_offset = streams[i].data_offset;
                     
@@ -321,12 +321,12 @@ static void *sndwav_thread() {
 }
 
 static void *wav_file_callback(snd_stream_hnd_t hnd, int req, int* done) {
-    int read = fread(streams[hnd].drv_buf, 1, req, streams[hnd].wave_file);
+    int read = fs_read(streams[hnd].wave_file, streams[hnd].drv_buf, req);
 
     if(read != req) {
-        fseek(streams[hnd].wave_file, streams[hnd].data_offset, SEEK_SET);
+        fs_seek(streams[hnd].wave_file, streams[hnd].data_offset, SEEK_SET);
         if(streams[hnd].loop) {
-            fread(streams[hnd].drv_buf, 1, req, streams[hnd].wave_file);
+            fs_read(streams[hnd].wave_file, streams[hnd].drv_buf, req);
         }
         else {
             snd_stream_stop(streams[hnd].shnd);

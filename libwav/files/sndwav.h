@@ -1,7 +1,7 @@
 #ifndef SNDWAV_H
 #define SNDWAV_H
 
-#include <stdio.h>
+#include <kos/fs.h>
 
 typedef int wav_stream_hnd_t;
 typedef void (*wav_filter)(wav_stream_hnd_t hnd, void *obj, int hz, int channels, void **buffer, int *samplecnt);
@@ -11,7 +11,7 @@ void wav_shutdown(void);
 void wav_destroy(wav_stream_hnd_t hnd);
 
 wav_stream_hnd_t wav_create(const char *filename, int loop);
-wav_stream_hnd_t wav_create_fd(FILE *f, int loop);
+wav_stream_hnd_t wav_create_fd(file_t fd, int loop);
 wav_stream_hnd_t wav_create_buf(const uint8_t *buf, int loop);
 
 void wav_play(wav_stream_hnd_t hnd);
