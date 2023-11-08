@@ -1,0 +1,2 @@
+libwav is a tiny library for decoding WAV files. This library is limited
+to supporting only uncompressed PCM type wav files.
