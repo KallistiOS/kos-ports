@@ -23,7 +23,6 @@
 #define SNDDEC_STATUS_STOPPING     0x04
 #define SNDDEC_STATUS_RESUMING     0x05
 
-#define STREAM_BUFFER_SIZE 65536
 
 typedef void *(*snddrv_cb)(snd_stream_hnd_t, int, int*);
 
