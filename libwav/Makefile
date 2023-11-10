@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =		libwav
-PORTVERSION =	1.0 
+PORTVERSION =	1.0.0
 
 MAINTAINER =	Andy Barajas
 LICENSE =		Public Domain
@@ -17,6 +17,6 @@ INSTALLED_HDRS =	sndwav.h
 HDR_INSTDIR =		wav
 
 # KOS Distributed extras (to be copied into the build tree)
-KOS_DISTFILES =		KOSMakefile.mk sndwav.c sndwav.h
+KOS_DISTFILES =		KOSMakefile.mk
 
 include ${KOS_PORTS}/scripts/kos-ports.mk
