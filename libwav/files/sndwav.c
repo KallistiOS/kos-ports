@@ -79,7 +79,7 @@ int wav_init(void) {
     int i;
 
     if(snd_stream_init() < 0)
-		return 0;
+        return 0;
 
     for(i = 0; i < SND_STREAM_MAX; i++) {
         streams[i].shnd = SND_STREAM_INVALID;
@@ -129,13 +129,61 @@ void wav_destroy(wav_stream_hnd_t hnd) {
 
 wav_stream_hnd_t wav_create(const char *filename, int loop) {
     file_t file;
+    int fn_len;
+    WavFileInfo info;
+    wav_stream_hnd_t index;
 
     if(filename == NULL)
         return SND_STREAM_INVALID;
 
     file = fs_open(filename, O_RDONLY);
+
+    if(file == FILEHND_INVALID)
+        return SND_STREAM_INVALID;
+
+    index = snd_stream_alloc(wav_file_callback, SND_STREAM_BUFFER_MAX); // SND_STREAM_BUFFER_MAX/4
+
+    if(index == SND_STREAM_INVALID) {
+        fs_close(file);
+        snd_stream_destroy(index);
+        return SND_STREAM_INVALID;
+    }
+
+    fn_len = strlen(filename);
+
+    if(filename[fn_len - 3] == 'r' && filename[fn_len - 1] == 'w') {
+        wav_get_info_cdda(file, &info);
+    }
+    else if(!wav_get_info_file(file, &info)) {
+        fs_close(file);
+        snd_stream_destroy(index);
+        return SND_STREAM_INVALID;
+    }
+
+    streams[index].drv_buf = memalign(32, SND_STREAM_BUFFER_MAX);
+
+    if(streams[index].drv_buf == NULL) {
+        fs_close(file);
+        snd_stream_destroy(index);
+        return SND_STREAM_INVALID;
+    }
+
+    streams[index].shnd = index;
+    streams[index].wave_file = file;
+    streams[index].loop = loop;
+    streams[index].callback = wav_file_callback;
+
+    streams[index].format = info.format;
+    streams[index].channels = info.channels;
+    streams[index].sample_rate = info.sample_rate;
+    streams[index].sample_size = info.sample_size;
+    streams[index].data_length = info.data_length;
+    streams[index].data_offset = info.data_offset;
     
-    return wav_create_fd(file, loop);
+    fs_seek(streams[index].wave_file, streams[index].data_offset, SEEK_SET);
+    streams[index].status = SNDDEC_STATUS_READY;
+    
+    return index;
 }
 
 wav_stream_hnd_t wav_create_fd(file_t file, int loop) {
