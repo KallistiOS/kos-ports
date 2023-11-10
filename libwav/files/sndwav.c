@@ -23,7 +23,6 @@
 #define SNDDEC_STATUS_STOPPING     0x04
 #define SNDDEC_STATUS_RESUMING     0x05
 
-
 typedef void *(*snddrv_cb)(snd_stream_hnd_t, int, int*);
 
 typedef struct {
@@ -127,8 +126,8 @@ void wav_destroy(wav_stream_hnd_t hnd) {
 }
 
 wav_stream_hnd_t wav_create(const char *filename, int loop) {
-    file_t file;
     int fn_len;
+    file_t file;
     WavFileInfo info;
     wav_stream_hnd_t index;
 
