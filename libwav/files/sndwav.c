@@ -139,7 +139,7 @@ wav_stream_hnd_t wav_create(const char *filename, int loop) {
     if(file == FILEHND_INVALID)
         return SND_STREAM_INVALID;
 
-    index = snd_stream_alloc(wav_file_callback, SND_STREAM_BUFFER_MAX); // SND_STREAM_BUFFER_MAX/4
+    index = snd_stream_alloc(wav_file_callback, SND_STREAM_BUFFER_MAX);
 
     if(index == SND_STREAM_INVALID) {
         fs_close(file);
@@ -191,7 +191,7 @@ wav_stream_hnd_t wav_create_fd(file_t file, int loop) {
     if(file == FILEHND_INVALID)
         return SND_STREAM_INVALID;
 
-    index = snd_stream_alloc(wav_file_callback, SND_STREAM_BUFFER_MAX); // SND_STREAM_BUFFER_MAX/4
+    index = snd_stream_alloc(wav_file_callback, SND_STREAM_BUFFER_MAX);
 
     if(index == SND_STREAM_INVALID) {
         fs_close(file);
