@@ -2,7 +2,7 @@
 PORTNAME =        libjimtcl
 PORTVERSION =    1.0.0
 
-MAINTAINER =    Spencer
+MAINTAINER =    Spencer (@spencerelliott)
 LICENSE =       MIT
 SHORT_DESC =    An open-source, small footprint implementation of Tcl
 
