@@ -13,10 +13,6 @@ TARGET =        libjim.a
 INSTALLED_HDRS =    jim.h jim-win32compat.h jim-config.h
 HDR_INSTDIR =        jimtcl
 
-# Autotools setup work.
-CONFIGURE_ARGS =    --disable-ssl --disable-ipv6 --without-ext="aio,zlib"
-MAKE_TARGET =        libjim.a
-
 # KOS Distributed extras (to be copied into the build tree)
 KOS_DISTFILES =		KOSMakefile.mk
 
