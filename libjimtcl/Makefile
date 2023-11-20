@@ -3,7 +3,7 @@ PORTNAME =        libjimtcl
 PORTVERSION =    1.0.0
 
 MAINTAINER =    Spencer (@spencerelliott)
-LICENSE =       MIT
+LICENSE =       FreeBSD
 SHORT_DESC =    An open-source, small footprint implementation of Tcl
 
 # What files we need to download, and where from.
