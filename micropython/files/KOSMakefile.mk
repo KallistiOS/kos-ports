@@ -9,12 +9,7 @@ MP_RT_DIR =   $(MP_EMBED_DIR)/shared/runtime
 OBJS = $(MP_PORT_DIR)/embed_util.o \
 	$(MP_PORT_DIR)/mphalport.o \
 	$(MP_PY_DIR)/argcheck.o \
-	$(MP_PY_DIR)/asmarm.o \
 	$(MP_PY_DIR)/asmbase.o \
-	$(MP_PY_DIR)/asmthumb.o \
-	$(MP_PY_DIR)/asmx64.o \
-	$(MP_PY_DIR)/asmx86.o \
-	$(MP_PY_DIR)/asmxtensa.o \
 	$(MP_PY_DIR)/bc.o \
 	$(MP_PY_DIR)/binary.o \
 	$(MP_PY_DIR)/builtinevex.o \
@@ -24,15 +19,7 @@ OBJS = $(MP_PORT_DIR)/embed_util.o \
 	$(MP_PY_DIR)/emitbc.o \
 	$(MP_PY_DIR)/emitcommon.o \
 	$(MP_PY_DIR)/emitglue.o \
-	$(MP_PY_DIR)/emitinlinethumb.o \
-	$(MP_PY_DIR)/emitinlinextensa.o \
-	$(MP_PY_DIR)/emitnarm.o \
 	$(MP_PY_DIR)/emitnative.o \
-	$(MP_PY_DIR)/emitnthumb.o \
-	$(MP_PY_DIR)/emitnx64.o \
-	$(MP_PY_DIR)/emitnx86.o \
-	$(MP_PY_DIR)/emitnxtensa.o \
-	$(MP_PY_DIR)/emitnxtensawin.o \
 	$(MP_PY_DIR)/formatfloat.o \
 	$(MP_PY_DIR)/frozenmod.o \
 	$(MP_PY_DIR)/gc.o \
@@ -55,15 +42,8 @@ OBJS = $(MP_PORT_DIR)/embed_util.o \
 	$(MP_PY_DIR)/mpstate.o \
 	$(MP_PY_DIR)/mpz.o \
 	$(MP_PY_DIR)/nativeglue.o \
-	$(MP_PY_DIR)/nlraarch64.o \
 	$(MP_PY_DIR)/nlr.o \
-	$(MP_PY_DIR)/nlrmips.o \
-	$(MP_PY_DIR)/nlrpowerpc.o \
 	$(MP_PY_DIR)/nlrsetjmp.o \
-	$(MP_PY_DIR)/nlrthumb.o \
-	$(MP_PY_DIR)/nlrx64.o \
-	$(MP_PY_DIR)/nlrx86.o \
-	$(MP_PY_DIR)/nlrxtensa.o \
 	$(MP_PY_DIR)/objarray.o \
 	$(MP_PY_DIR)/objattrtuple.o \
 	$(MP_PY_DIR)/objbool.o \
