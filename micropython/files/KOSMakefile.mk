@@ -3,8 +3,8 @@ TARGET = libmicropython.a
 MP_EMBED_DIR = $(CURDIR)/micropython_embed
 
 MP_PORT_DIR = $(MP_EMBED_DIR)/port
-MP_PY_DIR =	  $(MP_EMBED_DIR)/py
-MP_RT_DIR =	  $(MP_EMBED_DIR)/shared/runtime
+MP_PY_DIR =   $(MP_EMBED_DIR)/py
+MP_RT_DIR =   $(MP_EMBED_DIR)/shared/runtime
 
 OBJS = $(MP_PORT_DIR)/embed_util.o \
 	$(MP_PORT_DIR)/mphalport.o \
