@@ -72,7 +72,9 @@ int jpeg_to_img(const char *filename, int scale, kos_img_t * rv) {
     
 	/* Step 4: set parameters for decompression */
 	assert( scale == 1 || scale == 2 || scale == 4 || scale == 8 );
-	cinfo.scale_num = scale;
+
+	printf("SN: %d, SD: %d\n", cinfo.scale_num, cinfo.scale_denom);
+	cinfo.scale_num = 1;
 	cinfo.scale_denom = scale; /* must be 1, 2, 4, or 8 */
 
 	/* Step 5: Start decompressor */
