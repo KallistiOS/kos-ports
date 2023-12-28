@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Copyright (C) 2010 Dennis Willamson
 # License: CC BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/)
 # Obtained from:

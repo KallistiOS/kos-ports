@@ -181,12 +181,10 @@ int DC_VideoInit(_THIS, SDL_PixelFormat *vformat)
 }
 
 const static SDL_Rect
-	RECT_800x600 = {0,0,800,600},
 	RECT_640x480 = {0,0,640,480},
 	RECT_320x240 = {0,0,320,240};
 
 const static SDL_Rect *vid_modes[] = {
-	&RECT_800x600,
 	&RECT_640x480,
 	&RECT_320x240,
 	NULL
@@ -227,7 +225,6 @@ SDL_Surface *DC_SetVideoMode(_THIS, SDL_Surface *current,
 
 	if (width==320 && height==240) disp_mode=DM_320x240;
 	else if (width==640 && height==480) disp_mode=DM_640x480;
-	else if (width==800 && height==600) disp_mode=DM_800x608;
 	else {
 		SDL_SetError("Couldn't find requested mode in list");
 		return(NULL);
