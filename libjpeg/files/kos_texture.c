@@ -59,7 +59,7 @@ int jpeg_to_texture(const char * filename, pvr_ptr_t tex, int n, int scale)
      */
     
     /* Step 4: set parameters for decompression */
-    
+    cinfo.scale_num = 1;
     cinfo.scale_denom = scale; /* must be 1, 2, 4, or 8 */
 
     /* Step 5: Start decompressor */

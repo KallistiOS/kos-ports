@@ -36,8 +36,8 @@ toolchain. Here's the list:
    2.7.x and 3.7.x and newer have been tested and found working. If you don't
    have Python, please edit the config.mk file to disable source package
    validation (or, better yet, install Python).
-4. A relatively sane *nix shell and make program are also required. Everything's
-   been tested with Bash and GNU Make.
+4. GNU make and Bash. Other make tools and shells have not been tested and
+   may not work properly.
 
 
 Differences from the old ports tree
