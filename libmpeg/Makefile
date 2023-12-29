@@ -10,11 +10,13 @@ SHORT_DESC =	Library for decoding MPEG1 Video, MP2 Audio using pl_mpeg
 DEPENDENCIES =
 
 # What files we need to download, and where from.
-GIT_REPOSITORY =	https://github.com/Dreamcast-Projects/pl_mpeg.git
+DOWNLOAD_SITE =     https://github.com/Dreamcast-Projects/pl_mpeg/archive/refs/tags
+DOWNLOAD_FILES =    ${PORTNAME}-${PORTVERSION}.tar.gz
 
 TARGET =		    libmpeg.a
 INSTALLED_HDRS =	mpeg.h
 HDR_INSTDIR =		mpeg
+DISTFILE_DIR =      pl_mpeg-${PORTNAME}-${PORTVERSION}
 
 # KOS Distributed extras (to be copied into the build tree)
 KOS_DISTFILES =		KOSMakefile.mk
