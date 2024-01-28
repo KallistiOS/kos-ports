@@ -1,0 +1,23 @@
+Primarily of interest to game developers and other people who can avoid problematic images and only need the trivial interface.
+
+Supports:
+	JPEG baseline & progressive (12 bpc/arithmetic not supported, same as stock IJG lib)
+      	PNG 1/2/4/8/16-bit-per-channel
+
+     	TGA (not sure what subset, if a subset)
+     	BMP non-1bpp, non-RLE
+     	PSD (composited view only, no extra channels, 8/16 bit-per-channel)
+
+      	GIF (*comp always reports as 4-channel)
+      	HDR (radiance rgbE format)
+      	PIC (Softimage PIC)
+      	PNM (PPM and PGM binary only)
+
+      	Animated GIF still needs a proper API, but here's one way to do it:
+        	http://gist.github.com/urraka/685d9a6340b26b830d49
+
+      	- decode from memory or through FILE (define STBI_NO_STDIO to remove code)
+      	- decode from arbitrary I/O callbacks
+      	- SIMD acceleration on x86/x64 (SSE2) and ARM (NEON)
+
+URL: https://github.com/nothings/stb/blob/master/stb_image.h
