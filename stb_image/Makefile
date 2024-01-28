@@ -1,26 +1,27 @@
 # Port Metadata
-PORTNAME =          stb_image
-PORTVERSION =       2.29
+PORTNAME 	= stb_image
+PORTVERSION 	= 2.29
 
-MAINTAINER =        Jason Rost (OniEnzeru)
-LICENSE =           Public Domain
-SHORT_DESC =        Single header library for image loading supporting many common formats.
+MAINTAINER 	= Jason Rost (OniEnzeru)
+LICENSE 	= Public Domain
+SHORT_DESC 	= Single header library for image loading supporting many common formats.
 
 # No dependencies beyond the base system.
 DEPENDENCIES =
 
 # What files we need to download, and where from.
-DOWNLOAD_SITE =     https://raw.githubusercontent.com/nothings/stb/master/
-DOWNLOAD_FILESB =    stb_image.h
-DOWNLOAD_FILES =    ${PORTNAME}-${PORTVERSION}.tar.gz
+DOWNLOAD_SITE 	= https://raw.githubusercontent.com/nothings/stb/master/
+# Format KOS-PORTS wants to work with
+DOWNLOAD_FILES 	= ${PORTNAME}-${PORTVERSION}.tar.gz
+# Actual downloaded file into dist ( we will package and tar this for compat )
+DOWNLOAD_FILESB = stb_image.h
 
-TARGET =            libstb_image.a
-INSTALLED_HDRS =    stb_image.h
-HDR_INSTDIR =       stb_image
+TARGET 		= libstb_image.a
+INSTALLED_HDRS 	= stb_image.h
+HDR_INSTDIR 	= stb_image
 
 # KOS Distributed extras (to be copied into the build tree)
-KOS_DISTFILES =     KOSMakefile.mk stb_image.cpp
-
+KOS_DISTFILES 	= KOSMakefile.mk stb_image.cpp
 
 include ${KOS_PORTS}/scripts/kos-ports.mk
 
@@ -37,10 +38,9 @@ fetch:
 			file="${DOWNLOAD_SITE}/$$_file" ; \
 			${FETCH_CMD} $$file ; \
 		fi ; \
-		echo DERP ${DOWNLOAD_FILESB} ;\
+		# Create proper directory structure for the .tar.gz and move header inside
 		mkdir -p ${PORTNAME}-${PORTVERSION};\
 		mv ${DOWNLOAD_FILESB} ${PORTNAME}-${PORTVERSION}/ ;\
+		# Tar the downloaded file so that KOS flags know what to do with the single header
 		tar -czvf ${PORTNAME}-${PORTVERSION}.tar.gz ${PORTNAME}-${PORTVERSION} ;\
-		echo WTF ;\
 	done
-
