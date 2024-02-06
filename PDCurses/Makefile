@@ -2,7 +2,7 @@
 PORTNAME = 			PDCurses
 PORTVERSION = 		master
 
-MAINTAINER =        Quzar
+MAINTAINER =        Donald Haase
 LICENSE =           Public Domain
 SHORT_DESC =        PDCurses
 
