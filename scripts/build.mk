@@ -6,27 +6,39 @@
 
 KOS_MAKEFILE ?= KOSMakefile.mk
 
-ifneq ($(PORT_AUTOTOOLS), 1)
-build-stamp: fetch validate-dist unpack copy-kos-files
+build-stamp: fetch validate-dist unpack copy-kos-files $(PREBUILD)
+ifeq ($(PORT_BUILD), autotools)
+	@if [ -z "${DISTFILE_DIR}" ] ; then \
+		cd build/${PORTNAME}-${PORTVERSION} ; \
+	else \
+		cd build/${DISTFILE_DIR} ; \
+	fi ; \
+	CC=kos-cc ${CONFIGURE_DEFS} ./configure --prefix=${KOS_PORTS}/${PORTNAME}/inst --host=${AUTOTOOLS_HOST} ${CONFIGURE_ARGS} ; \
+	$(MAKE) ${MAKE_TARGET} ;
+else ifeq ($(PORT_BUILD), cmake)
+	@if [ -z "${DISTFILE_DIR}" ] ; then \
+		cd build/${PORTNAME}-${PORTVERSION} ; \
+	else \
+		cd build/${DISTFILE_DIR} ; \
+	fi ; \
+	if [ -z "${CMAKE_OUTSOURCE}" ] ; then \
+		p=. ; \
+	else \
+		mkdir build ; cd build ; \
+		p=.. ; \
+	fi ; \
+	cmake -DCMAKE_TOOLCHAIN_FILE=${KOS_CMAKE_TOOLCHAIN} \
+		-DCMAKE_INSTALL_INCLUDEDIR=${KOS_PORTS}/${PORTNAME}/inst/include \
+		-DCMAKE_INSTALL_LIBDIR=${KOS_PORTS}/${PORTNAME}/inst/lib $$p ${CMAKE_ARGS} ; \
+	$(MAKE) ${MAKE_TARGET} ;
+else
 	@if [ -z "${DISTFILE_DIR}" ] ; then \
 		$(MAKE) -C build/${PORTNAME}-${PORTVERSION} -f ${KOS_MAKEFILE} ; \
 	else \
 		$(MAKE) -C build/${DISTFILE_DIR} -f ${KOS_MAKEFILE} ; \
 	fi
-	touch build-stamp
-else
-build-stamp: fetch validate-dist unpack copy-kos-files
-	@if [ -z "${DISTFILE_DIR}" ] ; then \
-		cd build/${PORTNAME}-${PORTVERSION} ; \
-		CC=kos-cc ${CONFIGURE_DEFS} ./configure --prefix=${KOS_PORTS}/${PORTNAME}/inst --host=${AUTOTOOLS_HOST} ${CONFIGURE_ARGS} ; \
-		$(MAKE) ${MAKE_TARGET} ; \
-	else \
-		cd build/${DISTFILE_DIR} ; \
-		CC=kos-cc ${CONFIGURE_DEFS} ./configure --prefix=${KOS_PORTS}/${PORTNAME}/inst --host=${AUTOTOOLS_HOST} ${CONFIGURE_ARGS} ; \
-		$(MAKE) ${MAKE_TARGET} ; \
-	fi
-	touch build-stamp
 endif
+	touch build-stamp
 
 install: setup-check version-check depends-check force-install
 

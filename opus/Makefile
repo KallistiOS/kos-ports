@@ -7,7 +7,7 @@ LICENSE =           3-clause BSD (see COPYING in the source distribution)
 SHORT_DESC =        Opus audio codec library
 
 # This port uses the autotools scripts that are included with the distfiles.
-PORT_AUTOTOOLS =    1
+PORT_BUILD =        autotools
 
 # No dependencies beyond the base system.
 DEPENDENCIES =

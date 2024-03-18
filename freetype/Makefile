@@ -7,7 +7,7 @@ LICENSE =           FreeType License or GPLv2 (see docs/LICENSE.TXT in the sourc
 SHORT_DESC =        Freely available software library to render fonts of various types.
 
 # This port uses the autotools scripts that are included with the distfiles.
-PORT_AUTOTOOLS =    1
+PORT_BUILD =        autotools
 
 # Don't attempt to copy the target library, it will be in the inst dir already.
 NOCOPY_TARGET =     1

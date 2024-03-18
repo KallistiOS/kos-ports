@@ -7,7 +7,7 @@ LICENSE =           MIT (see License in the source distribution)
 SHORT_DESC =        A C library for parsing and emitting YAML
 
 # This port uses the autotools scripts that are included with the distfiles.
-PORT_AUTOTOOLS =    1
+PORT_BUILD =        autotools
 
 # Don't attempt to copy the target library, it will be in the inst dir already.
 NOCOPY_TARGET =     1
