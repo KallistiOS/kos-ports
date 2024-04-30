@@ -24,7 +24,7 @@ BUILD		= kos-cc $(CFLAGS) -I$(KOS_PORTS)/include/SDL -I$(PDCURSES_SRCDIR)
 
 LDFLAGS		= $(LIBCURSES) -lSDL
 RANLIB		= ranlib
-LIBCURSES	= libPDCurses.a
+LIBCURSES	= libpdcurses.a
 
 .PHONY: all clean
 
