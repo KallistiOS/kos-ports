@@ -12,19 +12,19 @@ MRUBY_INCLUDE_PRESYM_DIR = $(MRUBY_INCLUDE_MRUBY_DIR)/presym
 # Handling mruby compiler executable (mrbc)
 # This compiler is necessary to transpile Ruby sources into a C source file
 MRUBY_COMPILER = mrbc
-MRUBY_INSTALL_DIR = $(KOS_CC_BASE)/../bin
+MRUBY_INSTALL_DIR = $(DC_TOOLS_BASE)
 
 # Windows specific
 ifeq ($(OS),Windows_NT)
 	# On Windows, all executables got a file extension
 	EXECUTABLEEXTENSION = .exe
-	
+
 	# "sed" can display some useless warning related to "permission denied".
 	# We will just hide this, as this is not relevant.
-	SED_FLAGS = >/dev/null 2>&1	
+	SED_FLAGS = >/dev/null 2>&1
 endif
 
-# mruby compiler executable (mrbc) (with extension if necessary) 
+# mruby compiler executable (mrbc) (with extension if necessary)
 MRUBY_COMPILER_BIN = $(MRUBY_COMPILER)$(EXECUTABLEEXTENSION)
 
 defaultall: | prepare generatemruby fixincludes copylib installmrbc
