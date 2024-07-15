@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          lua
-PORTVERSION =       5.4.6
+PORTVERSION =       5.4.7
 
 MAINTAINER =        Falco Girgis (GyroVorbis)
 LICENSE =           MIT
