@@ -10,7 +10,7 @@ cd ${KOS_PORTS}
 errors=""
 error_count=0
 
-for _dir in $(realpath ${KOS_PORTS})/* ; do
+for _dir in ${KOS_PORTS}/* ; do
     if [ -d "${_dir}" ] ; then
         if [ -f "${_dir}/Makefile" ] ; then
             echo "Checking if ${_dir} is installed and up-to-date..."
@@ -38,3 +38,4 @@ if [ -n "$errors" ]; then
     echo "$error_count error(s) occurred during the build process:"
     echo "$errors"
 fi
+return $error_count
