@@ -25,7 +25,7 @@ DISTFILE_DIR =      yaml-${PORTVERSION}
 
 # Autotools setup work.
 CONFIGURE_ARGS =
-CONFIGURE_DEFS =
+CONFIGURE_DEFS =    RANLIB=${KOS_RANLIB} AR=${KOS_AR}
 MAKE_TARGET =       all install
 
 # KOS Distributed extras (to be copied into the build tree)
