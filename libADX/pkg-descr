@@ -1,0 +1,4 @@
+LibADX is a library for decoding ADX audio files. ADX is a proprietary
+audio container and compression format developed by CRI Middleware
+specifically for use in video games; it is derived from ADPCM but with
+lossy compression.

@@ -10,7 +10,8 @@ SHORT_DESC =        Freely available lossy image compression library (with KOS a
 DEPENDENCIES =
 
 # What files we need to download, and where from.
-DOWNLOAD_SITE =     http://ijg.org/files
+DOWNLOAD_SITES =    http://ijg.org/files \
+                    https://sources.buildroot.net/libjpeg/
 DOWNLOAD_FILES =    jpegsrc.v9e.tar.gz
 
 TARGET =            libjpeg.a
