@@ -33,9 +33,7 @@
 #include "SDL_dcvideo.h"
 #include "SDL_dcevents_c.h"
 
-#include <dc/maple.h>
-#include <dc/maple/mouse.h>
-#include <dc/maple/keyboard.h>
+#include <kos.h>
 
 const static unsigned short sdl_key[]= {
     /*0*/	0, 0, 0, 0, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
@@ -101,7 +99,11 @@ static void mouse_update(void) {
 }
 
 static void keyboard_update(void) {
+#if KOS_VERSION_BELOW(2, 1, 1)
+    static kbd_state_t old_state;
+#else 
 	static kbd_mods_t old_mods;
+#endif
     kbd_state_t	*state;
     maple_device_t *dev;
     int shiftkeys;
@@ -116,6 +118,30 @@ static void keyboard_update(void) {
     if(!state)
         return;
 
+#if KOS_VERSION_BELOW(2, 1, 1)
+    shiftkeys = state->shift_keys ^ old_state.shift_keys;
+    for(i = 0; i < sizeof(sdl_shift); ++i) {
+        if((shiftkeys >> i) & 1) {
+            keysym.sym = sdl_shift[i];
+            SDL_PrivateKeyboard(((state->shift_keys >> i) & 1) ?
+                                SDL_PRESSED : SDL_RELEASED, &keysym);
+        }
+    }
+    
+    for(i = 0; i < sizeof(sdl_key); ++i) {
+        if(state->matrix[i] != old_state.matrix[i]) {
+            int key = sdl_key[i];
+            if(key) {
+                keysym.sym = key;
+                SDL_PrivateKeyboard(state->matrix[i] ?
+                                    SDL_PRESSED : SDL_RELEASED, &keysym);
+            }
+        }
+    }
+
+    old_state = *state;
+
+#else /* KOS 2.1.1+ */
     shiftkeys = state->modifiers.raw ^ old_mods.raw;
     for(i = 0; i < sizeof(sdl_shift)/sizeof(sdl_shift[0]); ++i) {
         if((shiftkeys >> i) & 1) {
@@ -135,6 +161,7 @@ static void keyboard_update(void) {
             SDL_PrivateKeyboard(SDL_RELEASED, &keysym);
         }
     }
+#endif
 }
 
 
