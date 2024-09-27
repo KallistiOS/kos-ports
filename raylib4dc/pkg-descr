@@ -1,12 +1,11 @@
-This is the MicroPython project, which aims to put an implementation of
-Python 3.x on microcontrollers and small embedded systems. This project is in
-Beta stage and is subject to changes of the code-base, including project-wide
-name changes and API changes.
+raylib is a simple and easy-to-use library to enjoy videogames programming.
 
-MicroPython implements the entire Python 3.4 syntax and some select features
-from later versions.
+raylib is highly inspired by Borland BGI graphics lib and by XNA framework 
+and it's especially well suited for prototyping, tooling, graphical 
+applications, embedded systems and education.
 
-MicroPython can execute scripts in textual source form (.py files) or from
-precompiled bytecode (.mpy files).
+NOTE for ADVENTURERS: raylib is a programming library to enjoy videogames 
+programming; no fancy interface, no visual helpers, no debug button... just 
+coding in the most pure spartan-programmers way.
 
-URL: http://www.micropython.org/
+URL: https://www.raylib.com/
