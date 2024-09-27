@@ -1,0 +1,12 @@
+This is the MicroPython project, which aims to put an implementation of
+Python 3.x on microcontrollers and small embedded systems. This project is in
+Beta stage and is subject to changes of the code-base, including project-wide
+name changes and API changes.
+
+MicroPython implements the entire Python 3.4 syntax and some select features
+from later versions.
+
+MicroPython can execute scripts in textual source form (.py files) or from
+precompiled bytecode (.mpy files).
+
+URL: http://www.micropython.org/
