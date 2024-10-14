@@ -6,6 +6,7 @@ MAINTAINER =        Andress Barajas
 LICENSE =           zlib License - http://opensource.org/licenses/Zlib
 SHORT_DESC =        raylib is a simple and easy-to-use library to enjoy videogames programming.
 
+DEPENDENCIES =      libGL
 NOCOPY_TARGET =     1
 
 # What files we need to download, and where from.
