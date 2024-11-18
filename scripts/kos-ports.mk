@@ -17,6 +17,7 @@ include ${KOS_PORTS}/scripts/unpack.mk
 include ${KOS_PORTS}/scripts/clean.mk
 include ${KOS_PORTS}/scripts/build.mk
 include ${KOS_PORTS}/scripts/version.mk
+include ${KOS_PORTS}/scripts/precision.mk
 include ${KOS_PORTS}/scripts/depends.mk
 include ${KOS_PORTS}/scripts/uninstall.mk
 include ${KOS_PORTS}/scripts/portinfo.mk
