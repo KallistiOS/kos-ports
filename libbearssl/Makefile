@@ -15,9 +15,9 @@ HDR_DIRECTORY =     inc
 
 # Add a pre-install target to get the built library where we expect it.
 PREINSTALL = bearssl_preinstall
-bearssl_preinstall:
-	cp build/${PORTNAME}-${PORTVERSION}/build/${TARGET} build/${PORTNAME}-${PORTVERSION}
 
 MAKE_TARGET =       all install
 
 include ${KOS_PORTS}/scripts/kos-ports.mk
+bearssl_preinstall:
+	cp build/${PORTNAME}-${PORTVERSION}/build/${TARGET} build/${PORTNAME}-${PORTVERSION}

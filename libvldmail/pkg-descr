@@ -1,0 +1,4 @@
+libvldmail is a simple library for validating email addresses as being
+valid based off various RFC standards.
+
+URL: https://github.com/dertuxmalwieder/libvldmail

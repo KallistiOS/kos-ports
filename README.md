@@ -59,6 +59,7 @@ the above operations on **all** ports in the tree:
 #### Lesser used targets (mainly for internal use):
 - **version-check**: Check the version of the port that is currently installed.
 - **depends-check**: Check if all dependencies of the port are installed.
+- **abi-check**: Check if the current KOS floating-point ABI is compatible.
 - **fetch**: Download dist files from upstream.
 - **validate-dist**: Check downloaded distfiles for validity, if enabled.
 - **unpack**: Unpack any fetched packages for the port.

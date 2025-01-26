@@ -15,6 +15,10 @@ UNPACK_CMD = tar xf
 # recursively.
 BUILD_DEPENDS = true
 
+# Select whether or not to check if a port is compatible with KOS's current
+# floating-point precision ABI setting (KOS_SH4_PRECISION) before building.
+CHECK_PRECISION = true
+
 # Select whether or not to validate each file downloaded before unpacking them.
 # This requires Python to be installed.
 VALIDATE_DISTFILES = true

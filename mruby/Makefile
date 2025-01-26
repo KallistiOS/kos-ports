@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          mruby
-PORTVERSION =       3.2.0
+PORTVERSION =       3.3.0
 
 MAINTAINER =        SiZiOUS <sizious@gmail.com>
 LICENSE =           MIT
@@ -12,6 +12,7 @@ DEPENDENCIES =
 # What files we need to download, and where from.
 GIT_REPOSITORY =    https://github.com/mruby/mruby.git
 GIT_BRANCH =        master
+GIT_TAG =           3.3.0
 
 TARGET =            libmruby.a
 HDR_DIRECTORY =     build/$(KOS_ARCH)/include

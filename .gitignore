@@ -2,6 +2,8 @@
 *~
 *.tmp
 build-stamp
+build/
+dist/
 include/*
 lib/*
 examples/*

@@ -6,7 +6,7 @@ MAINTAINER =        Donald Haase
 LICENSE =           MIT
 SHORT_DESC =        Highly optimized 2D|3D math library, also known as OpenGL Mathematics (glm) for `C`
 
-# This port uses the autotools scripts that are included with the distfiles.
+# This port uses CMake.
 PORT_BUILD =        cmake
 
 # Don't attempt to copy the target library, it will be in the inst dir already.
