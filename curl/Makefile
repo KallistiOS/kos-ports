@@ -13,7 +13,7 @@ PORT_BUILD =        cmake
 DEPENDENCIES =      zlib polarssl
 
 # What files we need to download, and where from.
-DOWNLOAD_SITE  =    https://curl.haxx.se/download
+DOWNLOAD_SITE  =    https://curl.se/download
 DOWNLOAD_FILES =    ${PORTNAME}-${PORTVERSION}.tar.gz
 
 TARGET =            libcurl.a
