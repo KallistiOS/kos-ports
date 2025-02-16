@@ -41,21 +41,21 @@ fetch:
 				for _repo in $$_repos; do \
 					echo "Fetching ${PORTNAME} from $$_repo ..." ; \
 					if [ -n "${GIT_TAG}" ] ; then \
-						git clone $$_repo --branch ${GIT_TAG} --single-branch --depth 1 ${PORTNAME}-${PORTVERSION} ; \
+						git clone --filter=tree:0 $$_repo --branch ${GIT_TAG} --single-branch --depth 1 ${PORTNAME}-${PORTVERSION} ; \
 						if [ "$$?" -eq 0 ] ; then \
 							break; \
 						else \
 							rm -rf ${PORTNAME}-${PORTVERSION} ; \
 						fi ; \
 					elif [ -n "${GIT_BRANCH}" ] ; then \
-						git clone $$_repo --branch ${GIT_BRANCH} --single-branch ${PORTNAME}-${PORTVERSION} ; \
+						git clone --filter=tree:0 $$_repo --branch ${GIT_BRANCH} --single-branch ${PORTNAME}-${PORTVERSION} ; \
 						if [ "$$?" -eq 0 ] ; then \
 							break; \
 						else \
 							rm -rf ${PORTNAME}-${PORTVERSION} ; \
 						fi ; \
 					else \
-						git clone $$_repo ${PORTNAME}-${PORTVERSION} ; \
+						git clone --filter=tree:0 $$_repo ${PORTNAME}-${PORTVERSION} ; \
 						if [ "$$?" -eq 0 ] ; then \
 							break; \
 						else \

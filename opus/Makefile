@@ -31,9 +31,8 @@ MAKE_TARGET =       libopus.la
 KOS_DISTFILES =
 
 # Add a pre-install target to get the built library where we expect it.
-PREINSTALL = opus_preinstall
-
-opus_preinstall:
-	cp build/${PORTNAME}-${PORTVERSION}/.libs/${TARGET} build/${PORTNAME}-${PORTVERSION}
+PREINSTALL =        opus_preinstall
 
 include ${KOS_PORTS}/scripts/kos-ports.mk
+opus_preinstall:
+	cp build/${PORTNAME}-${PORTVERSION}/.libs/${TARGET} build/${PORTNAME}-${PORTVERSION}
