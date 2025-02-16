@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          libsmb2
-PORTVERSION =       #5.0.0
+PORTVERSION =       libsmb2-6.0.2
 
 MAINTAINER =        Ronnie Sahlberg
 LICENSE =           LGPLv2.1
