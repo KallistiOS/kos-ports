@@ -100,7 +100,7 @@ static void mouse_update(void) {
 }
 
 static void keyboard_update(void) {
-#if KOS_VERSION_BELOW(2, 1, 1)
+#if KOS_VERSION_BELOW(2, 2, 0)
     static kbd_state_t old_state;
 #else 
 	static kbd_mods_t old_mods;
@@ -119,7 +119,7 @@ static void keyboard_update(void) {
     if(!state)
         return;
 
-#if KOS_VERSION_BELOW(2, 1, 1)
+#if KOS_VERSION_BELOW(2, 2, 0)
     shiftkeys = state->shift_keys ^ old_state.shift_keys;
     for(i = 0; i < sizeof(sdl_shift); ++i) {
         if((shiftkeys >> i) & 1) {
