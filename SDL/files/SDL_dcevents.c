@@ -128,7 +128,7 @@ static void keyboard_update(void) {
                                 SDL_PRESSED : SDL_RELEASED, &keysym);
         }
     }
-    
+
     for(i = 0; i < sizeof(sdl_key); ++i) {
         if(state->matrix[i] != old_state.matrix[i]) {
             int key = sdl_key[i];
@@ -142,7 +142,7 @@ static void keyboard_update(void) {
 
     old_state = *state;
 
-#else /* KOS 2.1.1+ */
+#else /* KOS 2.2.0+ */
     shiftkeys = state->modifiers.raw ^ old_mods.raw;
     for(i = 0; i < sizeof(sdl_shift)/sizeof(sdl_shift[0]); ++i) {
         if((shiftkeys >> i) & 1) {
@@ -164,7 +164,6 @@ static void keyboard_update(void) {
     }
 #endif
 }
-
 
 void DC_PumpEvents(_THIS) {
     keyboard_update();
