@@ -39,7 +39,19 @@ else
 endif
 	touch build-stamp
 
-install: setup-check version-check abi-check depends-check force-install
+install: setup-check abi-check depends-check
+	@if [ -f "${KOS_PORTS}/lib/.kos-ports/${PORTNAME}" ] ; then \
+		installed_version=`cat "${KOS_PORTS}/lib/.kos-ports/${PORTNAME}"` ; \
+		if [ "$$installed_version" = "${PORTVERSION}" ] ; then \
+			if [ -f "${KOS_PORTS}/lib/.kos-ports/${PORTNAME}.hash" ] ; then \
+				echo "${PORTNAME} version ${PORTVERSION} is already installed." ; \
+				echo "To force reinstall, run: make uninstall && make install" ; \
+				echo "To check for updates, run: make update" ; \
+				exit 0 ; \
+			fi ; \
+		fi ; \
+	fi ; \
+	$(MAKE) force-install store-hash
 
 force-install: build-stamp $(PREINSTALL)
 	@if [ ! -d "inst" ] ; then \
@@ -102,3 +114,25 @@ force-install: build-stamp $(PREINSTALL)
 
 	@echo "Marking ${PORTNAME} ${PORTVERSION} as installed."
 	@echo "${PORTVERSION}" > "${KOS_PORTS}/lib/.kos-ports/${PORTNAME}"
+
+# Store git hash after successful build
+store-hash:
+	@if [ -d "build/${DISTFILE_DIR}" ] ; then \
+		cd "build/${DISTFILE_DIR}" ; \
+		if [ -n "${GIT_BRANCH}" ] ; then \
+			echo "Checking specified branch: ${GIT_BRANCH}" ; \
+			git checkout ${GIT_BRANCH} > /dev/null 2>&1 ; \
+		else \
+			if git show-ref --verify --quiet refs/heads/main ; then \
+				echo "Using default branch: main" ; \
+				git checkout main > /dev/null 2>&1 ; \
+			elif git show-ref --verify --quiet refs/heads/master ; then \
+				echo "Using default branch: master" ; \
+				git checkout master > /dev/null 2>&1 ; \
+			fi ; \
+		fi ; \
+		current_hash=`git rev-parse HEAD` ; \
+		mkdir -p ${KOS_PORTS}/lib/.kos-ports ; \
+		echo "$$current_hash" > ${KOS_PORTS}/lib/.kos-ports/${PORTNAME}.hash ; \
+		echo "Stored git hash: $$current_hash" ; \
+	fi
