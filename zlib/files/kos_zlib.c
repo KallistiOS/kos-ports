@@ -1,5 +1,6 @@
 #include <zlib.h>
 #include <stdio.h>
+#include <kos/fs.h>
 
 /* Macros taken from gzip source to read header values */
 static int gzmagic[2] = {0x1f, 0x8b};
