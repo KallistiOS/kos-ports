@@ -1,6 +1,7 @@
 # kos-ports: KallistiOS Package Manager
 
 ## Introduction
+
 **kos-ports** is a package manager and repository of various useful libraries that
 have been ported to the Dreamcast operating system
 [KallistiOS](https://github.com/KallistiOS/KallistiOS). These libraries include
@@ -11,13 +12,16 @@ build on the current version of KallistiOS. Dependency libraries will be fetched
 built automatically, if necessary.
 
 ## Prerequisites
+
 ### KallistiOS
+
 Users must have a [KallistiOS](https://github.com/KallistiOS/KallistiOS) environment
 set up already. This means you must have an SH4 toolchain built and have already
 compiled KallistiOS itself. Before attempting to build a port, make sure you have
 sourced your KallistiOS `environ.sh` file in your current terminal.
 
 ### Environment
+
 1. `curl` or `wget` are required to download packages. `curl` is used by default,
    but `wget` may be set as an alternative in `config.mk`.
 2. GNU make and Bash. Other make tools and shells have not been tested and
@@ -27,6 +31,7 @@ sourced your KallistiOS `environ.sh` file in your current terminal.
    skip validation, you can set this in `config.mk`.
 
 ### Building a port
+
 kos-ports was modelled after the FreeBSD ports collection, so some users may
 be familiar with the usage.
 
@@ -39,10 +44,14 @@ in `kos-ports/lib`. These paths are automatically included in your build flags i
 you are using the KOS Makefile system.
 
 ## Using the ports tree
+
 There are a few available `make` targets that can be used in each port directory:
 
 - **install**: Perform all steps to download, patch, build, and install the port in
                question.
+- **update**: Check if an installed port has updates in its git repository and rebuild
+              if necessary. For ports not yet installed, it will suggest running
+              `make install` instead.
 - **clean**: Clean up any dist files and intermediate build results.
 - **uninstall**: Uninstall the port. This does not make sure dependencies are still
                  fulfilled, so keep that in mind!
@@ -50,14 +59,19 @@ There are a few available `make` targets that can be used in each port directory
                 port in question.
 
 ### Managing all ports
+
 The following helper scripts are provided in the `utils` directory to perform
 the above operations on **all** ports in the tree:
+
 - `build-all.sh` will **install** all ports.
 - `uninstall-all.sh` will **uninstall** all ports.
 - `clean-all.sh` will **clean** all ports.
+- `update-all.sh` will update any of the installed ports if necessary.
 
-#### Lesser used targets (mainly for internal use):
-- **version-check**: Check the version of the port that is currently installed.
+#### Lesser used targets (mainly for internal use)
+
+- **show-deps**: Display all dependencies and sub-dependencies for the port,
+                 along with their installation status.
 - **depends-check**: Check if all dependencies of the port are installed.
 - **abi-check**: Check if the current KOS floating-point ABI is compatible.
 - **fetch**: Download dist files from upstream.
@@ -68,6 +82,7 @@ the above operations on **all** ports in the tree:
 - **clean-build**: Cleans up build files, leaving dist files in place.
 
 ## Porting a new library
+
 Porting a new library is meant to be a relatively simple task. Take a look at
 an existing port, such as `libpng`, to get an idea how the package manager works.
 If you need assistance, feel free to reach out using the usual support channels.
