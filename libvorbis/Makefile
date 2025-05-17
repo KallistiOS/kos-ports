@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          libvorbis
-PORTVERSION =       1.3.6
+PORTVERSION =       1.3.7
 
 MAINTAINER =        Lawrence Sebald <ljsebald@users.sourceforge.net>
 LICENSE =           3-clause BSD (see COPYING in the source distribution)
