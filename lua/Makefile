@@ -1,10 +1,10 @@
 # Port Metadata
 PORTNAME =          lua
-PORTVERSION =       5.4.7
+PORTVERSION =       5.4.8
 
 MAINTAINER =        Falco Girgis (GyroVorbis)
 LICENSE =           MIT
-SHORT_DESC =        Embeddable scripting language
+SHORT_DESC =        Lightweight, embeddable, extensible scripting language
 
 # No dependencies beyond the base system.
 DEPENDENCIES =
