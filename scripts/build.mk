@@ -29,7 +29,7 @@ else ifeq ($(PORT_BUILD), cmake)
 	fi ; \
 	kos-cmake -DCMAKE_INSTALL_INCLUDEDIR=${KOS_PORTS}/${PORTNAME}/inst/include \
 		-DCMAKE_INSTALL_LIBDIR=${KOS_PORTS}/${PORTNAME}/inst/lib $$p ${CMAKE_ARGS} ; \
-	$(MAKE) ${MAKE_TARGET} ;
+	cmake --build . -t $(or ${MAKE_TARGET},all) ;
 else
 	@if [ -z "${DISTFILE_DIR}" ] ; then \
 		$(MAKE) -C build/${PORTNAME}-${PORTVERSION} -f ${KOS_MAKEFILE} ; \
