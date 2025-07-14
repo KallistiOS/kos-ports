@@ -9,3 +9,4 @@ lib/*
 examples/*
 inst
 .DS_Store
+*.hash
