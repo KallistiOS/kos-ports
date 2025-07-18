@@ -143,11 +143,11 @@ static void keyboard_update(void) {
     old_state = *state;
 
 #else /* KOS 2.2.0+ */
-    shiftkeys = state->modifiers.raw ^ old_mods.raw;
+    shiftkeys = state->last_modifiers.raw ^ old_mods.raw;
     for(i = 0; i < sizeof(sdl_shift)/sizeof(sdl_shift[0]); ++i) {
         if((shiftkeys >> i) & 1) {
             keysym.sym = sdl_shift[i];
-            SDL_PrivateKeyboard(((state->modifiers.raw >> i) & 1) ?
+            SDL_PrivateKeyboard(((state->last_modifiers.raw >> i) & 1) ?
                                 SDL_PRESSED : SDL_RELEASED, &keysym);
         }
     }
