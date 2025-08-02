@@ -14,6 +14,26 @@ MRUBY_INCLUDE_PRESYM_DIR = $(MRUBY_INCLUDE_MRUBY_DIR)/presym
 MRUBY_COMPILER = mrbc
 MRUBY_INSTALL_DIR = $(DC_TOOLS_BASE)
 
+# Check rake availability and define mruby build command
+export RAKE_AVAILABLE := $(shell command -v rake >/dev/null 2>&1 && echo "1" || echo "0")
+
+# Handling DreamSDK wrappers if needed; it will only happen in this environment
+DREAMSDK_USE_WRAPPERS := $(if $(filter DreamSDK,$(ENVIRONMENT_NAME)),RAKE_AVAILABLE=$(RAKE_AVAILABLE),)
+
+# Define mruby build command using rake availability
+# Use "make" (which call "rake" internally) or try to call "rake" if needed
+MRUBY_BUILD_CMD := $(shell \
+	if [ "$(RAKE_AVAILABLE)" = "1" ]; then \
+		echo "$(MAKE)"; \
+	else \
+		ruby_path=$$(command -v ruby); \
+		if [ -n "$$ruby_path" ] && [ -f "$$(dirname "$$ruby_path")/rake" ]; then \
+			echo "rake"; \
+		else \
+			echo "echo 'Error: rake not found in PATH' && exit 1"; \
+		fi; \
+	fi)
+
 # Windows specific
 ifeq ($(OS),Windows_NT)
 	# On Windows, all executables got a file extension
@@ -33,7 +53,7 @@ defaultall: | prepare generatemruby fixincludes copylib installmrbc
 prepare:
 	@if [ ! -d "$(MRUBY_INSTALL_DIR)" ]; then \
 		if [ -f "$(MRUBY_INSTALL_DIR)" ]; then \
-			echo "Unable to create directory: \"$(MRUBY_INSTALL_DIR)\""; \
+			echo "Error: unable to create directory: \"$(MRUBY_INSTALL_DIR)\""; \
 			echo "A file exists at this location. Please move or delete this file."; \
 			exit 1; \
 		else \
@@ -44,7 +64,7 @@ prepare:
 # Generate mruby
 generatemruby:
 	@echo "Generating mruby..."
-	$(MAKE) MRUBY_CONFIG=dreamcast_shelf
+	$(MRUBY_BUILD_CMD) MRUBY_CONFIG=dreamcast_shelf $(DREAMSDK_USE_WRAPPERS)
 
 # Copy final library file into the root directory
 copylib:
@@ -67,4 +87,7 @@ fixincludes:
 	done
 	@for _file in $(MRUBY_INCLUDE_DIR)/*.h; do \
 		sed -i -e 's/#include <mruby\/mruby\/mrbconf.h>/#include <mruby\/mrbconf.h>/g' $$_file $(SED_FLAGS); \
+	done
+	@for _file in $(MRUBY_INCLUDE_DIR)/*.h $(MRUBY_INCLUDE_MRUBY_DIR)/*.h $(MRUBY_INCLUDE_PRESYM_DIR)/*.h; do \
+		sed -i -e 's/#include <mruby\/mruby\/mruby\//#include <mruby\/mruby\//g' $$_file $(SED_FLAGS); \
 	done
