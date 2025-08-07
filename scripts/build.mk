@@ -27,9 +27,9 @@ else ifeq ($(PORT_BUILD), cmake)
 		mkdir build ; cd build ; \
 		p=.. ; \
 	fi ; \
-	cmake -DCMAKE_TOOLCHAIN_FILE=${KOS_CMAKE_TOOLCHAIN} \
-		-DCMAKE_INSTALL_INCLUDEDIR=${KOS_PORTS}/${PORTNAME}/inst/include \
-		-DCMAKE_INSTALL_LIBDIR=${KOS_PORTS}/${PORTNAME}/inst/lib $$p ${CMAKE_ARGS} ; \
+	kos-cmake -DCMAKE_INSTALL_INCLUDEDIR=${KOS_PORTS}/${PORTNAME}/inst/include \
+		-DCMAKE_INSTALL_LIBDIR=${KOS_PORTS}/${PORTNAME}/inst/lib \
+		-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=OFF $$p ${CMAKE_ARGS} ; \
 	$(MAKE) ${MAKE_TARGET} ;
 else
 	@if [ -z "${DISTFILE_DIR}" ] ; then \
