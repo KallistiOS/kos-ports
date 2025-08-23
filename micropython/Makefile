@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          micropython
-PORTVERSION =       1.21.0
+PORTVERSION =       1.26.0
 
 MAINTAINER =        Aaron Glazer <aaronglazer@google.com>
 LICENSE =           MIT
@@ -10,6 +10,8 @@ DEPENDENCIES =
 
 # What files we need to download, and where from.
 GIT_REPOSITORY =    https://github.com/micropython/micropython.git
+GIT_BRANCH =        master
+GIT_TAG =           v${PORTVERSION}
 
 TARGET =            libmicropython.a
 HDR_DIRECTORY =     micropython_embed
