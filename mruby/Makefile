@@ -12,7 +12,7 @@ DEPENDENCIES =
 # What files we need to download, and where from.
 GIT_REPOSITORY =    https://github.com/mruby/mruby.git
 GIT_BRANCH =        master
-GIT_TAG =           3.3.0
+GIT_TAG =           ${PORTVERSION}
 
 TARGET =            libmruby.a
 HDR_DIRECTORY =     build/$(KOS_ARCH)/include
