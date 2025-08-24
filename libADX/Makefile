@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          libADX
-PORTVERSION =       1.0.0
+PORTVERSION =       1.0.1
 
 MAINTAINER =        SiZiOUS <sizious@gmail.com>
 LICENSE =           BSD 2-Clause License
@@ -10,6 +10,9 @@ KOS_MAKEFILE =      Makefile
 
 # What files we need to download, and where from.
 GIT_REPOSITORY =    https://github.com/sega-dreamcast/libadx.git
+GIT_BRANCH =        master
+GIT_TAG =           v${PORTVERSION}
+
 TARGET =            libADX.a
 INSTALLED_HDRS =    include/adx.h include/snddrv.h
 HDR_INSTDIR =       adx
