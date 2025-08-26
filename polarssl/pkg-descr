@@ -1,0 +1,6 @@
+mbed TLS is a cryptographic library designed to easily integrate SSL/TLS and
+cryptographic capabilities into embedded and other products with minimal code
+overhead. Originally developed as PolarSSL, it was acquired by ARM and rebranded
+as mbed TLS, making it part of ARM's official product suite.
+
+URL: https://www.trustedfirmware.org/projects/mbed-tls/
