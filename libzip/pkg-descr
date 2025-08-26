@@ -1,0 +1,9 @@
+libzip is a cross-platform ZIP library developed since 2005 that runs on Linux,
+macOS, Windows, and other operating systems. It prioritizes API stability, data
+integrity, and efficiency while supporting modern ZIP features including Zip64
+for large archives, multiple compression algorithms (Deflate, bzip2, LZMA,
+zstd), and various encryption methods. The library can read from files or memory
+buffers, allows reverting changes, and uses a BSD license making it suitable for
+commercial use.
+
+URL: https://libzip.org/
