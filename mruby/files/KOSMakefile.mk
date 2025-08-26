@@ -14,8 +14,14 @@ MRUBY_INCLUDE_PRESYM_DIR = $(MRUBY_INCLUDE_MRUBY_DIR)/presym
 MRUBY_COMPILER = mrbc
 MRUBY_INSTALL_DIR = $(DC_TOOLS_BASE)
 
-# Check rake availability and define mruby build command
-export RAKE_AVAILABLE := $(shell command -v rake >/dev/null 2>&1 && echo "1" || echo "0")
+# Check Rake availability and set the mruby build command
+# On DreamSDK based on MinGW-w64/MSYS2, the "command -v rake" instruction
+# doesn't work because the executable flag ("x") isn't properly set. So we're
+# testing the expected path directly ("/mingw64/bin/rake").
+export RAKE_AVAILABLE := $(shell \
+	(command -v rake >/dev/null 2>&1 || [ -f /mingw64/bin/rake ]) && \
+	rake --version >/dev/null 2>&1 && \
+	echo "1" || echo "0")
 
 # Handling DreamSDK wrappers if needed; it will only happen in this environment
 DREAMSDK_USE_WRAPPERS := $(if $(filter DreamSDK,$(ENVIRONMENT_NAME)),RAKE_AVAILABLE=$(RAKE_AVAILABLE),)
