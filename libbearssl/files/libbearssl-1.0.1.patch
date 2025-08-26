@@ -1,0 +1,53 @@
+diff -Naur '--exclude=.git' libbearssl-1.0.1/conf/Unix.mk libbearssl-1.0.1-kos/conf/Unix.mk
+--- libbearssl-1.0.1/conf/Unix.mk	2025-08-27 00:04:40.391834800 +0200
++++ libbearssl-1.0.1-kos/conf/Unix.mk	2025-08-27 00:19:14.360175100 +0200
+@@ -67,3 +67,11 @@
+ #DLL = no
+ #TOOLS = no
+ #TESTS = no
++
++# Adding specific code for GCC on Windows
++# Tested under MinGW-w64/MSYS (using DreamSDK)
++ifeq ($(OS),Windows_NT)	
++	E = .exe
++	D = .dll
++	LDLIBS = -lws2_32 -lmswsock
++endif
+diff -Naur '--exclude=.git' libbearssl-1.0.1/mk/Rules.mk libbearssl-1.0.1-kos/mk/Rules.mk
+--- libbearssl-1.0.1/mk/Rules.mk	2025-08-27 00:04:40.413209300 +0200
++++ libbearssl-1.0.1-kos/mk/Rules.mk	2025-08-27 00:19:31.730188300 +0200
+@@ -364,16 +364,16 @@
+ 	$(LDDLL) $(LDDLLFLAGS) $(LDDLLOUT)$(BEARSSLDLL) $(OBJ)
+ 
+ $(BRSSL): $(BEARSSLLIB) $(OBJBRSSL)
+-	$(LD) $(LDFLAGS) $(LDOUT)$(BRSSL) $(OBJBRSSL) $(BEARSSLLIB)
++	$(LD) $(LDFLAGS) $(LDOUT)$(BRSSL) $(OBJBRSSL) $(BEARSSLLIB) $(LDLIBS)
+ 
+ $(TESTCRYPTO): $(BEARSSLLIB) $(OBJTESTCRYPTO)
+-	$(LD) $(LDFLAGS) $(LDOUT)$(TESTCRYPTO) $(OBJTESTCRYPTO) $(BEARSSLLIB)
++	$(LD) $(LDFLAGS) $(LDOUT)$(TESTCRYPTO) $(OBJTESTCRYPTO) $(BEARSSLLIB) $(LDLIBS)
+ 
+ $(TESTSPEED): $(BEARSSLLIB) $(OBJTESTSPEED)
+-	$(LD) $(LDFLAGS) $(LDOUT)$(TESTSPEED) $(OBJTESTSPEED) $(BEARSSLLIB)
++	$(LD) $(LDFLAGS) $(LDOUT)$(TESTSPEED) $(OBJTESTSPEED) $(BEARSSLLIB) $(LDLIBS)
+ 
+ $(TESTX509): $(BEARSSLLIB) $(OBJTESTX509)
+-	$(LD) $(LDFLAGS) $(LDOUT)$(TESTX509) $(OBJTESTX509) $(BEARSSLLIB)
++	$(LD) $(LDFLAGS) $(LDOUT)$(TESTX509) $(OBJTESTX509) $(BEARSSLLIB) $(LDLIBS)
+ 
+ $(OBJDIR)$Psettings$O: src$Psettings.c $(HEADERSPRIV)
+ 	$(CC) $(CFLAGS) $(INCFLAGS) $(CCOUT)$(OBJDIR)$Psettings$O src$Psettings.c
+diff -Naur '--exclude=.git' libbearssl-1.0.1/test/test_x509.c libbearssl-1.0.1-kos/test/test_x509.c
+--- libbearssl-1.0.1/test/test_x509.c	2025-08-27 00:04:40.723493800 +0200
++++ libbearssl-1.0.1-kos/test/test_x509.c	2025-08-27 00:06:11.691370700 +0200
+@@ -29,6 +29,10 @@
+ 
+ #ifdef _WIN32
+ #include <windows.h>
++#ifdef __MINGW32__
++#include <direct.h>
++#include <io.h>
++#endif
+ #else
+ #include <unistd.h>
+ #endif

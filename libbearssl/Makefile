@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          libbearssl
-PORTVERSION =       1.0.0
+PORTVERSION =       1.0.1
 
 MAINTAINER =        Donald Haase
 LICENSE =           MIT License
@@ -13,11 +13,18 @@ GIT_REPOSITORY =    https://www.bearssl.org/git/BearSSL
 TARGET =            libbearssl.a
 HDR_DIRECTORY =     inc
 
+# Minor adjustments before building the source code
+PREBUILD =          bearssl_prebuild
+
 # Add a pre-install target to get the built library where we expect it.
-PREINSTALL = bearssl_preinstall
+PREINSTALL =        bearssl_preinstall
 
 MAKE_TARGET =       all install
 
 include ${KOS_PORTS}/scripts/kos-ports.mk
+bearssl_prebuild:
+	cd "build/${PORTNAME}-${PORTVERSION}" && \
+	patch -p1 < ../../files/${PORTNAME}-${PORTVERSION}.patch || { exit 1; }
+
 bearssl_preinstall:
 	cp build/${PORTNAME}-${PORTVERSION}/build/${TARGET} build/${PORTNAME}-${PORTVERSION}
