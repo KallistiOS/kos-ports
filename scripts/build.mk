@@ -32,9 +32,9 @@ else ifeq ($(PORT_BUILD), cmake)
 	cmake --build . -t $(or ${MAKE_TARGET},all) ;
 else
 	@if [ -z "${DISTFILE_DIR}" ] ; then \
-		$(MAKE) -C build/${PORTNAME}-${PORTVERSION} -f ${KOS_MAKEFILE} ; \
+		$(MAKE) -C build/${PORTNAME}-${PORTVERSION} -f ${KOS_MAKEFILE} ${MAKE_TARGET} ; \
 	else \
-		$(MAKE) -C build/${DISTFILE_DIR} -f ${KOS_MAKEFILE} ; \
+		$(MAKE) -C build/${DISTFILE_DIR} -f ${KOS_MAKEFILE} ${MAKE_TARGET} ; \
 	fi
 endif
 	touch build-stamp
