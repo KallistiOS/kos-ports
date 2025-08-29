@@ -21,7 +21,8 @@ TARGET =            libzip.a
 # Set cmake options
 CMAKE_ARGS =        -Wno-dev -DCMAKE_INSTALL_PREFIX=../../inst \
                     -DCMAKE_C_FLAGS="-I{$KOS_PORTS}/include/zlib" \
-                    -DZLIB_INCLUDE_DIR="${KOS_PORTS}/include/zlib"
+                    -DZLIB_INCLUDE_DIR="${KOS_PORTS}/include/zlib" \
+					-DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
 MAKE_TARGET =       zip
 

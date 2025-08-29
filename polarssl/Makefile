@@ -19,7 +19,7 @@ TARGET =            libpolarssl.a
 HDR_DIRECTORY =     include/polarssl
 
 # Set cmake build settings
-CMAKE_ARGS =        -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=FALSE -DENABLE_PROGRAMS=FALSE
+CMAKE_ARGS =        -DCMAKE_BUILD_TYPE=Release -DENABLE_TESTING=FALSE -DENABLE_PROGRAMS=FALSE -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
 # Minor adjustments before building the source code
 PREBUILD =          polarssl_prebuild
