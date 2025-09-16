@@ -11,49 +11,17 @@ update:
 			if [ -f "${KOS_PORTS}/lib/.kos-ports/${PORTNAME}.hash" ] ; then \
 				last_hash=`cat ${KOS_PORTS}/lib/.kos-ports/${PORTNAME}.hash` ; \
 				echo "Last stored hash: $$last_hash" ; \
-				tmp_dir=`mktemp -d` ; \
-				max_retries=3 ; \
-				retry_count=1 ; \
-				while [ $$retry_count -le $$max_retries ] ; do \
-					echo "Attempting to clone repository (attempt $$retry_count of $$max_retries)..." ; \
-					git clone ${GIT_REPOSITORY} $$tmp_dir > /dev/null 2>&1 ; \
-					if [ $$? -eq 0 ] ; then \
-						break ; \
-					fi ; \
-					if [ $$retry_count -lt $$max_retries ] ; then \
-						echo "Clone failed, retrying in 5 seconds..." ; \
-						sleep 5 ; \
-					fi ; \
-					retry_count=$$((retry_count + 1)) ; \
-				done ; \
-				if [ $$retry_count -gt $$max_retries ] ; then \
-					echo "Failed to clone repository after $$max_retries attempts." ; \
-					echo "Please check your network connection and repository URL: ${GIT_REPOSITORY}" ; \
-					rm -rf $$tmp_dir ; \
+				branch="${GIT_BRANCH}" ; \
+				if [ -z "$$branch" ] ; then \
+					branch="HEAD" ; \
+				fi ; \
+				current_hash=`git ls-remote ${GIT_REPOSITORY} $$branch | cut -f1` ; \
+				if [ -z "$$current_hash" ] ; then \
+					echo "Error: Could not retrieve git hash for ${GIT_REPOSITORY} $$branch" ; \
+					echo "Please check your network connection and repository URL." ; \
 					exit 1 ; \
 				fi ; \
-				cd $$tmp_dir ; \
-				if [ -n "${GIT_BRANCH}" ] ; then \
-					echo "Checking specified branch: ${GIT_BRANCH}" ; \
-					git checkout ${GIT_BRANCH} > /dev/null 2>&1 ; \
-				else \
-					if git show-ref --verify --quiet refs/heads/main ; then \
-						echo "Using default branch: main" ; \
-						git checkout main > /dev/null 2>&1 ; \
-					elif git show-ref --verify --quiet refs/heads/master ; then \
-						echo "Using default branch: master" ; \
-						git checkout master > /dev/null 2>&1 ; \
-					else \
-						echo "Error: No default branch (main or master) found in repository" ; \
-						cd - > /dev/null ; \
-						rm -rf $$tmp_dir ; \
-						exit 1 ; \
-					fi ; \
-				fi ; \
-				current_hash=`git rev-parse HEAD` ; \
 				echo "Current repository hash: $$current_hash" ; \
-				cd - > /dev/null ; \
-				rm -rf $$tmp_dir ; \
 				if [ "$$last_hash" = "$$current_hash" ] ; then \
 					echo "${PORTNAME} is up to date with git repository. No changes detected." ; \
 					exit 0 ; \

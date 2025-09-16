@@ -118,24 +118,16 @@ force-install: build-stamp $(PREINSTALL)
 # Store git hash after successful build
 store-hash:
 	@if [ -n "${GIT_REPOSITORY}" ] ; then \
-		git_dir="build/${PORTNAME}-${PORTVERSION}" ; \
-		if [ -d "$$git_dir" ] ; then \
-			cd "$$git_dir" ; \
-			if [ -n "${GIT_BRANCH}" ] ; then \
-				echo "Checking specified branch: ${GIT_BRANCH}" ; \
-				git checkout ${GIT_BRANCH} > /dev/null 2>&1 ; \
-			else \
-				if git show-ref --verify --quiet refs/heads/main ; then \
-					echo "Using default branch: main" ; \
-					git checkout main > /dev/null 2>&1 ; \
-				elif git show-ref --verify --quiet refs/heads/master ; then \
-					echo "Using default branch: master" ; \
-					git checkout master > /dev/null 2>&1 ; \
-				fi ; \
-			fi ; \
-			current_hash=`git rev-parse HEAD` ; \
+		branch="${GIT_BRANCH}" ; \
+		if [ -z "$$branch" ] ; then \
+			branch="HEAD" ; \
+		fi ; \
+		current_hash=`git ls-remote ${GIT_REPOSITORY} $$branch | cut -f1` ; \
+		if [ -n "$$current_hash" ] ; then \
 			mkdir -p ${KOS_PORTS}/lib/.kos-ports ; \
 			echo "$$current_hash" > ${KOS_PORTS}/lib/.kos-ports/${PORTNAME}.hash ; \
 			echo "Stored git hash: $$current_hash" ; \
+		else \
+			echo "Warning: Could not retrieve git hash for ${GIT_REPOSITORY} $$branch" ; \
 		fi ; \
 	fi
