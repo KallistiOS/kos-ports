@@ -50,7 +50,7 @@ with open('distinfo', 'r') as f:
             sys.exit('File not found: %s' % (fn,))
 
         if size != int(l2t[3]):
-            sys.exit('File "%s" is incorrect size (expected %d)' % (fn, int(l2t[3])))
+            sys.exit('File "%s" has an incorrect size %d (expected %d)' % (fn, size, int(l2t[3])))
 
         sha = calc_sha256(fn)
 
@@ -58,7 +58,7 @@ with open('distinfo', 'r') as f:
             sys.exit('File not found: %s' % (fn, ))
 
         if sha != l1t[3]:
-            sys.exit('File "%s" is corrupt!' % (fn, ))
+            sys.exit('File "%s" has an incorrect sha %s (expected %s). It may be corrupt!' % (fn, sha, l1t[3]))
 
         print('File "%s" is ok.' % (fn, ))
 sys.exit(0)
