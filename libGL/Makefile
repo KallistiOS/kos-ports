@@ -17,10 +17,12 @@ EXAMPLES_DIR =      samples
 
 # -DCMAKE_BUILD_TYPE=Release forces GLdc to build with upstream's release optimization
 # flags. Remove this argument to create a build without overriding $KOS_CFLAGS.
+# Add -DBUILD_SAMPLES=OFF and/or -DBUILD_TESTS=OFF to speed up compilation by skipping
+# the compilation of GLdc's samples and tests.
 CMAKE_ARGS =        -DCMAKE_BUILD_TYPE=Release
 
 PREINSTALL =        move_samples
 
 include ${KOS_PORTS}/scripts/kos-ports.mk
 move_samples:
-	mv build/${PORTNAME}-${PORTVERSION}/*.elf build/${PORTNAME}-${PORTVERSION}/samples
+	@mv build/${PORTNAME}-${PORTVERSION}/*.elf build/${PORTNAME}-${PORTVERSION}/samples 2>/dev/null || true
