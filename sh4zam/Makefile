@@ -8,7 +8,7 @@ SHORT_DESC =        Hardware accelerated math and linear algebra library for the
 
 PORT_BUILD =        cmake
 
-GIT_REPOSITORY =    git@github.com:gyrovorbis/sh4zam.git
+GIT_REPOSITORY =    https://github.com/gyrovorbis/sh4zam.git
 
 TARGET =            libsh4zam.a
 HDR_DIRECTORY = 	include/sh4zam
