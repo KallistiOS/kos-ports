@@ -26,7 +26,6 @@ MAKE_TARGET =       all install
 # Apply patch before build
 PREBUILD =          apply-patch
 
+include ${KOS_PORTS}/scripts/kos-ports.mk
 apply-patch:
 	patch -p1 -d build/${PORTNAME}-${PORTVERSION} < files/cglm-1.0.0.patch
-
-include ${KOS_PORTS}/scripts/kos-ports.mk
