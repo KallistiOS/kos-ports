@@ -1,0 +1,13 @@
+diff -Naur original/CMakeLists.txt cglm-1.0.0/CMakeLists.txt
+--- original/CMakeLists.txt
++++ cglm-1.0.0/CMakeLists.txt
+@@ -102,6 +102,9 @@
+   src/clipspace/project_zo.c
+   )
+ 
++# Workaround for GCC 15 ICE in gen_reg_rtx on SH4 with -ffast-math
++set_source_files_properties(src/ease.c PROPERTIES COMPILE_FLAGS "-fno-fast-math")
++
+ if(CGLM_SHARED)
+   add_definitions(-DCGLM_EXPORTS)
+ else()
