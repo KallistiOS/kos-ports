@@ -1,0 +1,12 @@
+diff -Naur original/src/ease.c cglm-1.0.0/src/ease.c
+--- original/src/ease.c
++++ cglm-1.0.0/src/ease.c
+@@ -170,6 +170,8 @@
+   return glm_ease_elast_out(t);
+ }
+ 
++/* Workaround for GCC 15 ICE in gen_reg_rtx with -ffast-math enabled */
++__attribute__((optimize("-fno-fast-math")))
+ CGLM_EXPORT
+ float
+ glmc_ease_elast_inout(float t) {

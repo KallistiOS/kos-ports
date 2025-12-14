@@ -20,7 +20,12 @@ TARGET =            libcglm.a
 EXAMPLES_DIR =      test
 
 # cmake setup work.
-CMAKE_ARGS =        -DCGLM_STATIC=ON
+CMAKE_ARGS =        -DCGLM_STATIC=ON -Wno-dev -DCMAKE_C_FLAGS="-Wno-unused-parameter"
 MAKE_TARGET =       all install
 
+# Apply patch before build
+PREBUILD =          apply-patch
+
 include ${KOS_PORTS}/scripts/kos-ports.mk
+apply-patch:
+	patch -p1 -d build/${PORTNAME}-${PORTVERSION} < files/cglm-1.0.0.patch
