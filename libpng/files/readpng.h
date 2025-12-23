@@ -24,7 +24,7 @@ void * readpng_init(FILE *infile);
  * starts at a multiple of pRowBytes
  * The caller is responsible for freeing the memory
  */
-uint8 *readpng_get_image(void * strs, uint32 *pNumChannels,
-                       uint32 *pRowBytes, uint32 *pWidth, uint32 *pHeight);
+uint8_t *readpng_get_image(void * strs, uint32_t *pNumChannels,
+                       uint32_t *pRowBytes, uint32_t *pWidth, uint32_t *pHeight);
 
 void readpng_cleanup(void * strs);
