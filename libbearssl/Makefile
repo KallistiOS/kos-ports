@@ -16,7 +16,9 @@ HDR_DIRECTORY =     inc
 # Add a pre-install target to get the built library where we expect it.
 PREINSTALL = bearssl_preinstall
 
-MAKE_TARGET =       lib
+#bearssl directly uses CC in its makefile, so redirect it. Then only call
+#the 'lib' target to avoid building tests and examples.
+MAKE_TARGET =       CC=kos-cc lib
 
 include ${KOS_PORTS}/scripts/kos-ports.mk
 bearssl_preinstall:
