@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          lua
-PORTVERSION =       5.4.8
+PORTVERSION =       5.5.0
 
 MAINTAINER =        Falco Girgis (GyroVorbis)
 LICENSE =           MIT
@@ -15,7 +15,7 @@ DOWNLOAD_FILES =    ${PORTNAME}-${PORTVERSION}.tar.gz
 
 TARGET =            liblua.a
 INSTALLED_HDRS =    src/lua.h src/luaconf.h src/lualib.h src/lauxlib.h \
-                    src/lua.hpp
+                    src/llimits.h src/lua.hpp
 HDR_INSTDIR =       lua
 
 # KOS Distributed extras (to be copied into the build tree)
