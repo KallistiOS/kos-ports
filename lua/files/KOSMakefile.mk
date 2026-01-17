@@ -11,7 +11,7 @@ OBJS = src/lapi.o src/lauxlib.o src/lbaselib.o src/lcode.o \
 defaultall: fixconf $(OBJS) subdirs linklib
 
 fixconf:
-	sed -e 's/#define LUA_32BITS[[:space:]+]0/#define LUA_32BITS 1/' -ibak src/luaconf.h
+	sed -e 's/\/\*[[:space:]+]#define LUA_32BITS[[:space:]+]\*\//#define LUA_32BITS/' -ibak src/luaconf.h
 
 KOS_CFLAGS += -Isrc
 
