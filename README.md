@@ -2,20 +2,19 @@
 
 ## Introduction
 **kos-ports** is a package manager and repository of various useful libraries that
-have been ported to the Dreamcast operating system
-[KallistiOS](https://github.com/KallistiOS/KallistiOS). These libraries include
-common audiovisual formats (jpg, png, mp3, ogg, mpeg), compression formats (libbz2,
-zlib), scripting languages (Lua, Tcl, MicroPython), gaming APIs (OpenGL, OpenAL,
-SDL), and more.  Each port is meant to be as self-contained as possible and should
-build on the current version of KallistiOS. Dependency libraries will be fetched and
-built automatically, if necessary.
+have been ported to [KallistiOS](https://github.com/KallistiOS/KallistiOS). These
+libraries include common audiovisual formats (jpg, png, mp3, ogg, mpeg), compression
+formats (libbz2, zlib), scripting languages (Lua, Tcl, MicroPython), gaming APIs
+(OpenGL, OpenAL, SDL), and more.  Each port is meant to be as self-contained as
+possible and should build on the current version of KallistiOS. Dependency libraries
+will be fetched and built automatically, if necessary.
 
 ## Prerequisites
 ### KallistiOS
 Users must have a [KallistiOS](https://github.com/KallistiOS/KallistiOS) environment
-set up already. This means you must have an SH4 toolchain built and have already
-compiled KallistiOS itself. Before attempting to build a port, make sure you have
-sourced your KallistiOS `environ.sh` file in your current terminal.
+set up already. This means you must have a toolchain built for your current arch and
+have already compiled KallistiOS itself. Before attempting to build a port, make
+sure you have sourced your KallistiOS `environ.sh` file in your current terminal.
 
 ### Environment
 1. `curl` or `wget` are required to download packages. `curl` is used by default,
@@ -59,6 +58,7 @@ the above operations on **all** ports in the tree:
 #### Lesser used targets (mainly for internal use):
 - **version-check**: Check the version of the port that is currently installed.
 - **depends-check**: Check if all dependencies of the port are installed.
+- **arch-check**: Check if the currently selected arch is compatible.
 - **abi-check**: Check if the current KOS floating-point ABI is compatible.
 - **fetch**: Download dist files from upstream.
 - **validate-dist**: Check downloaded distfiles for validity, if enabled.
