@@ -5,6 +5,7 @@ PORTVERSION =       2.13.3
 MAINTAINER =        Lawrence Sebald <ljsebald@users.sourceforge.net>
 LICENSE =           FreeType License or GPLv2 (see docs/LICENSE.TXT in the source distribution)
 SHORT_DESC =        Freely available software library to render fonts of various types.
+ARCHS_SUPPORTED =   dreamcast
 
 # This port uses the autotools scripts that are included with the distfiles.
 PORT_BUILD =        autotools

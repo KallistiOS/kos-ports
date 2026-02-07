@@ -5,6 +5,7 @@ PORTVERSION =       1.1.0
 MAINTAINER =        Luke Benstead <kazade@gmail.com>
 LICENSE =           2-clause BSD (see LICENSE in the source distribution)
 SHORT_DESC =        GLdc, an OpenGL (tm) like graphics library for KOS
+ARCHS_SUPPORTED =   dreamcast
 
 PORT_BUILD =        cmake
 

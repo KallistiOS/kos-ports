@@ -5,6 +5,7 @@ PORTVERSION =       0.7
 MAINTAINER =        Nobody
 LICENSE =           Public Domain
 SHORT_DESC =        A library for MOD-like tracker music formats
+ARCHS_SUPPORTED =   dreamcast
 
 # No dependencies beyond the base system.
 DEPENDENCIES =

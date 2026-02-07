@@ -5,6 +5,7 @@ PORTVERSION = 2.29
 MAINTAINER  = Jason Rost (OniEnzeru)
 LICENSE     = Public Domain
 SHORT_DESC  = Single header library for image loading supporting many common formats.
+ARCHS_SUPPORTED =   dreamcast gamecube
 
 # No dependencies beyond the base system.
 DEPENDENCIES =

@@ -5,6 +5,7 @@ PORTVERSION =       5.5.0
 MAINTAINER =        Falco Girgis (GyroVorbis)
 LICENSE =           MIT
 SHORT_DESC =        Lightweight, embeddable, extensible scripting language
+ARCHS_SUPPORTED =   dreamcast gamecube
 
 # No dependencies beyond the base system.
 DEPENDENCIES =
