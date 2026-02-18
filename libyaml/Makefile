@@ -5,6 +5,7 @@ PORTVERSION =       0.2.5
 MAINTAINER =        Lawrence Sebald <ljsebald@users.sourceforge.net>
 LICENSE =           MIT (see License in the source distribution)
 SHORT_DESC =        A C library for parsing and emitting YAML
+ARCHS_SUPPORTED =   dreamcast gamecube
 
 # This port uses the autotools scripts that are included with the distfiles.
 PORT_BUILD =        autotools

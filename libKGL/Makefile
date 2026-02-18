@@ -5,6 +5,7 @@ PORTVERSION =       2.0.0
 MAINTAINER =        Nobody
 LICENSE =           KOS License
 SHORT_DESC =        KallistiGL, deprecated OpenGL (tm) like graphics library for KOS
+ARCHS_SUPPORTED =   dreamcast
 
 # No dependencies beyond the base system.
 DEPENDENCIES =

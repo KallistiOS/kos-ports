@@ -5,6 +5,7 @@ PORTVERSION =       2.0.0
 MAINTAINER =        Nobody
 LICENSE =           KOS License
 SHORT_DESC =        C++ "scene graph" wrapper around libparallax
+ARCHS_SUPPORTED =   dreamcast
 
 DEPENDENCIES =      libparallax
 

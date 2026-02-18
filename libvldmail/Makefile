@@ -5,6 +5,7 @@ PORTVERSION =       1.0.0
 MAINTAINER =        Donald Haase
 LICENSE =           MIT-0
 SHORT_DESC =        An e-mail address validation library.
+ARCHS_SUPPORTED =   dreamcast gamecube
 
 # This port uses CMake.
 PORT_BUILD =        cmake

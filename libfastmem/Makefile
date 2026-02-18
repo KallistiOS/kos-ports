@@ -5,6 +5,7 @@ PORTVERSION =       1.0.0
 MAINTAINER =        SiZiOUS <sizious@gmail.com>
 LICENSE =           LGPLv2.1
 SHORT_DESC =        Very optimized set of memory manipulation functions
+ARCHS_SUPPORTED =   dreamcast
 
 DEPENDENCIES =      
 

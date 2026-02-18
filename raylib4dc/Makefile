@@ -5,6 +5,7 @@ PORTVERSION =       5.5.0
 MAINTAINER =        Andress Barajas
 LICENSE =           zlib License - http://opensource.org/licenses/Zlib
 SHORT_DESC =        raylib is a simple and easy-to-use library to enjoy videogames programming.
+ARCHS_SUPPORTED =   dreamcast
 
 DEPENDENCIES =      libGL
 NOCOPY_TARGET =     1

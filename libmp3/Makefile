@@ -5,6 +5,7 @@ PORTVERSION =       2.0.0
 MAINTAINER =        Nobody
 LICENSE =           GPLv2+ (XingMP3) and KOS License (KOS Glue)
 SHORT_DESC =        Library for decoding and streaming MP3 audio
+ARCHS_SUPPORTED =   dreamcast
 
 # No dependencies beyond the base system.
 DEPENDENCIES =

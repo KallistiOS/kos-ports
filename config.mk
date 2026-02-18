@@ -15,6 +15,11 @@ UNPACK_CMD = tar xf
 # recursively.
 BUILD_DEPENDS = true
 
+# Select whether or not to check if a port supports the currently selected arch.
+# If not supported, it will be skipped. If check is disabled, then the port may
+# fail to build for an unsupported arch.
+CHECK_ARCH = true
+
 # Select whether or not to check if a port is compatible with KOS's current
 # floating-point precision ABI setting (KOS_SH4_PRECISION) before building.
 CHECK_PRECISION = true

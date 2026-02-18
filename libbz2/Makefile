@@ -5,6 +5,7 @@ PORTVERSION =       1.0.8
 MAINTAINER =        Lawrence Sebald <ljsebald@users.sourceforge.net>
 LICENSE =           BSD-like (see LICENSE in the source distribution)
 SHORT_DESC =        Block-sorting compression library
+ARCHS_SUPPORTED =   dreamcast gamecube
 
 # No dependencies beyond the base system.
 DEPENDENCIES =
