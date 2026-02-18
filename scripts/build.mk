@@ -39,7 +39,19 @@ else
 endif
 	touch build-stamp
 
-install: setup-check version-check abi-check depends-check force-install
+install: setup-check abi-check depends-check
+	@if [ -f "${KOS_PORTS}/lib/.kos-ports/${PORTNAME}" ] ; then \
+		installed_version=`cat "${KOS_PORTS}/lib/.kos-ports/${PORTNAME}"` ; \
+		if [ "$$installed_version" = "${PORTVERSION}" ] ; then \
+			if [ -f "${KOS_PORTS}/lib/.kos-ports/${PORTNAME}.hash" ] ; then \
+				echo "${PORTNAME} version ${PORTVERSION} is already installed." ; \
+				echo "To force reinstall, run: make uninstall && make install" ; \
+				echo "To check for updates, run: make update" ; \
+				exit 0 ; \
+			fi ; \
+		fi ; \
+	fi ; \
+	$(MAKE) force-install store-hash
 
 force-install: build-stamp $(PREINSTALL)
 	@if [ ! -d "inst" ] ; then \
@@ -102,3 +114,20 @@ force-install: build-stamp $(PREINSTALL)
 
 	@echo "Marking ${PORTNAME} ${PORTVERSION} as installed."
 	@echo "${PORTVERSION}" > "${KOS_PORTS}/lib/.kos-ports/${PORTNAME}"
+
+# Store git hash after successful build
+store-hash:
+	@if [ -n "${GIT_REPOSITORY}" ] ; then \
+		branch="${GIT_BRANCH}" ; \
+		if [ -z "$$branch" ] ; then \
+			branch="HEAD" ; \
+		fi ; \
+		current_hash=`git ls-remote ${GIT_REPOSITORY} $$branch | cut -f1` ; \
+		if [ -n "$$current_hash" ] ; then \
+			mkdir -p ${KOS_PORTS}/lib/.kos-ports ; \
+			echo "$$current_hash" > ${KOS_PORTS}/lib/.kos-ports/${PORTNAME}.hash ; \
+			echo "Stored git hash: $$current_hash" ; \
+		else \
+			echo "Warning: Could not retrieve git hash for ${GIT_REPOSITORY} $$branch" ; \
+		fi ; \
+	fi

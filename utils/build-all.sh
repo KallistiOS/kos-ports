@@ -13,21 +13,14 @@ error_count=0
 for _dir in ${KOS_PORTS}/* ; do
     if [ -d "${_dir}" ] ; then
         if [ -f "${_dir}/Makefile" ] ; then
-            echo "Checking if ${_dir} is installed and up-to-date..."
-            ${KOS_MAKE} -C "${_dir}" version-check > /dev/null 2>&1
+            portname=$(basename "${_dir}")
+            echo "Building ${_dir}..."
+            ${KOS_MAKE} -C "${_dir}" clean install
             rv=$?
-            if [ "$rv" -eq 0 ] ; then
-                echo "Building ${_dir}..."
-                ${KOS_MAKE} -C "${_dir}" install clean
-                rv=$?
-                echo $rv
-                if [ "$rv" -ne 0 ] ; then
-                    echo "Error building ${_dir}."
-                    errors="${errors}${_dir}: Build failed with return code ${rv}\n"
-                    error_count=$((error_count + 1))
-                fi
-            else
-                echo "${_dir} is already installed and up-to-date. Skipping."
+            if [ "$rv" -ne 0 ] ; then
+                echo "Error building ${_dir}."
+                errors="${errors}${_dir}: Build failed with return code ${rv}\n"
+                error_count=$((error_count + 1))
             fi
         fi
     fi

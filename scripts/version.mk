@@ -4,21 +4,88 @@
 # Copyright (C) 2015 Lawrence Sebald
 #
 
-version-check:
+# Update target that handles both git and version-based ports
+update:
 	@if [ -f ${KOS_PORTS}/lib/.kos-ports/${PORTNAME} ] ; then \
-		a=`cat ${KOS_PORTS}/lib/.kos-ports/${PORTNAME}` ; \
-		${KOS_PORTS}/scripts/vercmp.sh $$a ${PORTVERSION} ; \
-		res=$$? ; \
-		if [ "$$res" -eq "0" ] ; then \
-			echo "${PORTNAME} is already installed and is latest version. Exiting." ; \
-			exit 1 ; \
-		elif [ "$$res" -eq "1" ] ; then \
-			echo "${PORTNAME} is already installed and is newer than latest version!" ; \
-			echo "Ports collection out of sync. Please update! Exiting." ; \
-			exit 255 ; \
+		if [ -n "${GIT_REPOSITORY}" ] ; then \
+			if [ -f "${KOS_PORTS}/lib/.kos-ports/${PORTNAME}.hash" ] ; then \
+				last_hash=`cat ${KOS_PORTS}/lib/.kos-ports/${PORTNAME}.hash` ; \
+				echo "Last stored hash: $$last_hash" ; \
+				branch="${GIT_BRANCH}" ; \
+				if [ -z "$$branch" ] ; then \
+					branch="HEAD" ; \
+				fi ; \
+				current_hash=`git ls-remote ${GIT_REPOSITORY} $$branch | cut -f1` ; \
+				if [ -z "$$current_hash" ] ; then \
+					echo "Error: Could not retrieve git hash for ${GIT_REPOSITORY} $$branch" ; \
+					echo "Please check your network connection and repository URL." ; \
+					exit 1 ; \
+				fi ; \
+				echo "Current repository hash: $$current_hash" ; \
+				if [ "$$last_hash" = "$$current_hash" ] ; then \
+					echo "${PORTNAME} is up to date with git repository. No changes detected." ; \
+					exit 0 ; \
+				else \
+					echo "${PORTNAME} has new changes in repository. Rebuilding..." ; \
+					cd ${KOS_PORTS} && $(MAKE) -C ${PORTNAME} clean install ; \
+				fi ; \
+			else \
+				echo "${PORTNAME} is installed but no git hash is stored yet." ; \
+				echo "Performing clean reinstall to ensure latest state..." ; \
+				cd ${KOS_PORTS} && $(MAKE) -C ${PORTNAME} uninstall clean install ; \
+			fi ; \
 		else \
-			echo "${PORTNAME} $$a installed. Update to ${PORTVERSION}." ; \
+			installed_version=`cat ${KOS_PORTS}/lib/.kos-ports/${PORTNAME}` ; \
+			${KOS_PORTS}/scripts/vercmp.sh $$installed_version ${PORTVERSION} ; \
+			res=$$? ; \
+			if [ "$$res" -eq "0" ] ; then \
+				echo "${PORTNAME} version $$installed_version is up to date." ; \
+				exit 0 ; \
+			elif [ "$$res" -eq "1" ] ; then \
+				echo "${PORTNAME} version $$installed_version is newer than ports version ${PORTVERSION}!" ; \
+				echo "Ports collection might be out of sync. Please check for updates." ; \
+				exit 1 ; \
+			else \
+				echo "${PORTNAME} version $$installed_version is installed, but version ${PORTVERSION} is available." ; \
+				echo "Performing clean reinstall to update..." ; \
+				cd ${KOS_PORTS} && $(MAKE) -C ${PORTNAME} uninstall clean install ; \
+			fi ; \
 		fi ; \
 	else \
 		echo "${PORTNAME} is not currently installed." ; \
+		echo "Nothing to update. To install this port, run: make clean install" ; \
+		exit 1 ; \
 	fi
+
+# Show dependencies for this port
+show-deps:
+	@if [ -n "${DEPENDENCIES}" ] ; then \
+		echo "Dependencies for ${PORTNAME}:" ; \
+		for _dep in ${DEPENDENCIES}; do \
+			if [ -f "${KOS_PORTS}/lib/.kos-ports/$$_dep" ] ; then \
+				printf "  ✓ %s (installed)\n" "$$_dep" ; \
+			else \
+				printf "  ✗ %s (not installed)\n" "$$_dep" ; \
+			fi ; \
+			if [ -f "${KOS_PORTS}/$$_dep/Makefile" ] ; then \
+				cd "${KOS_PORTS}/$$_dep" && \
+				subdeps=`${MAKE} print-deps 2>/dev/null` ; \
+				if [ -n "$$subdeps" ] ; then \
+					echo "    Sub-dependencies:" ; \
+					for _subdep in $$subdeps; do \
+						if [ -f "${KOS_PORTS}/lib/.kos-ports/$$_subdep" ] ; then \
+							printf "      ✓ %s (installed)\n" "$$_subdep" ; \
+						else \
+							printf "      ✗ %s (not installed)\n" "$$_subdep" ; \
+						fi ; \
+					done ; \
+				fi ; \
+			fi ; \
+		done ; \
+	else \
+		echo "${PORTNAME} has no dependencies beyond the base system." ; \
+	fi
+
+# Helper target to print dependencies
+print-deps:
+	@echo "${DEPENDENCIES}"
