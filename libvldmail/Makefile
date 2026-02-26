@@ -13,9 +13,11 @@ PORT_BUILD =        cmake
 GIT_REPOSITORY =    https://github.com/dertuxmalwieder/libvldmail.git
 TARGET =            libvldmail.a
 INSTALLED_HDRS =    src/vldmail.h
+NOCOPY_TARGET =     true
 
 #Passing this causes the test to be built as a .elf in the build dir.
 #It doesn't quite match the current scheme we have for 'examples'
 CMAKE_ARGS =        -DBUILD_THE_TEST=1
+CMAKE_OUTSOURCE =    true
 
 include ${KOS_PORTS}/scripts/kos-ports.mk
