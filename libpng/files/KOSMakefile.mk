@@ -14,6 +14,9 @@ KOS_CFLAGS += -I. \
 
 defaultall: pnglibconf.h fix-pngh $(OBJS) subdirs linklib
 
+# Avoid ICE with some GCC versions
+pngwrite.o: CFLAGS += -O2
+
 # Force the configuration file to be generated.
 pnglibconf.h: scripts/pnglibconf.h.prebuilt
 	cp $< $@
