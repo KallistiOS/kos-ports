@@ -98,6 +98,9 @@ force-install: build-stamp $(PREINSTALL)
 
 	@if [ -n "${EXAMPLES_DIR}" ] ; then \
 		ln -s ${KOS_PORTS}/${PORTNAME}/inst/examples ${KOS_PORTS}/examples/${PORTNAME} ; \
+		if [ -n "${EXAMPLES_SYMLINK}" ] ; then \
+			ln -s ${KOS_PORTS}/${PORTNAME}/inst/examples ${KOS_BASE}/examples/${KOS_ARCH}/${PORTNAME} ; \
+		fi ; \
 	fi
 
 	@echo "Marking ${PORTNAME} ${PORTVERSION} as installed."
