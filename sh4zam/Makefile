@@ -11,8 +11,9 @@ PORT_BUILD =        cmake
 GIT_REPOSITORY =    https://github.com/gyrovorbis/sh4zam.git
 
 TARGET =            libsh4zam.a
-HDR_DIRECTORY = 	include/sh4zam
+HDR_DIRECTORY =     include/sh4zam
 HDR_INSTDIR =       sh4zam
 EXAMPLES_DIR =      example
+EXAMPLES_SYMLINK =  1
 
 include ${KOS_PORTS}/scripts/kos-ports.mk
