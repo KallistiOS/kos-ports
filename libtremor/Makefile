@@ -5,6 +5,7 @@ PORTVERSION =       19480
 MAINTAINER =        Lawrence Sebald <ljsebald@users.sourceforge.net>
 LICENSE =           3-clause BSD (see COPYING in the source distribution)
 SHORT_DESC =        Vorbis audio decoder library (integer version)
+ARCHS_SUPPORTED =   dreamcast
 
 # No dependencies beyond the base system.
 DEPENDENCIES =

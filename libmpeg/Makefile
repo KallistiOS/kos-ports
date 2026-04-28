@@ -5,6 +5,7 @@ PORTVERSION =       1.0.0
 MAINTAINER =        Andy Barajas
 LICENSE =           MIT
 SHORT_DESC =        Library for decoding MPEG1 Video, MP2 Audio using pl_mpeg
+ARCHS_SUPPORTED =   dreamcast
 
 # No dependencies beyond the base system.
 DEPENDENCIES =

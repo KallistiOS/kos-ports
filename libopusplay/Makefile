@@ -5,6 +5,7 @@ PORTVERSION =       2.1.0
 MAINTAINER =        Lawrence Sebald <ljsebald@users.sourceforge.net>
 LICENSE =           KOS License
 SHORT_DESC =        Opus audio playback library
+ARCHS_SUPPORTED =   dreamcast
 
 # Requires opusfile (which will pull in opus and libogg)
 DEPENDENCIES =      opusfile

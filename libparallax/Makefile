@@ -5,6 +5,7 @@ PORTVERSION =       2.0.0
 MAINTAINER =        Nobody
 LICENSE =           KOS License
 SHORT_DESC =        Simple (mostly 2D) game API library
+ARCHS_SUPPORTED =   dreamcast
 
 DEPENDENCIES =      libpng libjpeg libkmg
 

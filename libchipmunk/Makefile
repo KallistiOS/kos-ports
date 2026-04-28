@@ -5,6 +5,7 @@ PORTVERSION =       7.0.3.1
 MAINTAINER =        Donald Haase
 LICENSE =           MIT
 SHORT_DESC =        A fast and lightweight 2D game physics library.
+ARCHS_SUPPORTED =   dreamcast gamecube
 
 # This port uses CMake.
 PORT_BUILD =        cmake

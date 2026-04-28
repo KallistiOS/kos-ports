@@ -5,6 +5,7 @@ PORTVERSION =       1.0.0
 MAINTAINER =        Luke Benstead <kazade@gmail.com>
 LICENSE =           MIT License
 SHORT_DESC =        OpenAL implementation for KOS
+ARCHS_SUPPORTED =   dreamcast
 
 # No dependencies beyond the base system.
 DEPENDENCIES =

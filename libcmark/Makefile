@@ -5,6 +5,7 @@ PORTVERSION =       0.31.0
 MAINTAINER =        Donald Haase
 LICENSE =           Custom (see the file COPYING provided with headers or at https://github.com/commonmark/cmark/blob/master/COPYING)
 SHORT_DESC =        CommonMark parsing and rendering library and program in C
+ARCHS_SUPPORTED =   dreamcast
 
 # This port uses CMake.
 PORT_BUILD =        cmake

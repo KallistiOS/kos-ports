@@ -5,6 +5,7 @@ PORTVERSION =       1.0.0
 MAINTAINER =        Donald Haase
 LICENSE =           MIT
 SHORT_DESC =        Highly optimized 2D|3D math library, also known as OpenGL Mathematics (glm) for `C`
+ARCHS_SUPPORTED =   dreamcast gamecube
 
 # This port uses CMake.
 PORT_BUILD =        cmake

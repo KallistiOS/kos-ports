@@ -5,6 +5,7 @@ PORTVERSION =       1.2
 MAINTAINER =        Donald Haase
 LICENSE =           zlib License - http://opensource.org/licenses/Zlib
 SHORT_DESC =        SDL TrueType font library
+ARCHS_SUPPORTED =   dreamcast
 
 # This port could use autotools, but it tries to build the glfont example which uses
 # functionality currently unsupported by gldc..

@@ -5,6 +5,7 @@ PORTVERSION =       1.0.0
 MAINTAINER =        Andy Barajas
 LICENSE =           Public Domain
 SHORT_DESC =        Library for decoding WAV file headers 
+ARCHS_SUPPORTED =   dreamcast
 
 # No dependencies beyond the base system.
 DEPENDENCIES =
