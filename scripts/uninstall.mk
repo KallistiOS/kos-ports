@@ -24,6 +24,9 @@ uninstall:
 			rm -f ${KOS_PORTS}/include/${PORTNAME} ; \
 		fi ; \
 		rm -fr inst ; \
+		if [ -n "${EXAMPLES_SYMLINK}" ] ; then \
+			rm -f ${KOS_BASE}/examples/${KOS_ARCH}/${PORTNAME} ; \
+		fi ; \
 		echo "Uninstalled ${PORTNAME}." ; \
 		echo "WARNING: Dependency checking not done, any dependent ports will be broken." ; \
 	else \
