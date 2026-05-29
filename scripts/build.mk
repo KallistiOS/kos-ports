@@ -29,7 +29,7 @@ else ifeq ($(PORT_BUILD), cmake)
 	fi ; \
 	kos-cmake -DCMAKE_INSTALL_INCLUDEDIR=${KOS_PORTS}/${PORTNAME}/inst/include \
 		-DCMAKE_INSTALL_LIBDIR=${KOS_PORTS}/${PORTNAME}/inst/lib $$p ${CMAKE_ARGS} ; \
-	cmake --build . -t $(or ${MAKE_TARGET},all) ;
+	cmake --build . ;
 else
 	@if [ -z "${DISTFILE_DIR}" ] ; then \
 		$(MAKE) -C build/${PORTNAME}-${PORTVERSION} -f ${KOS_MAKEFILE} ${MAKE_TARGET} ; \
@@ -61,8 +61,15 @@ force-install: build-stamp $(PREINSTALL)
 	else \
 		cd ${DISTFILE_DIR} ; \
 	fi ; \
+	if [ -n "${CMAKE_OUTSOURCE}" ] ; then \
+		p=build ; \
+	else \
+		p=. ; \
+	fi ; \
 	if [ -z "${NOCOPY_TARGET}" ] ; then \
-		cp ${TARGET} ../../inst/lib ; \
+		for target in ${TARGET}; do \
+			cp $$p/$$target ../../inst/lib ; \
+		done ; \
 	fi ; \
 	for _file in ${INSTALLED_HDRS}; do \
 		cp $$_file ../../inst/include ; \
@@ -91,8 +98,10 @@ force-install: build-stamp $(PREINSTALL)
 		ln -s ${KOS_PORTS}/${PORTNAME}/inst/include ${KOS_PORTS}/include/${PORTNAME} ; \
 	fi
 
-	@rm -f ${KOS_PORTS}/lib/${TARGET}
-	@ln -s ${KOS_PORTS}/${PORTNAME}/inst/lib/${TARGET} ${KOS_PORTS}/lib/${TARGET}
+	@for target in $(TARGET); do \
+		rm -f ${KOS_PORTS}/lib/$$target ; \
+		ln -s ${KOS_PORTS}/${PORTNAME}/inst/lib/$$target ${KOS_PORTS}/lib/$$target ; \
+	done
 
 	@rm -f ${KOS_PORTS}/examples/${PORTNAME}
 
