@@ -14,12 +14,11 @@ NOCOPY_TARGET =     1
 
 # What files we need to download, and where from.
 GIT_REPOSITORY =    https://github.com/sahlberg/libsmb2.git
-GIT_BRANCH =        ${PORTNAME}-${PORTVERSION}
 TARGET =            libsmb2.a
 EXAMPLES_DIR =      examples
 
 # cmake setup work.
-CMAKE_ARGS =        -DINSTALL_INC_DIR=${KOS_PORTS}/${PORTNAME}/inst/ \
+CMAKE_ARGS =        -DINSTALL_INC_DIR=${KOS_PORTS}/${PORTNAME}/inst/include/ \
                     -DCMAKE_INSTALL_PREFIX=${KOS_PORTS}/${PORTNAME}/inst/
 MAKE_TARGET =       all install
 

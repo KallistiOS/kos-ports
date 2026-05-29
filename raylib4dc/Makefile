@@ -22,7 +22,13 @@ KOS_MAKEFILE =      Makefile
 
 PREINSTALL = raylib_preinstall
 
+# Apply patch before build
+PREBUILD =          apply-patch
+
 include ${KOS_PORTS}/scripts/kos-ports.mk
+apply-patch:
+	patch -p1 -d build/${PORTNAME}-${PORTVERSION} < files/raylib4dc-5.5.0.patch
+
 raylib_preinstall:
 	@mkdir -p inst/lib inst/include
 	@cp build/${DISTFILE_DIR}/${TARGET} inst/lib

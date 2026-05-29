@@ -20,13 +20,13 @@
 #define LOAD4444(r, g, b, a) (((a>>4)<<12)|((r>>4)<<8)|((g>>4)<<4)|((b>>4)))
 
 /* not to be used outside of here */
-void _png_copy_texture(uint8 *buffer, uint16 *temp_tex,
-                      uint32 channels, uint32 stride,
-                      uint32 mask, uint32 w, uint32 h)
+void _png_copy_texture(uint8_t *buffer, uint16_t *temp_tex,
+                      uint32_t channels, uint32_t stride,
+                      uint32_t mask, uint32_t w, uint32_t h)
 {
-  uint32 i,j;
-  uint16 *ourbuffer;
-  uint8 *pRow;
+  uint32_t i,j;
+  uint16_t *ourbuffer;
+  uint8_t *pRow;
   
   for(i = 0; i < h; i++)
   {
@@ -63,15 +63,15 @@ void _png_copy_texture(uint8 *buffer, uint16 *temp_tex,
   }
 }
 
-int png_to_img(const char * filename, uint32 mask, kos_img_t * rv) {
-	uint16 *temp_tex;
+int png_to_img(const char *filename, uint32_t mask, kos_img_t *rv) {
+	uint16_t *temp_tex;
 
 	/* More stuff */
-	uint8	*buffer;	/* Output row buffer */
-	uint32	row_stride;	/* physical row width in output buffer */
-	uint32	channels;	/* 3 for RGB 4 for RGBA */
+	uint8_t     *buffer;    /* Output row buffer */
+	uint32_t    row_stride; /* physical row width in output buffer */
+	uint32_t    channels;   /* 3 for RGB 4 for RGBA */
 
-	FILE	*infile;	/* source file */
+	FILE    *infile;	/* source file */
 
 	void	*strs;		/* internal structs */
 
@@ -94,7 +94,7 @@ int png_to_img(const char * filename, uint32 mask, kos_img_t * rv) {
 
 	/* Step 2: Read file */
 	buffer = readpng_get_image(strs,&channels, &row_stride, &rv->w, &rv->h);
-	temp_tex = (uint16 *)malloc(sizeof(uint16) * rv->w * rv->h);
+	temp_tex = (uint16_t *)malloc(sizeof(uint16_t) * rv->w * rv->h);
 	rv->data = (void *)temp_tex;
 	rv->byte_count = rv->w * rv->h * 2;
 

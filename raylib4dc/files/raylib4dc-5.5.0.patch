@@ -1,0 +1,14 @@
+diff --git a/src/rmodels.c b/src/rmodels.c
+index 815e6d2..1755bad 100644
+--- a/src/rmodels.c
++++ b/src/rmodels.c
+@@ -3842,6 +3842,9 @@ void DrawBillboardRec(Camera camera, Texture2D texture, Rectangle source, Vector
+     DrawBillboardPro(camera, texture, source, position, up, size, Vector2Scale(size, 0.5), 0.0f, tint);
+ }
+ 
++/* Workaround for GCC 15 ICE in gen_reg_rtc with -ffast-math enabled */
++__attribute__((optimize("-fno-fast-math")))
++
+ // Draw a billboard with additional parameters
+ void DrawBillboardPro(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint)
+ {

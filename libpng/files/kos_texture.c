@@ -5,22 +5,22 @@
 /* load an n x n texture from a png */
 
 /* not to be used outside of here */
-extern void _png_copy_texture(uint8 *buffer, uint16 *temp_tex,
-                      uint32 channels, uint32 stride,
-                      uint32 mask, uint32 w, uint32 h);
+extern void _png_copy_texture(uint8_t *buffer, uint16_t *temp_tex,
+                      uint32_t channels, uint32_t stride,
+                      uint32_t mask, uint32_t w, uint32_t h);
 
-int png_load_texture(const char * filename, pvr_ptr_t *tex, uint32 mask, uint32 *w, uint32 *h)
+int png_load_texture(const char *filename, pvr_ptr_t *tex, uint32_t mask, uint32_t *w, uint32_t *h)
 {
-    uint16 *temp_tex;
+    uint16_t *temp_tex;
 
     /* More stuff */
-    uint8 *buffer;            /* Output row buffer */
-    uint32 row_stride;   /* physical row width in output buffer */
-    uint32 channels;           /* 3 for RGB 4 for RGBA */
+    uint8_t *buffer;       /* Output row buffer */
+    uint32_t row_stride;   /* physical row width in output buffer */
+    uint32_t channels;     /* 3 for RGB 4 for RGBA */
 
-    FILE *infile;                /* source file */
+    FILE *infile;          /* source file */
 
-    void * strs;		/* internal structs */
+    void *strs;            /* internal structs */
 
     //    readpng_version_info();
     
@@ -41,7 +41,7 @@ int png_load_texture(const char * filename, pvr_ptr_t *tex, uint32 mask, uint32 
     /* Step 2: Read file */
 
     buffer = readpng_get_image(strs, &channels, &row_stride, w, h);
-    temp_tex = (uint16 *)malloc(sizeof(uint16)*(*w)*(*h));
+    temp_tex = (uint16_t *)malloc(sizeof(uint16_t)*(*w)*(*h));
 
     _png_copy_texture(buffer, temp_tex,
                      channels, row_stride,
@@ -61,19 +61,19 @@ int png_load_texture(const char * filename, pvr_ptr_t *tex, uint32 mask, uint32 
 
 }
 
-int png_to_texture(const char * filename, pvr_ptr_t tex, uint32 mask)
+int png_to_texture(const char *filename, pvr_ptr_t tex, uint32_t mask)
 {
-  uint16 *temp_tex;
+  uint16_t *temp_tex;
   
   /* More stuff */
-  uint8 *buffer;            /* Output row buffer */
-  uint32 row_stride;   /* physical row width in output buffer */
-  uint32 channels;           /* 3 for RGB 4 for RGBA */
-  uint32 w,h;
+  uint8_t *buffer;      /* Output row buffer */
+  uint32_t row_stride;  /* physical row width in output buffer */
+  uint32_t channels;    /* 3 for RGB 4 for RGBA */
+  uint32_t w,h;
   
-  FILE *infile;                /* source file */
+  FILE *infile;         /* source file */
 
-  void * strs;		/* internal structs */
+  void *strs;           /* internal structs */
 
   //    readpng_version_info();
   
@@ -93,7 +93,7 @@ int png_to_texture(const char * filename, pvr_ptr_t tex, uint32 mask)
   /* Step 2: Read file */
 
   buffer = readpng_get_image(strs, &channels, &row_stride,&w,&h);
-  temp_tex = (uint16 *)malloc(sizeof(uint16)*w*h);
+  temp_tex = (uint16_t *)malloc(sizeof(uint16_t)*w*h);
 
   _png_copy_texture(buffer, temp_tex,
                    channels, row_stride,

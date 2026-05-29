@@ -34,7 +34,7 @@ void readpng_version_info(void)
 
 void * readpng_init(FILE *infile)
 {
-    uint8 sig[8];
+    uint8_t sig[8];
     readpng_structs_t * strs = malloc(sizeof(readpng_structs_t));
     memset(strs, 0, sizeof(readpng_structs_t));
 
@@ -72,13 +72,13 @@ void * readpng_init(FILE *infile)
     return (void *)strs;
 }
 
-uint8 *readpng_get_image(void * strsv, uint32 *pChannels, uint32 *pRowbytes, uint32 *pWidth, uint32 *pHeight)
+uint8_t *readpng_get_image(void * strsv, uint32_t *pChannels, uint32_t *pRowbytes, uint32_t *pWidth, uint32_t *pHeight)
 {
     readpng_structs_t * strs = (readpng_structs_t *)strsv;
 
   png_uint_32  width, height;
   int  bit_depth, color_type;
-  uint8  *image_data = NULL;
+  uint8_t  *image_data = NULL;
   png_uint_32  i, rowbytes;
   png_bytepp  row_pointers = NULL;
 
@@ -117,7 +117,7 @@ uint8 *readpng_get_image(void * strsv, uint32 *pChannels, uint32 *pRowbytes, uin
     *pRowbytes = rowbytes = png_get_rowbytes(strs->png_ptr, strs->info_ptr);
     *pChannels = (int)png_get_channels(strs->png_ptr, strs->info_ptr);
 
-    if ((image_data = (uint8 *)malloc(rowbytes*height)) == NULL) {
+    if ((image_data = (uint8_t *)malloc(rowbytes*height)) == NULL) {
         png_destroy_read_struct(&strs->png_ptr, &strs->info_ptr, NULL);
         return NULL;
     }

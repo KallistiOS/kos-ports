@@ -17,7 +17,7 @@
  * Writes png images, assumes RGB888 pixel data
  */
 
-int png_write_file(const char *filename, uint8 *data, uint32 width, uint32 height)
+int png_write_file(const char *filename, uint8_t *data, uint32_t width, uint32_t height)
 {
   FILE *fp;
   uint32_t i;

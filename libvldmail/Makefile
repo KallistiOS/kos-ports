@@ -8,6 +8,7 @@ SHORT_DESC =        An e-mail address validation library.
 
 # This port uses CMake.
 PORT_BUILD =        cmake
+CMAKE_OUTSOURCE =   1
 
 # What files we need to download, and where from.
 GIT_REPOSITORY =    https://github.com/dertuxmalwieder/libvldmail.git
