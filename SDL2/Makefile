@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          SDL2
-PORTVERSION =       2.0.0
+PORTVERSION =       latest
 
 MAINTAINER =        GPFTroy
 LICENSE =           Zlib
@@ -9,7 +9,7 @@ DEPENDENCIES =      libGL
 
 PORT_BUILD =        cmake
 
-GIT_REPOSITORY =    git@github.com:GPF/SDL.git
+GIT_REPOSITORY =    https://github.com/GPF/SDL.git
 GIT_BRANCH = 		dreamcastSDL2
 
 TARGET =            libSDL2.a libSDL2main.a libSDL2_test.a
