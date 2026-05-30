@@ -1,10 +1,10 @@
 # Port Metadata
 PORTNAME =          sh4zam
-PORTVERSION =       1.0.0
+PORTVERSION =       latest
 
 MAINTAINER =        Falco Girgis <gyrovorbis@gmail.com>
 LICENSE =           MIT
-SHORT_DESC =        Hardware accelerated math and linear algebra library for the SH4.
+SHORT_DESC =        Fast math library, optimized for the SH4.
 
 PORT_BUILD =        cmake
 
