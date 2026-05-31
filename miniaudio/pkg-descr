@@ -1,0 +1,5 @@
+miniaudio is written in C with no dependencies except the standard library and
+should compile clean on all major compilers without the need to install any
+additional development packages. All major desktop and mobile platforms are supported.
+
+URL: https://miniaud.io/
