@@ -1,8 +1,8 @@
 # Port Metadata
-PORTNAME =          raylib4dc
-PORTVERSION =       5.5.0
+PORTNAME =          raylib
+PORTVERSION =       6.0
 
-MAINTAINER =        Andress Barajas
+MAINTAINER =        bigboss TGK
 LICENSE =           zlib License - http://opensource.org/licenses/Zlib
 SHORT_DESC =        raylib is a simple and easy-to-use library to enjoy videogames programming.
 
@@ -11,23 +11,19 @@ NOCOPY_TARGET =     1
 
 # What files we need to download, and where from.
 GIT_REPOSITORY =    https://github.com/raylib4Consoles/raylib
-GIT_BRANCH =        raylib4Consoles
+GIT_BRANCH =        raylib4Consoles_6.0
 
 TARGET =            libraylib.a
-HDRS =              raylib.h raymath.h rlgl.h
+HDRS =              raylib.h raymath.h rlgl.h rcamera.h
 HDR_INSTDIR =       raylib
 DISTFILE_DIR =      ${PORTNAME}-${PORTVERSION}/src
 
 KOS_MAKEFILE =      Makefile
+MAKE_TARGET =       PLATFORM=PLATFORM_DREAMCAST
 
-PREINSTALL = raylib_preinstall
-
-# Apply patch before build
-PREBUILD =          apply-patch
+PREINSTALL =        raylib_preinstall
 
 include ${KOS_PORTS}/scripts/kos-ports.mk
-apply-patch:
-	patch -p1 -d build/${PORTNAME}-${PORTVERSION} < files/raylib4dc-5.5.0.patch
 
 raylib_preinstall:
 	@mkdir -p inst/lib inst/include
