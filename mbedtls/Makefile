@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          mbedtls
-PORTVERSION =       3.6.5
+PORTVERSION =       3.6.6
 
 MAINTAINER =        Donald Haase
 LICENSE =           Apache 2.0 OR GPL 2.0 or later
@@ -11,7 +11,7 @@ PORT_BUILD =        cmake
 # What files we need to download, and where from.
 GIT_REPOSITORY =    https://github.com/Mbed-TLS/mbedtls.git
 GIT_BRANCH =        v$(PORTVERSION)
-TARGET =            lib$(PORTNAME).a
+TARGET =            lib$(PORTNAME).a libmbedx509.a libmbedcrypto.a
 
 HDR_DIRECTORY =     include/mbedtls
 
@@ -32,9 +32,6 @@ mbedtls_prebuild:
 # Copy all lib files, link extras, and install psa/ headers (TF-PSA-Crypto submodule)
 mbedtls_preinstall:
 	mkdir -p inst/lib ; cp build/$(PORTNAME)-$(PORTVERSION)/library/*.a inst/lib; \
-    rm -f ${KOS_PORTS}/lib/libmbedx509.a ; rm -f ${KOS_PORTS}/lib/libmbedcrypto.a ; \
-    ln -s ${KOS_PORTS}/${PORTNAME}/inst/lib/libmbedx509.a ${KOS_PORTS}/lib/libmbedx509.a ; \
-    ln -s ${KOS_PORTS}/${PORTNAME}/inst/lib/libmbedcrypto.a ${KOS_PORTS}/lib/libmbedcrypto.a ; \
     mkdir -p inst/include/psa ; \
     cp build/$(PORTNAME)-$(PORTVERSION)/include/psa/*.h inst/include/psa/ ; \
     rm -f ${KOS_PORTS}/include/psa ; \
