@@ -9,6 +9,8 @@ SHORT_DESC =        raylib is a simple and easy-to-use library to enjoy videogam
 DEPENDENCIES =      libGL
 NOCOPY_TARGET =     1
 
+REQUIRES_ABI =      -m4-single
+
 # What files we need to download, and where from.
 GIT_REPOSITORY =    https://github.com/raylib4Consoles/raylib
 GIT_BRANCH =        raylib4Consoles_6.0
