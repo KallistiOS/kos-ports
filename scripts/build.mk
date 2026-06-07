@@ -13,7 +13,7 @@ ifeq ($(PORT_BUILD), autotools)
 	else \
 		cd build/${DISTFILE_DIR} ; \
 	fi ; \
-	CC=kos-cc ${CONFIGURE_DEFS} ./configure --prefix=${KOS_PORTS}/${PORTNAME}/inst --host=${AUTOTOOLS_HOST} ${CONFIGURE_ARGS} ; \
+	CC=kos-cc ${CONFIGURE_DEFS} ./configure --cache-file=${KOS_PORTS}/config.${KOS_GCCVER}.cache --prefix=${KOS_PORTS}/${PORTNAME}/inst --host=${AUTOTOOLS_HOST} ${CONFIGURE_ARGS} ; \
 	$(MAKE) ${MAKE_TARGET} ;
 else ifeq ($(PORT_BUILD), cmake)
 	@if [ -z "${DISTFILE_DIR}" ] ; then \
