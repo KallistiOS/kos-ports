@@ -9,22 +9,26 @@
  * ivorbisfile (Tremor).
  */
 
-#include <kos.h>
+#include <string.h>
 /* #include <sndserver.h> */
 #include <assert.h>
 #include "ivorbisfile.h"
 #include "sndvorbisfile.h"
+
+#include <kos/dbglog.h>
+#include <kos/thread.h>
+#include <dc/sound/stream.h>
 
 /* Enable this #define to do timing testing */
 /* #define TIMING_TESTS */
 
 #define BUF_SIZE 65536			/* Size of buffer */
 
-static uint8 pcm_buffer[BUF_SIZE+16384];	/* complete buffer + 16KB safety */
-static uint8 *pcm_ptr=pcm_buffer;		/* place we write to */
+static uint8_t pcm_buffer[BUF_SIZE+16384];	/* complete buffer + 16KB safety */
+static uint8_t *pcm_ptr=pcm_buffer;		/* place we write to */
 
-static int32 pcm_count=0;			/* bytes in buffer */
-static int32 last_read=0;			/* number of bytes the sndstream driver grabbed at last callback */
+static int32_t pcm_count=0;			/* bytes in buffer */
+static int32_t last_read=0;			/* number of bytes the sndstream driver grabbed at last callback */
 
 static int tempcounter =0;
 

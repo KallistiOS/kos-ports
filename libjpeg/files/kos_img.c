@@ -8,15 +8,20 @@
 */
 
          
-#include <kos.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <assert.h>
 #include "jpeglib.h"
 
+#include <kos/dbglog.h>
+#include <kos/img.h>
+
 /* Load a JPEG into a KOS PIImage */
-int jpeg_to_img(const char *filename, int scale, kos_img_t * rv) {
+int jpeg_to_img(const char *filename, int scale, kos_img_t *rv) {
 	int		i;
-	uint16		* ourbuffer;
-	uint16		* temp_tex;
+	uint16_t		*ourbuffer;
+	uint16_t		*temp_tex;
 
 	/* This struct contains the JPEG decompression parameters and pointers to
 	 * working space (which is allocated as needed by the JPEG library).
@@ -65,10 +70,10 @@ int jpeg_to_img(const char *filename, int scale, kos_img_t * rv) {
 	/* Allocate the output buffers */
 	rv->w = cinfo.image_width;
 	rv->h = cinfo.image_height;
-	rv->data = (void *)( temp_tex = (uint16 *)malloc(rv->w * rv->h * 2) );
+	rv->data = (void *)( temp_tex = (uint16_t *)malloc(rv->w * rv->h * 2) );
 	rv->fmt = KOS_IMG_FMT(KOS_IMG_FMT_RGB565, 0);
 	rv->byte_count = rv->w * rv->h * 2;
-	ourbuffer = (uint16 *)malloc(rv->w * 2);
+	ourbuffer = (uint16_t *)malloc(rv->w * 2);
     
 	/* Step 4: set parameters for decompression */
 	assert( scale == 1 || scale == 2 || scale == 4 || scale == 8 );
