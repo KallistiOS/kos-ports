@@ -5,6 +5,7 @@ PORTVERSION =       1.0.0
 MAINTAINER =        Spencer (@spencerelliott)
 LICENSE =           FreeBSD
 SHORT_DESC =        An open-source, small footprint implementation of Tcl
+ARCHS_SUPPORTED =   dreamcast gamecube
 
 # What files we need to download, and where from.
 GIT_REPOSITORY =    https://github.com/msteveb/jimtcl.git

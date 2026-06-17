@@ -5,6 +5,7 @@ PORTVERSION =       1.0.1
 MAINTAINER =        Donald Haase
 LICENSE =           MIT License
 SHORT_DESC =        BearSSL is an implementation of the SSL/TLS protocol (RFC 5246) written in C.
+ARCHS_SUPPORTED =   dreamcast gamecube
 
 KOS_MAKEFILE = Makefile
 

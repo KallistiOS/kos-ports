@@ -5,6 +5,7 @@ PORTVERSION =       1.26.0
 MAINTAINER =        Aaron Glazer <aaronglazer@google.com>
 LICENSE =           MIT
 SHORT_DESC =        A lean and efficient Python implementation
+ARCHS_SUPPORTED =   dreamcast gamecube
 
 DEPENDENCIES =
 

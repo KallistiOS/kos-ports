@@ -5,6 +5,7 @@ PORTVERSION =       2.5.0
 MAINTAINER =        Lawrence Sebald <ljsebald@users.sourceforge.net>
 LICENSE =           MIT (see COPYING in the source distribution)
 SHORT_DESC =        A C library for parsing XML
+ARCHS_SUPPORTED =   dreamcast gamecube
 
 # This port uses the autotools scripts that are included with the distfiles.
 PORT_BUILD =        autotools

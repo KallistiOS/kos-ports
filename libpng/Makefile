@@ -5,6 +5,7 @@ PORTVERSION =       1.6.37
 MAINTAINER =        Lawrence Sebald <ljsebald@users.sourceforge.net>
 LICENSE =           zlib License - http://opensource.org/licenses/Zlib
 SHORT_DESC =        Freely available lossless image compression library (with KOS additions)
+ARCHS_SUPPORTED =   dreamcast
 
 DEPENDENCIES =      zlib
 

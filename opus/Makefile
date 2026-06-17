@@ -5,6 +5,7 @@ PORTVERSION =       1.3.1
 MAINTAINER =        Lawrence Sebald <ljsebald@users.sourceforge.net>
 LICENSE =           3-clause BSD (see COPYING in the source distribution)
 SHORT_DESC =        Opus audio codec library
+ARCHS_SUPPORTED =   dreamcast
 
 # This port uses the autotools scripts that are included with the distfiles.
 PORT_BUILD =        autotools

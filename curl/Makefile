@@ -5,6 +5,7 @@ PORTVERSION =       8.18.0
 MAINTAINER =        Damian Parrino <bucanero@users.noreply.github.com>
 LICENSE =           custom
 SHORT_DESC =        A library for transferring data with URL syntax.
+ARCHS_SUPPORTED =   dreamcast
 
 # This port uses CMake.
 PORT_BUILD =        cmake

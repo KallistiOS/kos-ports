@@ -5,6 +5,7 @@ PORTVERSION =       1.3.9
 MAINTAINER =        Damian Parrino <bucanero@users.noreply.github.com>
 LICENSE =           GPL2
 SHORT_DESC =        A Secure Socket Layer library.
+ARCHS_SUPPORTED =   dreamcast
 
 # This port uses CMake.
 PORT_BUILD =        cmake

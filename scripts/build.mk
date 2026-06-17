@@ -39,7 +39,7 @@ else
 endif
 	touch build-stamp
 
-install: setup-check version-check abi-check depends-check force-install
+install: setup-check version-check arch-check abi-check depends-check force-install
 
 force-install: build-stamp $(PREINSTALL)
 	@if [ ! -d "inst" ] ; then \

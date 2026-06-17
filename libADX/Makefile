@@ -5,6 +5,7 @@ PORTVERSION =       1.0.1
 MAINTAINER =        SiZiOUS <sizious@gmail.com>
 LICENSE =           BSD 2-Clause License
 SHORT_DESC =        Library for decoding ADX audio files
+ARCHS_SUPPORTED =   dreamcast
 
 KOS_MAKEFILE =      Makefile
 

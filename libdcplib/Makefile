@@ -5,6 +5,7 @@ PORTVERSION =       2.0.0
 MAINTAINER =        Nobody
 LICENSE =           LGPLv2 (with embedded system exemption)
 SHORT_DESC =        A portable game programming library
+ARCHS_SUPPORTED =   dreamcast
 
 # No dependencies beyond the base system.
 DEPENDENCIES =

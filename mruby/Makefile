@@ -5,6 +5,7 @@ PORTVERSION =       3.3.0
 MAINTAINER =        SiZiOUS <sizious@gmail.com>
 LICENSE =           MIT
 SHORT_DESC =        Lightweight Ruby
+ARCHS_SUPPORTED =   dreamcast
 
 # No dependencies beyond the base system.
 DEPENDENCIES =

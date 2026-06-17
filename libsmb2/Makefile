@@ -5,6 +5,7 @@ PORTVERSION =       6.2
 MAINTAINER =        Ronnie Sahlberg
 LICENSE =           LGPLv2.1
 SHORT_DESC =        SMB2/3 userspace client
+ARCHS_SUPPORTED =   dreamcast
 
 # This port uses the autotools scripts that are included with the distfiles.
 PORT_BUILD =        cmake

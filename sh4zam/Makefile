@@ -5,6 +5,7 @@ PORTVERSION =       1.0.0
 MAINTAINER =        Falco Girgis <gyrovorbis@gmail.com>
 LICENSE =           MIT
 SHORT_DESC =        Hardware accelerated math and linear algebra library for the SH4.
+ARCHS_SUPPORTED =   dreamcast
 
 PORT_BUILD =        cmake
 

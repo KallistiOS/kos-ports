@@ -5,6 +5,7 @@ PORTVERSION =       1.3.2
 MAINTAINER =        Lawrence Sebald <ljsebald@users.sourceforge.net>
 LICENSE =           zlib License - http://opensource.org/licenses/Zlib
 SHORT_DESC =        Lossless data compression library
+ARCHS_SUPPORTED =   dreamcast gamecube
 
 # No dependencies beyond the base system.
 DEPENDENCIES =
