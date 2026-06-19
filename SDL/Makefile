@@ -1,6 +1,5 @@
 # Port Metadata
 PORTNAME =          SDL
-PORTVERSION =       1.2.15
 
 MAINTAINER =        Nobody
 LICENSE =           LGPLv2.1
