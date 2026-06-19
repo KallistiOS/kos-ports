@@ -1,6 +1,5 @@
 # Port Metadata
 PORTNAME =          sh4zam
-PORTVERSION =       latest
 
 MAINTAINER =        Falco Girgis <gyrovorbis@gmail.com>
 LICENSE =           MIT
