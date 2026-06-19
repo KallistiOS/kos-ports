@@ -6,8 +6,8 @@ MAINTAINER =        Nobody
 LICENSE =           LGPLv2.1
 SHORT_DESC =        Simple Directmedia Library
 
-# No dependencies beyond the base system.
-DEPENDENCIES =
+# Required for OpenGL hardware acceleration
+DEPENDENCIES =      libGL
 
 # What files we need to download, and where from.
 GIT_REPOSITORY =    https://github.com/libsdl-org/SDL-1.2.git
