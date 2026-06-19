@@ -8,7 +8,13 @@
 # the bottom to return back to the calling shell
 # Returns 0 if the version numbers are identical, 1 if the first is greater than
 # the second, 2 if the second is greater than the first.
+
+# An additional change checks if no version is set at all, in which case it's considered higher.
 vercomp () {
+    if [ "$2" = '' ];
+    then
+        return 2
+    fi
     if [[ $1 == $2 ]]
     then
         return 0
