@@ -1,5 +1,5 @@
 # Port Metadata
-PORTNAME =          SDL2
+PORTNAME =          SDL2_image
 PORTVERSION =       latest
 
 MAINTAINER =        GPFTroy
