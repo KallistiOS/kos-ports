@@ -1,11 +1,11 @@
 # Port Metadata
 PORTNAME =          SDL2_mixer
-PORTVERSION =       latest
+PORTVERSION =       b2
 
 MAINTAINER =        GPFTroy
 LICENSE =           Zlib
 SHORT_DESC =        Simple DirectMedia Layer 2
-DEPENDENCIES =      libGL SDL2
+DEPENDENCIES =      libGL opusfile opus SDL2
 
 PORT_BUILD =        cmake
 

@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          SDL2_image
-PORTVERSION =       latest
+PORTVERSION =       b2
 
 MAINTAINER =        GPFTroy
 LICENSE =           Zlib
