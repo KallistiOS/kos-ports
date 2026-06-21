@@ -1,0 +1,4 @@
+The kos-jpeg library includes a bit of additional functionality to directly
+read JPEG images into textures or KOS platform-independent images.
+
+URL: http://ijg.org/
