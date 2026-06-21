@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          expat
-PORTVERSION =       2.5.0
+PORTVERSION =       2.8.1
 
 MAINTAINER =        Lawrence Sebald <ljsebald@users.sourceforge.net>
 LICENSE =           MIT (see COPYING in the source distribution)
@@ -16,7 +16,7 @@ NOCOPY_TARGET =     1
 DEPENDENCIES =
 
 # What files we need to download, and where from.
-DOWNLOAD_SITE =     https://github.com/libexpat/libexpat/releases/download/R_2_5_0
+DOWNLOAD_SITE =     https://github.com/libexpat/libexpat/releases/download/R_2_8_1
 DOWNLOAD_FILES =    ${PORTNAME}-${PORTVERSION}.tar.gz
 
 TARGET =            libexpat.a
@@ -25,7 +25,7 @@ DISTFILE_DIR =      ${PORTNAME}-${PORTVERSION}
 
 # Autotools setup work.
 CONFIGURE_ARGS =
-CONFIGURE_DEFS =    RANLIB=${KOS_RANLIB} AR=${KOS_AR}
+CONFIGURE_DEFS =    RANLIB=${KOS_RANLIB} AR=kos-ar
 MAKE_TARGET =       all install
 
 # KOS Distributed extras (to be copied into the build tree)
