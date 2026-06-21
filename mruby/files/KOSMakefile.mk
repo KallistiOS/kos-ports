@@ -53,7 +53,7 @@ endif
 # mruby compiler executable (mrbc) (with extension if necessary)
 MRUBY_COMPILER_BIN = $(MRUBY_COMPILER)$(EXECUTABLEEXTENSION)
 
-defaultall: | prepare generatemruby fixincludes copylib installmrbc
+install: | prepare generatemruby fixincludes copylib installmrbc
 
 # Preparing the location where the mruby compiler executable (mrbc) will be installed
 prepare:

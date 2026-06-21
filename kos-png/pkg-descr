@@ -1,0 +1,4 @@
+The kos-png library includes a bit of additional functionality to directly
+read PNG images into textures or KOS platform-independent images.
+
+URL: http://libpng.org/pub/png/libpng.html

@@ -10,3 +10,4 @@ examples/*
 inst
 .DS_Store
 ./config.*
+sysroot

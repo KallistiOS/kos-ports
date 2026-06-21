@@ -1,0 +1,13 @@
+diff --git a/readjpeg.c b/readjpeg.c
+index f15da3d..ab39d90 100644
+--- a/readjpeg.c
++++ b/readjpeg.c
+@@ -2,7 +2,7 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <stdlib.h>
+-#include <jpeg/jpeglib.h>
++#include <jpeglib.h>
+ 
+ static struct jpeg_decompress_struct cinfo;
+ static struct jpeg_error_mgr jerr;

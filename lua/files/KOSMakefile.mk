@@ -8,11 +8,12 @@ OBJS = src/lapi.o src/lauxlib.o src/lbaselib.o src/lcode.o \
 	src/ltable.o src/ltablib.o src/ltm.o src/lundump.o \
 	src/lutf8lib.o src/lvm.o src/lzio.o
 
-defaultall: fixconf $(OBJS) subdirs linklib
-
-fixconf:
-	sed -e 's/\/\*[[:space:]+]#define LUA_32BITS[[:space:]+]\*\//#define LUA_32BITS/' -ibak src/luaconf.h
-
-KOS_CFLAGS += -Isrc
-
 include ${KOS_PORTS}/scripts/lib.mk
+
+.stamp_fixconf:
+	sed -e 's/\/\*[[:space:]+]#define LUA_32BITS[[:space:]+]\*\//#define LUA_32BITS/' -ibak src/luaconf.h
+	touch $@
+
+$(OBJS): .stamp_fixconf
+
+$(OBJS): CPPFLAGS += -Isrc

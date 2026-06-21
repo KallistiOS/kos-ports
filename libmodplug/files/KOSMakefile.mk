@@ -1,5 +1,4 @@
 TARGET = libmodplug.a
-KOS_CFLAGS += -Iinclude -DMODPLUG_BASIC_SUPPORT -DFASTSOUNDLIB
 OBJS=	tables.o         \
 	sndmix.o         \
 	sndfile.o        \
@@ -35,3 +34,5 @@ OBJS=	tables.o         \
 
 
 include ${KOS_PORTS}/scripts/lib.mk
+
+$(OBJS): CPPFLAGS += -Iinclude -DMODPLUG_BASIC_SUPPORT -DFASTSOUNDLIB

@@ -13,11 +13,10 @@
 # something like build/*.o. You'll also want to define LOCAL_CLEAN to
 # clean your build dir.
 
-defaultall: $(OBJS) subdirs linklib
+install: subdirs $(TARGET)
 
-linklib:
-	rm -f ${TARGET}
-	${KOS_AR} rcs ${TARGET} $(OBJS) $(LIB_OBJS)
+$(TARGET): $(OBJS)
+	${KOS_AR} rcs $@ $^ $(LIB_OBJS)
 
 clean:
 	-rm -f $(OBJS) $(LIB_OBJS) $(TARGET)

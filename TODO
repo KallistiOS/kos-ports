@@ -1,0 +1,15 @@
+cglm: Untested, ICE on GCC 17
+libbz2: does not install a pkg-config file, which causes freetype to not detect it
+freetype: Does not pick libbz2 (but builds fine otherwise)
+libAL: upstream CMake script needs an install() rule
+libdcplib: Untested, ICE on GCC 17
+libGL: upstream CMake script needs an install() rule
+libimageload: does not use the right includes for jpeg/PNG
+libopusplay: Tries to include <opusfile/opusfile.h> instead of <opus/opusfile.h>
+libparallax: Tries to include <png/png.h> instead of <png.h>
+libtsunami: fails because of missing libparallax
+micropython: Needs updating the package's Makefile
+mruby: Needs updating the package's Makefile
+raylib4dc: fails because of dependencies
+SDL: Needs updating the package's Makefile, missing libGL dependency
+SDL_ttf: Needs updating the package's Makefile, missing SDL dependency

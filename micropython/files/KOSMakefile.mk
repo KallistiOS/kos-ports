@@ -110,10 +110,7 @@ OBJS = $(MP_PORT_DIR)/embed_util.o \
 	$(MP_PY_DIR)/warning.o \
 	$(MP_RT_DIR)/gchelper_generic.o
 
-CFLAGS += -DMICROPY_GCREGS_SETJMP -DNDEBUG
-CFLAGS += -I$(CURDIR)
-CFLAGS += -I$(MP_EMBED_DIR)
-CFLAGS += -I$(MP_PORT_DIR)
+$(OBJS): CPPFLAGS += -DMICROPY_GCREGS_SETJMP -DNDEBUG -I$(CURDIR) -I$(MP_EMBED_DIR) -I$(MP_PORT_DIR)
 
 # Windows specific
 ifeq ($(OS),Windows_NT)
@@ -132,28 +129,33 @@ ifeq ($(OS),Windows_NT)
 	SED_FLAGS = >/dev/null 2>&1
 endif
 
-defaultall: | generatemp $(OBJS) subdirs linklib fixincludes cleanupbeforeinstall
+include ${KOS_PORTS}/scripts/lib.mk
+
+$(OBJS): .stamp_generatemp .stamp_fixincludes
+
+install: .stamp_cleanupbeforeinstall
 
 # Generate MicroPython (with verbose option set to "no")
-generatemp: export MICROPYTHON_TOP = $(CURDIR)
-generatemp:
+.stamp_generatemp: export MICROPYTHON_TOP = $(CURDIR)
+.stamp_generatemp:
 	$(MAKE) -f ports/embed/embed.mk V=0 $(MP_EMBED_FLAGS)
+	touch $@
 
 # Alter header files and replace #include "{variable}" with #include <micropython/{variable}>
 # This will fixes some other headers as well.
-fixincludes:
+.stamp_fixincludes: .stamp_generatemp
 	@echo "Updating includes before installation..."
-	@for _file in $(MP_PORT_DIR)/*.h $(MP_PY_DIR)/*.h $(MP_RT_DIR)/*.h; do \
+	for _file in $(MP_PORT_DIR)/*.h $(MP_PY_DIR)/*.h $(MP_RT_DIR)/*.h; do \
 		sed -ri -e 's/#include "([^[:space:]]+)"/#include <micropython\/\1>/g' $$_file $(SED_FLAGS); \
 	done
-	@sed -i -e 's/<port\/mpconfigport_common.h>/<micropython\/port\/mpconfigport_common.h>/' mpconfigport.h $(SED_FLAGS)
-	@sed -i -e 's/<mpconfigport.h>/<micropython\/mpconfigport.h>/' $(MP_PY_DIR)/mpconfig.h $(SED_FLAGS)
+	sed -i -e 's/<port\/mpconfigport_common.h>/<micropython\/port\/mpconfigport_common.h>/' mpconfigport.h $(SED_FLAGS)
+	sed -i -e 's/<mpconfigport.h>/<micropython\/mpconfigport.h>/' $(MP_PY_DIR)/mpconfig.h $(SED_FLAGS)
+	touch $@
 
 # Remove source files (*.c/*.o) before installing the MicroPython port
-cleanupbeforeinstall:
+.stamp_cleanupbeforeinstall:
 	@echo "Performing final clean-up before installation..."
 	@for _file in $(MP_PORT_DIR)/*.c $(MP_PY_DIR)/*.c $(MP_RT_DIR)/*.c $(MP_PORT_DIR)/*.o $(MP_PY_DIR)/*.o $(MP_RT_DIR)/*.o; do \
 		rm $$_file; \
-	done
-
-include ${KOS_PORTS}/scripts/lib.mk
+	done ; \
+	touch $@

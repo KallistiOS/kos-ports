@@ -1,0 +1,5 @@
+The kos-zlib library includes a bit of additional functionality to zlib,
+with a function zlib_getlength() that returns the uncompressed length of
+an archive.
+
+URL: http://zlib.net/
