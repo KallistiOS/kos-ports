@@ -16,6 +16,7 @@
 #include "sndvorbisfile.h"
 
 #include <kos/dbglog.h>
+#include <kos/sem.h>
 #include <kos/thread.h>
 #include <dc/sound/stream.h>
 
