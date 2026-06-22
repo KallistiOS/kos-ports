@@ -3,11 +3,6 @@
 FETCH_CMD = curl --progress-bar -O -L
 #FETCH_CMD = wget --progress=bar
 
-# Set the command that will be used for extracting archive files. Currently this
-# only must extract .tar.gz archives (although the default will handle more than
-# that, most likely).
-UNPACK_CMD = tar xf
-
 # Select whether or not to automatically build library dependencies if they are
 # not already installed. If this is set to false, then the build system will
 # simply output an error message if a dependency is not met. If set to true,
