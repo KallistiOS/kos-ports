@@ -1,0 +1,64 @@
+name: Linux build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  matrix:
+    if: github.repository == 'KallistiOS/kos-ports'
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.setup-matrix.outputs.matrix }}
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Setup matrix
+      id: setup-matrix
+      run: |
+        echo "matrix=$($GITHUB_WORKSPACE/.github/list-packages.sh)" >> $GITHUB_OUTPUT
+
+  build:
+    needs: matrix
+    if: github.repository == 'KallistiOS/kos-ports'
+    runs-on: ubuntu-latest
+    container:
+      image: docker://pcercuei/dreamcast-toolchain:stable
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJSON(needs.matrix.outputs.matrix) }}
+    env:
+      package: ${{ fromJSON(matrix.package).package }}
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - uses: actions/checkout@v7
+      with:
+        repository: pcercuei/KallistiOS
+        ref: kos-ports-ng
+        path: KallistiOS
+
+    - name: add-dependencies
+      run: |
+        apk --update add cmake
+
+    - name: build-kallistios
+      run: |
+        ln -s $GITHUB_WORKSPACE/KallistiOS /opt/toolchains/dc/kos
+        ln -s $GITHUB_WORKSPACE /opt/toolchains/dc/kos-ports
+        . $GITHUB_WORKSPACE/KallistiOS/doc/environ.sh.sample
+        make -C $GITHUB_WORKSPACE/KallistiOS
+
+    - name: build-port
+      run: |
+        ln -s $GITHUB_WORKSPACE/KallistiOS /opt/toolchains/dc/kos
+        ln -s $GITHUB_WORKSPACE /opt/toolchains/dc/kos-ports
+        . $GITHUB_WORKSPACE/KallistiOS/doc/environ.sh.sample
+        make $package
