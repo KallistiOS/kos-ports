@@ -116,7 +116,7 @@ ${1}/.stamp_installed_cmake: $${${2}_BUILD_DEPS}
 	touch $$@
 
 ${1}/.stamp_installed_manual: $${${2}_BUILD_DEPS}
-	${MAKE} -C $${${2}_DISTFILE_DIR} -f $${${2}_KOS_MAKEFILE} $${${2}_MAKE_TARGET} ${BUILD_ENV}
+	${MAKE} -C $${${2}_DISTFILE_DIR} -f $${${2}_KOS_MAKEFILE} $${${2}_MAKE_TARGET} ${BUILD_ENV} $${${2}_BUILD_ENV}
 	mkdir -p ${SYSROOT}/lib ${SYSROOT}/include/$${${2}_HDR_INSTDIR}
 	install -m 644 $${${2}_DISTFILE_DIR}/$${${2}_TARGET} ${SYSROOT}/lib
 	if [ "$${${2}_HDR_DIRECTORY}" ] ; then \
