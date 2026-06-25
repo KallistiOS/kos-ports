@@ -1,0 +1,6 @@
+lftpd is a small, embeddable FTP server library implementing a usable subset of
+RFC 959 (with passive mode). It is designed to be dropped into an application to
+serve files over a standard FTP client.
+
+Originally written by Jason von Nieda and distributed under the MIT license.
+Upstream: https://github.com/vonnieda/lftpd
