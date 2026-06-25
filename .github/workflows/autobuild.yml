@@ -47,7 +47,7 @@ jobs:
 
     - name: add-dependencies
       run: |
-        apk --update add cmake
+        apk --update add cmake ruby-rake
 
     - name: build-kallistios
       run: |
