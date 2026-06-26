@@ -1,0 +1,22 @@
+diff --git a/Makefile.in b/Makefile.in
+index 3e97e6d..7ee7ee6 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -86,7 +86,7 @@ INSTALL_DATA ?= cp
+ INSTALL_PROGRAM ?= cp
+ @endif
+ 
+-all: $(JIMSH) @C_EXT_SHOBJS@
++all: $(LIBJIM) @C_EXT_SHOBJS@
+ 
+ # Create C extensions from pure Tcl extensions
+ .SUFFIXES: .tcl
+@@ -105,7 +105,7 @@ $(JIMSH): $(LIBJIM) jimsh.o initjimsh.o
+ 	$(Q)$(JIMSH_CC) @SH_LINKRPATH_FLAGS@ @SH_LINKFLAGS@ $(LDFLAGS) -o $@ jimsh.o initjimsh.o $(LIBJIM) $(LDLIBS) $(LIBS)
+ 
+ @if JIM_INSTALL
+-install: all @TCL_EXTS@ install-exec install-docs
++install: all @TCL_EXTS@ install-docs
+ 	$(INSTALL_DATA_DIR) $(DESTDIR)@libdir@/jim
+ 	$(INSTALL_DATA) $(LIBJIM) $(DESTDIR)@libdir@
+ @if !JIM_STATICLIB
