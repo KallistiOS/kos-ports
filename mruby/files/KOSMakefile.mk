@@ -63,16 +63,16 @@ prepare:
 	fi
 
 # Generate mruby
-generatemruby:
+generatemruby: prepare
 	@echo "Generating mruby..."
 	$(MRUBY_BUILD_CMD) MRUBY_CONFIG=dreamcast_shelf $(DREAMSDK_USE_WRAPPERS)
 
 # Copy final library file into the root directory
-copylib:
+copylib: generatemruby
 	@cp $(MRUBY_BUILD_KOS_ARCH_DIR)/lib/$(TARGET) $(CURDIR)
 
 # Install mruby compiler executable (mrbc)
-installmrbc:
+installmrbc: copylib
 	@echo "Installing $(MRUBY_COMPILER) to $(MRUBY_INSTALL_DIR)..."
 	@cp $(MRUBY_BUILD_DIR)/host/bin/$(MRUBY_COMPILER_BIN) $(MRUBY_INSTALL_DIR)
 	@strip $(MRUBY_INSTALL_DIR)/$(MRUBY_COMPILER_BIN)
