@@ -10,19 +10,11 @@ include ${KOS_PORTS}/config.mk
 SUBDIRS := $(foreach each,$(wildcard ${KOS_PORTS}/*),$(if $(wildcard ${each}/recipe.mk),${each},) )
 PACKAGES := $(foreach p,${SUBDIRS},$(notdir $p))
 
-# Get a list of the sub-directories that failed to build
-FAILED_PACKAGES = $(sort $(foreach p,${PACKAGES},$(if $(wildcard ${KOS_PORTS}/${p}/build-${KOS_ARCH}/${${p}_PORTVERSION}/.stamp_installed),,${p})))
-
 .PHONY: all all_nested failed clean
 
 all:
 	-$(MAKE) -k -C ${KOS_PORTS} all_nested
 	-@$(MAKE) --no-print-directory -C ${KOS_PORTS} failed
-
-all_nested: $(foreach s,${SUBDIRS},$(notdir ${s}))
-
-failed:
-	@echo "Failed packages: ${FAILED_PACKAGES}"
 
 clean:
 	-rm -rf $(foreach s,${SUBDIRS},${s}/build-${KOS_ARCH})
@@ -47,6 +39,8 @@ ${2}_DEP_STAMPS = $$(foreach dep,$${${2}_DEPENDENCIES},$(abspath ${KOS_PORTS}/$$
 ${2}_BUILD_DEPS = $${${2}_DEP_STAMPS} ${1}/.stamp_fetched ${1}/.stamp_abi_checked
 
 ${2}_DISTFILE_DIR = ${1}/${2}-$${${2}_PORTVERSION}
+
+${2}_ARCH_SUPPORTED = $$(if $${${2}_ARCHS},$$(if $$(findstring ${KOS_ARCH},$${${2}_ARCHS}),${2}),${2})
 
 ${1}/.stamp_abi_checked:
 ifeq ($${${2}_REQUIRES_ABI},any)
@@ -125,8 +119,20 @@ ${1}/.stamp_installed: ${1}/.stamp_installed_$${${2}_PORT_BUILD}
 
 .PHONY: ${2}
 
-${2}: ${1}/.stamp_installed
+${2}: $$(if $${${2}_ARCH_SUPPORTED},${1}/.stamp_installed)
+	$$(if $${${2}_ARCH_SUPPORTED},,@echo "${2} is not supported for this platform - skipping.")
 
 endef
 
 $(foreach p,${PACKAGES},$(eval $(call BUILD_RULE,$(abspath ${KOS_PORTS}/${p}/build-${KOS_ARCH}/${${p}_PORTVERSION}),${p})))
+
+# Get a list of the packages that are valid for our arch
+ARCH_PACKAGES := $(foreach p,${PACKAGES},${${p}_ARCH_SUPPORTED})
+
+# Get a list of the sub-directories that failed to build
+FAILED_PACKAGES = $(sort $(foreach p,${ARCH_PACKAGES},$(if $(wildcard ${KOS_PORTS}/${p}/build-${KOS_ARCH}/${${p}_PORTVERSION}/.stamp_installed),,${p})))
+
+all_nested: ${ARCH_PACKAGES}
+
+failed:
+	@echo "Failed packages: ${FAILED_PACKAGES}"
