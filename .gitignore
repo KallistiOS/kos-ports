@@ -1,13 +1,6 @@
 .*.swp
 *~
 *.tmp
-build-stamp
-build/
-dist/
-include/*
-lib/*
-examples/*
-inst
+build-*
 .DS_Store
-./config.*
-sysroot
+config.*.cache
