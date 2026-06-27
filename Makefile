@@ -1,10 +1,10 @@
 # KallistiOS ##version##
 #
 # KOS-ports Makefile
-# Copyright (C) 2025 Paul Cercueil
+# Copyright (C) 2026 Paul Cercueil
 
-# Include the packages recipes
-#include $(KOS_PORTS)/*/recipe.mk
+# Include the defaults
+include ${KOS_PORTS}/config.mk
 
 # Get a list of the sub-directories that contain a recipe.mk file
 SUBDIRS := $(foreach each,$(wildcard ${KOS_PORTS}/*),$(if $(wildcard ${each}/recipe.mk),${each},) )
@@ -13,7 +13,7 @@ PACKAGES := $(foreach p,${SUBDIRS},$(notdir $p))
 # Get a list of the sub-directories that failed to build
 FAILED_PACKAGES = $(sort $(foreach p,${PACKAGES},$(if $(wildcard ${KOS_PORTS}/${p}/build/${${p}_PORTVERSION}/.stamp_installed),,${p})))
 
-.PHONY: all all_nested failed clean distclean
+.PHONY: all all_nested failed clean
 
 all:
 	-$(MAKE) -k -C ${KOS_PORTS} all_nested
@@ -27,15 +27,8 @@ failed:
 clean:
 	-rm -rf $(foreach s,${SUBDIRS},${s}/build)
 
-distclean: clean
-	-rm -rf sysroot
-
-SYSROOT := ${KOS_PORTS}/sysroot
-PKG_CONFIG_ENV := PKG_CONFIG_LIBDIR=${SYSROOT}/lib/pkgconfig:${SYSROOT}/share/pkgconfig PKG_CONFIG_SYSROOT_DIR=${SYSROOT}
+PKG_CONFIG_ENV := PKG_CONFIG_LIBDIR=${KOS_SYSROOT}/lib/pkgconfig:${KOS_SYSROOT}/share/pkgconfig PKG_CONFIG_SYSROOT_DIR=${KOS_SYSROOT}
 BUILD_ENV := CC=kos-cc RANLIB=kos-ranlib AR=kos-ar
-
-# Include the defaults
-include ${KOS_PORTS}/config.mk
 
 # Include the recipes
 include $(KOS_PORTS)/*/recipe.mk
@@ -105,27 +98,27 @@ ${1}/.stamp_fetched: ${1}/.stamp_$$(if $${${2}_DOWNLOAD_SITE},extracted,nodownlo
 ${1}/.stamp_installed_autotools: $${${2}_BUILD_DEPS}
 	cd $${${2}_DISTFILE_DIR} ; \
 	${BUILD_ENV} ${PKG_CONFIG_ENV} ./configure $$(if $${${2}_CONFIGURE_NO_CACHE_FILE},,--cache-file=${KOS_PORTS}/config.${KOS_GCCVER}.cache) --prefix="" --host=${AUTOTOOLS_HOST} $${${2}_CONFIGURE_ARGS} && \
-	DESTDIR=${SYSROOT} ${MAKE} $${${2}_MAKE_TARGET} && \
+	DESTDIR=${KOS_SYSROOT} ${MAKE} $${${2}_MAKE_TARGET} && \
 	touch $$@
 
 ${1}/.stamp_installed_cmake: $${${2}_BUILD_DEPS}
 	mkdir -p $${${2}_DISTFILE_DIR}/build
 	cd $${${2}_DISTFILE_DIR}/build ; \
 	${BUILD_ENV} kos-cmake -DCMAKE_INSTALL_PREFIX="" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib $${${2}_CMAKE_ARGS} .. && \
-	DESTDIR=${SYSROOT} cmake --build . -t $${${2}_MAKE_TARGET} && \
+	DESTDIR=${KOS_SYSROOT} cmake --build . -t $${${2}_MAKE_TARGET} && \
 	touch $$@
 
 ${1}/.stamp_installed_manual: $${${2}_BUILD_DEPS}
 	${MAKE} -C $${${2}_DISTFILE_DIR} -f $${${2}_KOS_MAKEFILE} $${${2}_MAKE_TARGET} ${BUILD_ENV} $${${2}_BUILD_ENV}
-	mkdir -p ${SYSROOT}/lib ${SYSROOT}/include/$${${2}_HDR_INSTDIR}
+	mkdir -p ${KOS_SYSROOT}/lib ${KOS_SYSROOT}/include/$${${2}_HDR_INSTDIR}
 	for each in $${${2}_TARGET} ; do \
-		install -m 644 $${${2}_DISTFILE_DIR}/$$$${each} ${SYSROOT}/lib ; \
+		install -m 644 $${${2}_DISTFILE_DIR}/$$$${each} ${KOS_SYSROOT}/lib ; \
 	done ; \
 	if [ "$${${2}_HDR_DIRECTORY}" ] ; then \
-		cp -r $${${2}_DISTFILE_DIR}/$${${2}_HDR_DIRECTORY}/* ${SYSROOT}/include/$${${2}_HDR_INSTDIR}/ ; \
+		cp -r $${${2}_DISTFILE_DIR}/$${${2}_HDR_DIRECTORY}/* ${KOS_SYSROOT}/include/$${${2}_HDR_INSTDIR}/ ; \
 	fi ; \
 	for each in $${${2}_INSTALLED_HDRS} ; do \
-		install -m 644 $${${2}_DISTFILE_DIR}/$$$${each} ${SYSROOT}/include/$${${2}_HDR_INSTDIR} ; \
+		install -m 644 $${${2}_DISTFILE_DIR}/$$$${each} ${KOS_SYSROOT}/include/$${${2}_HDR_INSTDIR} ; \
 	done ; \
 	touch $$@
 

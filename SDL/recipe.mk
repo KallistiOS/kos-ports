@@ -17,4 +17,4 @@ SDL_TARGET =            libSDL.a
 SDL_HDR_DIRECTORY =     include
 SDL_HDR_INSTDIR =       SDL
 
-SDL_BUILD_ENV =         SDL_VERSION=${SDL_PORTVERSION} SDL_PC_PATH=${KOS_PORTS}/sysroot/lib/pkgconfig/
+SDL_BUILD_ENV =         SDL_VERSION=${SDL_PORTVERSION} SDL_PC_PATH=${KOS_SYSROOT}/lib/pkgconfig/
