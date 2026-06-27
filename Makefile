@@ -16,9 +16,6 @@ all:
 	-$(MAKE) -k -C ${KOS_PORTS} all_nested
 	-@$(MAKE) --no-print-directory -C ${KOS_PORTS} failed
 
-clean:
-	-rm -rf $(foreach s,${SUBDIRS},${s}/build-${KOS_ARCH})
-
 PKG_CONFIG_ENV := PKG_CONFIG_LIBDIR=${KOS_SYSROOT}/lib/pkgconfig:${KOS_SYSROOT}/share/pkgconfig PKG_CONFIG_SYSROOT_DIR=${KOS_SYSROOT}
 BUILD_ENV := CC=kos-cc RANLIB=kos-ranlib AR=kos-ar
 
@@ -117,10 +114,17 @@ ${1}/.stamp_installed_manual: $${${2}_BUILD_DEPS}
 ${1}/.stamp_installed: ${1}/.stamp_installed_$${${2}_PORT_BUILD}
 	touch $$@
 
-.PHONY: ${2}
+.PHONY: ${2} clean-${2} rebuild-${2}
 
 ${2}: $$(if $${${2}_ARCH_SUPPORTED},${1}/.stamp_installed)
 	$$(if $${${2}_ARCH_SUPPORTED},,@echo "${2} is not supported for this platform - skipping.")
+
+clean-${2}:
+	-rm -rf ${KOS_PORTS}/${2}/build-${KOS_ARCH}
+
+rebuild-${2}: clean-${2} ${2}
+
+.NOTPARALLEL: rebuild-${2}
 
 endef
 
@@ -136,3 +140,5 @@ all_nested: ${ARCH_PACKAGES}
 
 failed:
 	@echo "Failed packages: ${FAILED_PACKAGES}"
+
+clean: $(foreach p,${ARCH_PACKAGES},clean-${p})
