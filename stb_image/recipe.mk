@@ -13,4 +13,4 @@ stb_image_TARGET          = libstb_image.a
 stb_image_INSTALLED_HDRS  = stb_image.h
 stb_image_HDR_INSTDIR     = stb_image
 
-stb_image_UNPACK_CMD = install -m 0644 -D -t ${KOS_PORTS}/stb_image/build/${stb_image_PORTVERSION}/stb_image-${stb_image_PORTVERSION}
+stb_image_UNPACK_CMD = install -m 0644 -D -t ${KOS_PORTS}/stb_image/build-${KOS_ARCH}/${stb_image_PORTVERSION}/stb_image-${stb_image_PORTVERSION}

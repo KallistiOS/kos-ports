@@ -11,7 +11,7 @@ SUBDIRS := $(foreach each,$(wildcard ${KOS_PORTS}/*),$(if $(wildcard ${each}/rec
 PACKAGES := $(foreach p,${SUBDIRS},$(notdir $p))
 
 # Get a list of the sub-directories that failed to build
-FAILED_PACKAGES = $(sort $(foreach p,${PACKAGES},$(if $(wildcard ${KOS_PORTS}/${p}/build/${${p}_PORTVERSION}/.stamp_installed),,${p})))
+FAILED_PACKAGES = $(sort $(foreach p,${PACKAGES},$(if $(wildcard ${KOS_PORTS}/${p}/build-${KOS_ARCH}/${${p}_PORTVERSION}/.stamp_installed),,${p})))
 
 .PHONY: all all_nested failed clean
 
@@ -25,7 +25,7 @@ failed:
 	@echo "Failed packages: ${FAILED_PACKAGES}"
 
 clean:
-	-rm -rf $(foreach s,${SUBDIRS},${s}/build)
+	-rm -rf $(foreach s,${SUBDIRS},${s}/build-${KOS_ARCH})
 
 PKG_CONFIG_ENV := PKG_CONFIG_LIBDIR=${KOS_SYSROOT}/lib/pkgconfig:${KOS_SYSROOT}/share/pkgconfig PKG_CONFIG_SYSROOT_DIR=${KOS_SYSROOT}
 BUILD_ENV := CC=kos-cc RANLIB=kos-ranlib AR=kos-ar
@@ -43,7 +43,7 @@ ${2}_KOS_MAKEFILE ?= KOSMakefile.mk
 ${2}_FETCH_CMD ?= ${FETCH_CMD}
 ${2}_UNPACK_CMD ?= ${UNPACK_CMD}
 
-${2}_DEP_STAMPS = $$(foreach dep,$${${2}_DEPENDENCIES},$(abspath ${KOS_PORTS}/$${dep}/build/$${$${dep}_PORTVERSION}/.stamp_installed))
+${2}_DEP_STAMPS = $$(foreach dep,$${${2}_DEPENDENCIES},$(abspath ${KOS_PORTS}/$${dep}/build-${KOS_ARCH}/$${$${dep}_PORTVERSION}/.stamp_installed))
 ${2}_BUILD_DEPS = $${${2}_DEP_STAMPS} ${1}/.stamp_fetched ${1}/.stamp_abi_checked
 
 ${2}_DISTFILE_DIR = ${1}/${2}-$${${2}_PORTVERSION}
@@ -129,4 +129,4 @@ ${2}: ${1}/.stamp_installed
 
 endef
 
-$(foreach p,${PACKAGES},$(eval $(call BUILD_RULE,$(abspath ${KOS_PORTS}/${p}/build/${${p}_PORTVERSION}),${p})))
+$(foreach p,${PACKAGES},$(eval $(call BUILD_RULE,$(abspath ${KOS_PORTS}/${p}/build-${KOS_ARCH}/${${p}_PORTVERSION}),${p})))
