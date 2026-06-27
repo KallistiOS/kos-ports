@@ -2,7 +2,4 @@ libpng is the official reference library for the Portable Network Graphic image
 file format. It supports almost all of the features defined by the format and
 is extensible to support additional features as needed.
 
-The KOS port of this library includes a bit of additional functionality to
-directly read PNG images into textures or KOS platform-independent images.
-
 URL: http://libpng.org/pub/png/libpng.html
