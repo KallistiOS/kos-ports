@@ -10,7 +10,7 @@ index e40c3b0..a0fe4cc 100644
 -
  include ${KOS_PORTS}/scripts/lib.mk
 +
-+$(OBJS): CPPFLAGS += -I ${KOS_PORTS}/sysroot/include/opus
++$(OBJS): CPPFLAGS += -I ${KOS_SYSROOT}/include/opus
 +
 +$(OBJS): CFLAGS += -Wextra
 diff --git a/opusplay.c b/opusplay.c
