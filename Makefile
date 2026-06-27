@@ -91,7 +91,7 @@ ${1}/.stamp_fetched: ${1}/.stamp_$$(if $${${2}_DOWNLOAD_SITE},extracted,nodownlo
 
 ${1}/.stamp_installed_autotools: $${${2}_BUILD_DEPS}
 	cd $${${2}_DISTFILE_DIR} ; \
-	${BUILD_ENV} ${PKG_CONFIG_ENV} ./configure $$(if $${${2}_CONFIGURE_NO_CACHE_FILE},,--cache-file=${KOS_PORTS}/config.${KOS_GCCVER}.cache) --prefix="" --host=${AUTOTOOLS_HOST} $${${2}_CONFIGURE_ARGS} && \
+	${BUILD_ENV} ${PKG_CONFIG_ENV} ./configure $$(if $${${2}_CONFIGURE_NO_CACHE_FILE},,--cache-file=${KOS_PORTS}/config.${KOS_GCCVER}.cache) --prefix="" --host=${KOS_CC_PREFIX} $${${2}_CONFIGURE_ARGS} && \
 	DESTDIR=${KOS_SYSROOT} ${MAKE} $${${2}_MAKE_TARGET} && \
 	touch $$@
 
