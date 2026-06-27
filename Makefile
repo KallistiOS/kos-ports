@@ -3,6 +3,9 @@
 # KOS-ports Makefile
 # Copyright (C) 2026 Paul Cercueil
 
+$(if ${KOS_BASE},,$(error KallistiOS environment not found. Did you source environ.sh?))
+$(if ${KOS_SYSROOT},,$(error KallistiOS sysroot not found. Make sure you are using v2.2.3 or newer.))
+
 # Include the defaults
 include ${KOS_PORTS}/config.mk
 
