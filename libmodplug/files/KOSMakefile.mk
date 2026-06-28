@@ -33,6 +33,6 @@ OBJS=	tables.o         \
 #	load_psm.o       \
 
 
-include ${KOS_PORTS}/scripts/lib.mk
+include ${KOS_PORTS}/lib.mk
 
 $(OBJS): CPPFLAGS += -Iinclude -DMODPLUG_BASIC_SUPPORT -DFASTSOUNDLIB

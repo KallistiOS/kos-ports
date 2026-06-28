@@ -5,7 +5,7 @@ OBJS_ANIMS := $(patsubst %.cpp,%.o,$(wildcard src/anims/*.cpp))
 OBJS_TRIGS := $(patsubst %.cpp,%.o,$(wildcard src/triggers/*.cpp))
 OBJS := $(OBJS_MAIN) $(OBJS_DRW) $(OBJS_ANIMS) $(OBJS_TRIGS)
 
-include ${KOS_PORTS}/scripts/lib.mk
+include ${KOS_PORTS}/lib.mk
 
 $(OBJS): CPPFLAGS += -Iinclude
 

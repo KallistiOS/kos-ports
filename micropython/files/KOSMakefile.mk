@@ -131,7 +131,7 @@ ifeq ($(OS),Windows_NT)
 	SED_FLAGS = >/dev/null 2>&1
 endif
 
-include ${KOS_PORTS}/scripts/lib.mk
+include ${KOS_PORTS}/lib.mk
 
 $(SOURCES): .stamp_generatemp
 

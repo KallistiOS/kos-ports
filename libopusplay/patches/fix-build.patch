@@ -8,7 +8,8 @@ index e40c3b0..a0fe4cc 100644
  
 -KOS_CFLAGS += -I$(KOS_PORTS)/include/opus -Wextra
 -
- include ${KOS_PORTS}/scripts/lib.mk
+-include ${KOS_PORTS}/scripts/lib.mk
++include ${KOS_PORTS}/lib.mk
 +
 +$(OBJS): CPPFLAGS += -I ${KOS_SYSROOT}/include/opus
 +

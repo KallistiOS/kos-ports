@@ -1,6 +1,6 @@
 TARGET = libwav.a
 OBJS = libwav.o sndwav.o
 
-include ${KOS_PORTS}/scripts/lib.mk
+include ${KOS_PORTS}/lib.mk
 
 $(OBJS): CPPFLAGS += -Iinclude

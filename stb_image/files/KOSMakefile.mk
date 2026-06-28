@@ -1,6 +1,6 @@
 TARGET = libstb_image.a
 OBJS = stb_image.o
 
-include ${KOS_PORTS}/scripts/lib.mk
+include ${KOS_PORTS}/lib.mk
 
 $(OBJS): CPPFLAGS += -Iinclude
