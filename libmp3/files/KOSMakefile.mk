@@ -6,4 +6,4 @@ LIB_OBJS = cdct.o csbt.o cupl3.o cup.o cwinm.o dec8.o hwin.o icdct.o isbt.o \
 
 OBJS = $(addprefix build/,${LIB_OBJS})
 
-include ${KOS_PORTS}/scripts/lib.mk
+include ${KOS_PORTS}/lib.mk

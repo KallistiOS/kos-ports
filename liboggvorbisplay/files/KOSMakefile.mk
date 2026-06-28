@@ -1,6 +1,6 @@
 TARGET = liboggvorbisplay.a
 OBJS = liboggvorbisplay/main.o liboggvorbisplay/sndoggvorbis.o
 
-include ${KOS_PORTS}/scripts/lib.mk
+include ${KOS_PORTS}/lib.mk
 
 $(OBJS): CPPFLAGS += -Iinclude -Iliboggvorbisplay
