@@ -2,7 +2,4 @@ libjpeg is a freely available library that implements the JPEG image compression
 and decompression algorithms. JPEG is a lossy image compression format that
 does not support alpha channels.
 
-The KOS port of this library includes a bit of additional functionality to
-directly read JPEG images into textures or KOS platform-independent images.
-
 URL: http://ijg.org/

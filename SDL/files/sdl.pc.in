@@ -1,0 +1,11 @@
+prefix=
+exec_prefix=${prefix}
+bindir=${exec_prefix}/bin
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: SDL
+Description: The SDL library
+Version: @SDL_VERSION@
+Libs: -L${libdir} -lSDL -lGL
+Cflags: -I${includedir}/SDL

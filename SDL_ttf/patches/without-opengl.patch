@@ -1,0 +1,13 @@
+diff --git a/configure b/configure
+index 009db79..6fd6526 100755
+--- a/configure
++++ b/configure
+@@ -13808,7 +13808,7 @@ rm -f core conftest.err conftest.$ac_objext \
+ { $as_echo "$as_me:${as_lineno-$LINENO}: result: $have_opengl" >&5
+ $as_echo "$have_opengl" >&6; }
+ LIBS="$save_LIBS"
+-if test x$have_opengl = xyes; then
++if test x$have_opengl = xopengl_is_disabled; then
+     CFLAGS="$CFLAGS -DHAVE_OPENGL"
+     GL_LIBS="$SYS_GL_LIBS"
+ else

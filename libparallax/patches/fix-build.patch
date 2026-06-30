@@ -1,0 +1,15 @@
+diff --git a/src/texture.c b/src/texture.c
+index efc60c1..50f4b30 100644
+--- a/src/texture.c
++++ b/src/texture.c
+@@ -13,8 +13,8 @@
+ #include <kos/dbglog.h>
+ 
+ #include "texture.h"
+-#include <png/png.h>
+-#include <jpeg/jpeg.h>
++#include <kospng.h>
++#include <kosjpeg.h>
+ #include <kmg/kmg.h>
+ 
+ /* See the header file for all comments and documentation */
