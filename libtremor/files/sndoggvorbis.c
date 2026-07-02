@@ -9,6 +9,7 @@
  * ivorbisfile (Tremor).
  */
 
+#include <stdalign.h>
 #include <string.h>
 /* #include <sndserver.h> */
 #include <assert.h>
@@ -25,7 +26,7 @@
 
 #define BUF_SIZE 65536			/* Size of buffer */
 
-static uint8_t pcm_buffer[BUF_SIZE+16384];	/* complete buffer + 16KB safety */
+alignas(32) static uint8_t pcm_buffer[BUF_SIZE+16384];	/* complete buffer + 16KB safety */
 static uint8_t *pcm_ptr=pcm_buffer;		/* place we write to */
 
 static int32_t pcm_count=0;			/* bytes in buffer */
