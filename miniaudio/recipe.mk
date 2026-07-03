@@ -12,7 +12,6 @@ miniaudio_PORT_BUILD =        cmake
 miniaudio_DEPENDENCIES =      opusfile
 
 miniaudio_GIT_HASH =          a55d2e7eb8c251aa8e2277eb0c380a393140a270
-miniaudio_DOWNLOAD_SITE =     https://github.com/mackron/miniaudio/archive/
-miniaudio_DOWNLOAD_FILE =     ${miniaudio_GIT_HASH}.tar.gz
+miniaudio_DOWNLOAD_URL =      https://github.com/mackron/miniaudio/archive/${miniaudio_GIT_HASH}.tar.gz
 
 miniaudio_CMAKE_ARGS =       -DMINIAUDIO_ENABLE_DREAMCAST=ON

@@ -6,8 +6,7 @@ lua_LICENSE =           MIT
 lua_SHORT_DESC =        Lightweight, embeddable, extensible scripting language
 
 # What files we need to download, and where from.
-lua_DOWNLOAD_SITE =     https://www.lua.org/ftp
-lua_DOWNLOAD_FILE =     lua-${lua_PORTVERSION}.tar.gz
+lua_DOWNLOAD_URL =      https://www.lua.org/ftp/lua-${lua_PORTVERSION}.tar.gz
 lua_DOWNLOAD_SHA256 =   57ccc32bbbd005cab75bcc52444052535af691789dba2b9016d5c50640d68b3d
 
 lua_TARGET =            liblua.a

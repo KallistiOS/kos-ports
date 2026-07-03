@@ -12,8 +12,7 @@ libzip_PORT_BUILD =        cmake
 libzip_DEPENDENCIES =      zlib
 
 # What files we need to download, and where from.
-libzip_DOWNLOAD_SITE =     https://libzip.org/download
-libzip_DOWNLOAD_FILE =     libzip-${libzip_PORTVERSION}.tar.gz
+libzip_DOWNLOAD_URL =      https://libzip.org/download/libzip-${libzip_PORTVERSION}.tar.gz
 libzip_DOWNLOAD_SHA256 =   0cef914d8f5105ccac44484f61413daa08d7204758e77240a4d20ebf967f3d49
 
 # Set cmake options

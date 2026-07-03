@@ -9,8 +9,7 @@ polarssl_SHORT_DESC =        A Secure Socket Layer library.
 polarssl_PORT_BUILD =        cmake
 
 # What files we need to download, and where from.
-polarssl_DOWNLOAD_SITE  =    https://src.fedoraproject.org/repo/pkgs/polarssl/polarssl-1.3.9-gpl.tgz/48af7d1f0d5de512cbd6dacf5407884c
-polarssl_DOWNLOAD_FILE =     polarssl-1.3.9-gpl.tgz
+polarssl_DOWNLOAD_URL  =     https://src.fedoraproject.org/repo/pkgs/polarssl/polarssl-1.3.9-gpl.tgz/48af7d1f0d5de512cbd6dacf5407884c/polarssl-1.3.9-gpl.tgz
 polarssl_DOWNLOAD_SHA256 =   d3605afc28ed4b7d1d9e3142d72e42855e4a23c07c951bbb0299556b02d36755
 
 # Set cmake build settings

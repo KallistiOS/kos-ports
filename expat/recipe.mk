@@ -9,6 +9,5 @@ expat_SHORT_DESC =        A C library for parsing XML
 expat_PORT_BUILD =        autotools
 
 # What files we need to download, and where from.
-expat_DOWNLOAD_SITE =     https://github.com/libexpat/libexpat/releases/download/R_2_5_0
-expat_DOWNLOAD_FILE =     expat-${expat_PORTVERSION}.tar.gz
+expat_DOWNLOAD_URL =      https://github.com/libexpat/libexpat/releases/download/R_2_5_0/expat-${expat_PORTVERSION}.tar.gz
 expat_DOWNLOAD_SHA256 =   6b902ab103843592be5e99504f846ec109c1abb692e85347587f237a4ffa1033

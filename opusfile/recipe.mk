@@ -12,8 +12,7 @@ opusfile_PORT_BUILD =        autotools
 opusfile_DEPENDENCIES =      opus libogg
 
 # What files we need to download, and where from.
-opusfile_DOWNLOAD_SITE =     https://ftp.osuosl.org/pub/xiph/releases/opus
-opusfile_DOWNLOAD_FILE =     opusfile-${opusfile_PORTVERSION}.tar.gz
+opusfile_DOWNLOAD_URL =      https://ftp.osuosl.org/pub/xiph/releases/opus/opusfile-${opusfile_PORTVERSION}.tar.gz
 opusfile_DOWNLOAD_SHA256 =   74ce9b6cf4da103133e7b5c95df810ceb7195471e1162ed57af415fabf5603bf
 
 # Autotools setup work.

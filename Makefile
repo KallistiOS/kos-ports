@@ -42,6 +42,8 @@ ${2}_DISTFILE_DIR = ${1}/${2}-$${${2}_PORTVERSION}
 
 ${2}_ARCH_SUPPORTED = $$(if $${${2}_ARCHS},$$(if $$(findstring ${KOS_ARCH},$${${2}_ARCHS}),${2}),${2})
 
+${2}_DOWNLOAD_FILE := $(notdir ${${2}_DOWNLOAD_URL})
+
 ${1}/.stamp_abi_checked:
 ifeq ($${${2}_REQUIRES_ABI},any)
 	@echo "${2} is compatible with any floating-point ABI."
@@ -72,14 +74,14 @@ ${1}/.stamp_nodownload:
 
 ${1}/$${${2}_DOWNLOAD_FILE}:
 	mkdir -p ${1}
-	@echo "Fetching $${${2}_DOWNLOAD_FILE} from $${${2}_DOWNLOAD_SITE} ..." ; \
-	(cd ${1} ; $${${2}_FETCH_CMD} "$${${2}_DOWNLOAD_SITE}/$${${2}_DOWNLOAD_FILE}")
+	@echo "Fetching $${${2}_DOWNLOAD_URL} ..." ; \
+	(cd ${1} ; $${${2}_FETCH_CMD} "$${${2}_DOWNLOAD_URL}")
 
 ${1}/.stamp_extracted: ${1}/$${${2}_DOWNLOAD_FILE} ${1}/.stamp_downloaded
 	mkdir -p $${${2}_DISTFILE_DIR}
 	(cd $${${2}_DISTFILE_DIR} ; $${${2}_UNPACK_CMD} $$< && touch $$@)
 
-${1}/.stamp_fetched: ${1}/.stamp_$$(if $${${2}_DOWNLOAD_SITE},extracted,nodownload)
+${1}/.stamp_fetched: ${1}/.stamp_$$(if $${${2}_DOWNLOAD_URL},extracted,nodownload)
 	if [ -d ${KOS_PORTS}/${2}/files ] ; then \
 		cp ${KOS_PORTS}/${2}/files/* $${${2}_DISTFILE_DIR}/ ; \
 	fi

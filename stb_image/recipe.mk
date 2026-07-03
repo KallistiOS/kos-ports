@@ -6,8 +6,7 @@ stb_image_LICENSE     = Public Domain
 stb_image_SHORT_DESC  = Single header library for image loading supporting many common formats.
 
 # What files we need to download, and where from.
-stb_image_DOWNLOAD_SITE =   https://raw.githubusercontent.com/nothings/stb/master/
-stb_image_DOWNLOAD_FILE =   stb_image.h
+stb_image_DOWNLOAD_URL =    https://raw.githubusercontent.com/nothings/stb/master/stb_image.h
 
 stb_image_TARGET          = libstb_image.a
 stb_image_INSTALLED_HDRS  = stb_image.h

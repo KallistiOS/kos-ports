@@ -9,8 +9,7 @@ opus_SHORT_DESC =        Opus audio codec library
 opus_PORT_BUILD =        autotools
 
 # What files we need to download, and where from.
-opus_DOWNLOAD_SITE =     https://ftp.osuosl.org/pub/xiph/releases/opus
-opus_DOWNLOAD_FILE =     opus-${opus_PORTVERSION}.tar.gz
+opus_DOWNLOAD_URL =      https://ftp.osuosl.org/pub/xiph/releases/opus/opus-${opus_PORTVERSION}.tar.gz
 opus_DOWNLOAD_SHA256 =   65b58e1e25b2a114157014736a3d9dfeaad8d41be1c8179866f144a2fb44ff9d
 
 # Autotools setup work.

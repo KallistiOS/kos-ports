@@ -12,8 +12,7 @@ curl_PORT_BUILD =        cmake
 curl_DEPENDENCIES =      zlib mbedtls
 
 # What files we need to download, and where from.
-curl_DOWNLOAD_SITE  =    https://curl.se/download
-curl_DOWNLOAD_FILE =     curl-${curl_PORTVERSION}.tar.gz
+curl_DOWNLOAD_URL =      https://curl.se/download/curl-${curl_PORTVERSION}.tar.gz
 curl_DOWNLOAD_SHA256 =   e9274a5f8ab5271c0e0e6762d2fce194d5f98acc568e4ce816845b2dcc0cf88f
 
 # cmake build arguments

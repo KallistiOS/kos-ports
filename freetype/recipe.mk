@@ -12,8 +12,7 @@ freetype_PORT_BUILD =        autotools
 freetype_DEPENDENCIES =      libbz2 zlib libpng
 
 # What files we need to download, and where from.
-freetype_DOWNLOAD_SITE =     https://download.savannah.gnu.org/releases/freetype/
-freetype_DOWNLOAD_FILE =     freetype-2.13.3.tar.gz
+freetype_DOWNLOAD_URL =      https://download.savannah.gnu.org/releases/freetype/freetype-2.13.3.tar.gz
 freetype_DOWNLOAD_SHA256 =   5c3a8e78f7b24c20b25b54ee575d6daa40007a5f4eea2845861c3409b3021747
 
 # Autotools setup work.

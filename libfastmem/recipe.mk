@@ -7,8 +7,7 @@ libfastmem_SHORT_DESC =        Very optimized set of memory manipulation functio
 
 # What files we need to download, and where from.
 libfastmem_GIT_HASH =          d63e367b89f41040f70614ed5df1f4e7ca43c506
-libfastmem_DOWNLOAD_SITE =     https://github.com/sega-dreamcast/libfastmem/archive/
-libfastmem_DOWNLOAD_FILE =     ${libfastmem_GIT_HASH}.tar.gz
+libfastmem_DOWNLOAD_URL =      https://github.com/sega-dreamcast/libfastmem/archive/${libfastmem_GIT_HASH}.tar.gz
 
 libfastmem_TARGET =            libfastmem.a
 libfastmem_INSTALLED_HDRS =    include/fastmem.h

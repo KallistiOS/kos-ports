@@ -10,5 +10,4 @@ libvldmail_PORT_BUILD =        cmake
 
 # What files we need to download, and where from.
 libvldmail_GIT_HASH =          release-${libvldmail_PORTVERSION}
-libvldmail_DOWNLOAD_SITE =     https://github.com/dertuxmalwieder/libvldmail/archive/
-libvldmail_DOWNLOAD_FILE =     ${libvldmail_GIT_HASH}.tar.gz
+libvldmail_DOWNLOAD_URL =      https://github.com/dertuxmalwieder/libvldmail/archive/${libvldmail_GIT_HASH}.tar.gz

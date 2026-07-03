@@ -9,8 +9,7 @@ libkosh_DEPENDENCIES =      libconio
 
 # What files we need to download, and where from.
 libkosh_GIT_HASH =          535a1f04c141aa61ae176dc2d11c373ab8b6c493
-libkosh_DOWNLOAD_SITE =     https://github.com/KallistiOS/libkosh/archive/
-libkosh_DOWNLOAD_FILE =     ${libkosh_GIT_HASH}.tar.gz
+libkosh_DOWNLOAD_URL =      https://github.com/KallistiOS/libkosh/archive/${libkosh_GIT_HASH}.tar.gz
 
 libkosh_TARGET =            libkosh.a
 libkosh_INSTALLED_HDRS =    include/kosh.h

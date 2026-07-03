@@ -9,8 +9,7 @@ libparallax_DEPENDENCIES =      kos-png kos-jpeg libkmg
 
 # What files we need to download, and where from.
 libparallax_GIT_HASH =          a7591bb0d6065e6c5b7663741054c51a5aeb1ea2
-libparallax_DOWNLOAD_SITE =     https://github.com/KallistiOS/libparallax/archive/
-libparallax_DOWNLOAD_FILE =     ${libparallax_GIT_HASH}.tar.gz
+libparallax_DOWNLOAD_URL =      https://github.com/KallistiOS/libparallax/archive/${libparallax_GIT_HASH}.tar.gz
 
 libparallax_TARGET =            libparallax.a
 libparallax_INSTALLED_HDRS =    include/color.h include/context.h include/dr.h \

@@ -7,8 +7,7 @@ libKGL_SHORT_DESC =        KallistiGL, deprecated OpenGL (tm) like graphics libr
 
 # What files we need to download, and where from.
 libKGL_GIT_HASH =          8374cbee6c350612f38aeedf9a0af541e83aae76
-libKGL_DOWNLOAD_SITE =     https://github.com/KallistiOS/libkgl/archive/
-libKGL_DOWNLOAD_FILE =     ${libKGL_GIT_HASH}.tar.gz
+libKGL_DOWNLOAD_URL =      https://github.com/KallistiOS/libkgl/archive/${libKGL_GIT_HASH}.tar.gz
 
 libKGL_TARGET =            libKGL.a
 libKGL_INSTALLED_HDRS =    include/gl.h include/glext.h include/glu.h include/glut.h
