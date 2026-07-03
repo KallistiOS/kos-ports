@@ -13,7 +13,7 @@ include ${KOS_PORTS}/config.mk
 SUBDIRS := $(foreach each,$(wildcard ${KOS_PORTS}/*),$(if $(wildcard ${each}/recipe.mk),${each},) )
 PACKAGES := $(foreach p,${SUBDIRS},$(notdir $p))
 
-.PHONY: all all_nested failed clean
+.PHONY: all all_nested failed clean distclean update
 
 all:
 	-$(MAKE) -k -C ${KOS_PORTS} all_nested
@@ -24,6 +24,8 @@ BUILD_ENV := CC=kos-cc RANLIB=kos-ranlib AR=kos-ar
 
 # Include the recipes
 include $(KOS_PORTS)/*/recipe.mk
+
+$(if $(wildcard ${KOS_PORTS}/version_override.mk),$(eval include ${KOS_PORTS}/version_override.mk))
 
 define BUILD_RULE
 
@@ -121,7 +123,7 @@ ${1}/.stamp_installed_manual: $${${2}_BUILD_DEPS}
 ${1}/.stamp_installed: ${1}/.stamp_installed_$${${2}_PORT_BUILD}
 	touch $$@
 
-.PHONY: ${2} clean-${2} rebuild-${2}
+.PHONY: ${2} clean-${2} rebuild-${2} update-${2}
 
 ${2}: $$(if $${${2}_ARCH_SUPPORTED},${1}/.stamp_installed)
 	$$(if $${${2}_ARCH_SUPPORTED},,@echo "${2} is not supported for this platform - skipping.")
@@ -132,6 +134,14 @@ clean-${2}:
 rebuild-${2}: clean-${2} ${2}
 
 .NOTPARALLEL: rebuild-${2}
+
+update-${2}:
+	$$(if ${${2}_GIT_REPO},,$$(error ${2} package is not updatable.))
+	$$(eval LATEST:=$$(firstword $$(shell git ls-remote ${${2}_GIT_REPO}.git $$(or ${${2}_GIT_BRANCH},HEAD))))
+	@echo ${2} $$(if $$(findstring ${${2}_GIT_HASH},$${LATEST}),is up to date.,updated to $${LATEST})
+	@if [ "${${2}_GIT_HASH}" != "$${LATEST}" ] ; then \
+		echo "${2}_GIT_HASH = $${LATEST}" >> ${KOS_PORTS}/version_override.mk ; \
+	fi
 
 endef
 
@@ -149,3 +159,8 @@ failed:
 	@echo "Failed packages: ${FAILED_PACKAGES}"
 
 clean: $(foreach p,${ARCH_PACKAGES},clean-${p})
+
+distclean: clean
+	-rm -f ${KOS_PORTS}/version_override.mk
+
+update: $(foreach p,${PACKAGES},$(if ${${p}_GIT_REPO},update-${p}))
