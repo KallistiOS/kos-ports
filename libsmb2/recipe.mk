@@ -9,5 +9,6 @@ libsmb2_SHORT_DESC =        SMB2/3 userspace client
 libsmb2_PORT_BUILD =        cmake
 
 # What files we need to download, and where from.
+libsmb2_GIT_REPO =          https://github.com/sahlberg/libsmb2
 libsmb2_GIT_HASH =          14fbe119b95032bd1ea8def8e6a7d75a26bd3809
-libsmb2_DOWNLOAD_URL =      https://github.com/sahlberg/libsmb2/archive/${libsmb2_GIT_HASH}.tar.gz
+libsmb2_DOWNLOAD_URL =      ${libsmb2_GIT_REPO}/archive/${libsmb2_GIT_HASH}.tar.gz

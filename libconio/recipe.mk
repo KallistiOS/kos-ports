@@ -6,8 +6,9 @@ libconio_LICENSE =           KOS License
 libconio_SHORT_DESC =        Console-like I/O library
 
 # What files we need to download, and where from.
+libconio_GIT_REPO =          https://github.com/KallistiOS/libconio
 libconio_GIT_HASH =          36c234b93c6ba44b58417c18b45828ec62b4d1c2
-libconio_DOWNLOAD_URL =      https://github.com/KallistiOS/libconio/archive/${libconio_GIT_HASH}.tar.gz
+libconio_DOWNLOAD_URL =      ${libconio_GIT_REPO}/archive/${libconio_GIT_HASH}.tar.gz
 
 libconio_TARGET =            libconio.a
 libconio_INSTALLED_HDRS =    include/conio.h include/draw.h include/input.h

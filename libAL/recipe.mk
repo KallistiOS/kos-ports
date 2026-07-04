@@ -10,7 +10,8 @@ libAL_DEPENDENCIES =      libGL
 libAL_PORT_BUILD =        cmake
 
 # What files we need to download, and where from.
+libAL_GIT_REPO =          https://gitlab.com/simulant/aldc
 libAL_GIT_HASH =          4716b658e05ee39387aca0639276e239b1cca188
-libAL_DOWNLOAD_URL =      https://gitlab.com/simulant/aldc/-/archive/${libAL_GIT_HASH}/aldc-${libAL_GIT_HASH}.tar.gz
+libAL_DOWNLOAD_URL =      ${libAL_GIT_REPO}/-/archive/${libAL_GIT_HASH}/aldc-${libAL_GIT_HASH}.tar.gz
 
 libAL_CMAKE_ARGS =        -DBUILD_SAMPLES=OFF

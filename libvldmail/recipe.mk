@@ -9,5 +9,6 @@ libvldmail_SHORT_DESC =        An e-mail address validation library.
 libvldmail_PORT_BUILD =        cmake
 
 # What files we need to download, and where from.
+libvldmail_GIT_REPO =          https://github.com/dertuxmalwieder/libvldmail
 libvldmail_GIT_HASH =          release-${libvldmail_PORTVERSION}
-libvldmail_DOWNLOAD_URL =      https://github.com/dertuxmalwieder/libvldmail/archive/${libvldmail_GIT_HASH}.tar.gz
+libvldmail_DOWNLOAD_URL =      ${libvldmail_GIT_REPO}/archive/${libvldmail_GIT_HASH}.tar.gz
