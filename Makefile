@@ -13,9 +13,13 @@ include ${KOS_PORTS}/config.mk
 SUBDIRS := $(foreach each,$(wildcard ${KOS_PORTS}/*),$(if $(wildcard ${each}/recipe.mk),${each},) )
 PACKAGES := $(foreach p,${SUBDIRS},$(notdir $p))
 
-.PHONY: all all_nested failed clean distclean update
+.PHONY: all stable all_nested failed clean distclean update
 
-all:
+all: update stable
+
+.NOTPARALLEL: all
+
+stable:
 	-$(MAKE) -k -C ${KOS_PORTS} all_nested
 	-@$(MAKE) --no-print-directory -C ${KOS_PORTS} failed
 
