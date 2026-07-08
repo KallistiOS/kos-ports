@@ -32,6 +32,9 @@ OBJS=	tables.o         \
 #	load_mt2.o       \
 #	load_psm.o       \
 
+install: $(TARGET)
+	mkdir -p ${MODPLUG_PC_PATH}
+	sed "s/@MODPLUG_VERSION@/${MODPLUG_VERSION}/" modplug.pc.in > ${MODPLUG_PC_PATH}/modplug.pc
 
 include ${KOS_PORTS}/lib.mk
 

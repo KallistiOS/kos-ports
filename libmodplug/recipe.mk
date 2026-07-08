@@ -12,4 +12,6 @@ libmodplug_DOWNLOAD_URL =      ${libmodplug_GIT_REPO}/archive/${libmodplug_GIT_H
 
 libmodplug_TARGET =            libmodplug.a
 libmodplug_INSTALLED_HDRS =    include/modplug.h include/sndfile.h include/stdafx.h
-libmodplug_HDR_INSTDIR =       modplug
+libmodplug_HDR_INSTDIR =       libmodplug
+
+libmodplug_BUILD_ENV =         MODPLUG_VERSION=${libmodplug_PORTVERSION} MODPLUG_PC_PATH=${KOS_SYSROOT}/lib/pkgconfig/
