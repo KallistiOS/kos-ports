@@ -1,0 +1,10 @@
+libexif is a library for parsing, editing, and saving EXIF data. It is
+intended to replace lots of redundant implementations in command-line
+utilities and programs with GUIs.
+
+libexif supports parsing, editing and saving of EXIF data. In addition, it
+has gettext support. All EXIF tags described in EXIF standard 2.1 (and most
+from 2.2) are supported.  Many maker notes from Canon, Casio, Epson,
+Fuji, Nikon, Olympus, Pentax and Sanyo cameras are also supported.
+
+URL: https://github.com/libexif/libexif
