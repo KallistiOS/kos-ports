@@ -106,7 +106,7 @@ ${1}/.stamp_installed_autotools: $${${2}_BUILD_DEPS}
 ${1}/.stamp_installed_cmake: $${${2}_BUILD_DEPS}
 	mkdir -p $${${2}_DISTFILE_DIR}/build
 	cd $${${2}_DISTFILE_DIR}/build ; \
-	${BUILD_ENV} kos-cmake -DCMAKE_INSTALL_PREFIX="" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib $${${2}_CMAKE_ARGS} .. && \
+	${BUILD_ENV} kos-cmake -DCMAKE_INSTALL_PREFIX="" -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF $${${2}_CMAKE_ARGS} .. && \
 	DESTDIR=${KOS_SYSROOT} cmake --build . -t $${${2}_MAKE_TARGET} && \
 	touch $$@
 
