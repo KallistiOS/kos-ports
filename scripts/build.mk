@@ -61,6 +61,11 @@ force-install: build-stamp $(PREINSTALL)
 	else \
 		cd ${DISTFILE_DIR} ; \
 	fi ; \
+	if [ -n "${CMAKE_OUTSOURCE}" ] ; then \
+		p=build ; \
+	else \
+		p=. ; \
+	fi ; \
 	if [ -z "${NOCOPY_TARGET}" ] ; then \
 		for target in ${TARGET}; do \
 			cp $$p/$$target ../../inst/lib ; \
