@@ -166,5 +166,6 @@ clean: $(foreach p,${ARCH_PACKAGES},clean-${p})
 
 distclean: clean
 	-rm -f ${KOS_PORTS}/version_override.mk
+	-rm -f ${KOS_PORTS}/config.*.cache
 
 update: $(foreach p,${PACKAGES},$(if ${${p}_GIT_REPO},update-${p}))
