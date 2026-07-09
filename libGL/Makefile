@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          libGL
-PORTVERSION =       1.1.0
+PORTVERSION =       1.1.1
 
 MAINTAINER =        Luke Benstead <kazade@gmail.com>
 LICENSE =           2-clause BSD (see LICENSE in the source distribution)
@@ -10,7 +10,7 @@ PORT_BUILD =        cmake
 
 GIT_REPOSITORY =    https://gitlab.com/simulant/GLdc.git
 
-TARGET =            libGL.a
+TARGET =            libGL.a libGLU.a
 INSTALLED_HDRS =    include/GL/gl.h include/GL/glext.h include/GL/glkos.h include/GL/glu.h
 HDR_COMDIR =        GL
 EXAMPLES_DIR =      samples
