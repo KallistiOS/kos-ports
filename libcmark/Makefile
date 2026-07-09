@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          libcmark
-PORTVERSION =       0.31.0
+PORTVERSION =       0.31.2
 
 MAINTAINER =        Donald Haase
 LICENSE =           Custom (see the file COPYING provided with headers or at https://github.com/commonmark/cmark/blob/master/COPYING)
@@ -28,4 +28,4 @@ PREINSTALL =        cmark_preinstall
 
 include ${KOS_PORTS}/scripts/kos-ports.mk
 cmark_preinstall:
-	cp build/${PORTNAME}-${PORTVERSION}/build/src/${TARGET} build/${PORTNAME}-${PORTVERSION}
+	cp build/${PORTNAME}-${PORTVERSION}/build/src/${TARGET} build/${TARGET}
