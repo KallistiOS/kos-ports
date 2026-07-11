@@ -1,23 +1,20 @@
 # Port Metadata
 PORTNAME =          libmodplug
-PORTVERSION =       0.7
+PORTVERSION =       0.8.9
 
 MAINTAINER =        Nobody
 LICENSE =           Public Domain
 SHORT_DESC =        A library for MOD-like tracker music formats
 
-# No dependencies beyond the base system.
-DEPENDENCIES =
+PORT_BUILD = cmake
 
 # What files we need to download, and where from.
-GIT_REPOSITORIES =  git://git.code.sf.net/p/cadcdev/libmodplug \
-                    https://github.com/KallistiOS/libmodplug.git
+GIT_REPOSITORIES =  https://git.code.sf.net/p/modplug-xmms/git
 
 TARGET =            libmodplug.a
-INSTALLED_HDRS =    include/modplug.h include/sndfile.h include/stdafx.h
+INSTALLED_HDRS =    src/modplug.h src/libmodplug/sndfile.h src/libmodplug/stdafx.h
 HDR_INSTDIR =       modplug
 
-# KOS Distributed extras (to be copied into the build tree)
-KOS_DISTFILES =     KOSMakefile.mk
+DISTFILE_DIR = ${PORTNAME}-${PORTVERSION}/libmodplug
 
 include ${KOS_PORTS}/scripts/kos-ports.mk
