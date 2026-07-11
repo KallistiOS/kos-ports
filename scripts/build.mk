@@ -68,17 +68,17 @@ force-install: build-stamp $(PREINSTALL)
 	fi ; \
 	if [ -z "${NOCOPY_TARGET}" ] ; then \
 		for target in ${TARGET}; do \
-			cp $$p/$$target ../../inst/lib ; \
+			cp $$p/$$target ${KOS_PORTS}/${PORTNAME}/inst/lib ; \
 		done ; \
 	fi ; \
 	for _file in ${INSTALLED_HDRS}; do \
-		cp $$_file ../../inst/include ; \
+		cp $$_file ${KOS_PORTS}/${PORTNAME}/inst/include ; \
 	done ; \
 	if [ -n "${HDR_DIRECTORY}" ] ; then \
-		cp -R ${HDR_DIRECTORY}/. ../../inst/include ; \
+		cp -R ${HDR_DIRECTORY}/. ${KOS_PORTS}/${PORTNAME}/inst/include ; \
 	fi ; \
 	if [ -n "${EXAMPLES_DIR}" ] ; then \
-		cp -R ${EXAMPLES_DIR}/. ../../inst/examples ; \
+		cp -R ${EXAMPLES_DIR}/. ${KOS_PORTS}/${PORTNAME}/inst/examples ; \
 	fi
 
 	@if [ -n "${HDR_COMDIR}" ] ; then \
