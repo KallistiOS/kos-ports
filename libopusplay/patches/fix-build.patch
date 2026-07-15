@@ -1,0 +1,29 @@
+diff --git a/Makefile b/Makefile
+index e40c3b0..a0fe4cc 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,6 +1,8 @@
+ TARGET = libopusplay.a
+ OBJS = opusplay.o main.o
+ 
+-KOS_CFLAGS += -I$(KOS_PORTS)/include/opus -Wextra
+-
+-include ${KOS_PORTS}/scripts/lib.mk
++include ${KOS_PORTS}/lib.mk
++
++$(OBJS): CPPFLAGS += -I ${KOS_SYSROOT}/include/opus
++
++$(OBJS): CFLAGS += -Wextra
+diff --git a/opusplay.c b/opusplay.c
+index 7a8b77b..a0b2d36 100644
+--- a/opusplay.c
++++ b/opusplay.c
+@@ -21,7 +21,7 @@
+ #include <arch/timer.h>
+ #include <dc/sound/stream.h>
+ 
+-#include <opusfile/opusfile.h>
++#include <opusfile.h>
+ 
+ /* Thread-state related defines */
+ #define STATUS_INIT     0
