@@ -1,6 +1,6 @@
 # Port Metadata
 PORTNAME =          mruby
-PORTVERSION =       3.3.0
+PORTVERSION =       4.0.0
 
 MAINTAINER =        SiZiOUS <sizious@gmail.com>
 LICENSE =           MIT
