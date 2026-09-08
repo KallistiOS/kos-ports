@@ -6,13 +6,23 @@
 # Copyright (C) 2024 Andy Barajas
 #
 
-cd ${KOS_PORTS}
+if [ -z "${KOS_PORTS}" ] || [ -z "${KOS_MAKE}" ] ; then
+    echo "KOS_PORTS and KOS_MAKE must be set. Source your KOS environ.sh before running this script." >&2
+    exit 1
+fi
+
+cd "${KOS_PORTS}" || exit 1
 errors=""
 error_count=0
 
-for _dir in ${KOS_PORTS}/* ; do
+for _dir in "${KOS_PORTS}"/* ; do
     if [ -d "${_dir}" ] ; then
         if [ -f "${_dir}/Makefile" ] ; then
+            if [ "${_dir##*/}" = "libKGL" ] ; then
+                echo "Skipping libKGL in build-all."
+                continue
+            fi
+
             echo "Checking if ${_dir} is installed and up-to-date..."
             ${KOS_MAKE} -C "${_dir}" version-check > /dev/null 2>&1
             rv=$?

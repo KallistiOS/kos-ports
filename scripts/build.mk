@@ -81,7 +81,17 @@ force-install: build-stamp $(PREINSTALL)
 		cp -R ${EXAMPLES_DIR}/. ../../inst/examples ; \
 	fi
 
+# Preserve existing headers when migrating from a directory symlink.
 	@if [ -n "${HDR_COMDIR}" ] ; then \
+		if [ -L "${KOS_PORTS}/include/${HDR_COMDIR}" ] ; then \
+			_old_hdrdir=$$(cd "${KOS_PORTS}/include/${HDR_COMDIR}" && pwd -P) || exit 1 ; \
+			rm -f "${KOS_PORTS}/include/${HDR_COMDIR}" || exit 1 ; \
+			mkdir -p "${KOS_PORTS}/include/${HDR_COMDIR}" || exit 1 ; \
+			for _file in "$$_old_hdrdir"/*; do \
+				[ -e "$$_file" ] || continue ; \
+				ln -s "$$_file" "${KOS_PORTS}/include/${HDR_COMDIR}" || exit 1 ; \
+			done ; \
+		fi ; \
 		mkdir -p ${KOS_PORTS}/include/${HDR_COMDIR} ; \
 		for _file in ${KOS_PORTS}/${PORTNAME}/inst/include/*; do \
 			rm -f ${KOS_PORTS}/include/${HDR_COMDIR}/`basename $$_file` ; \

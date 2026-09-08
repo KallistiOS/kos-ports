@@ -16,8 +16,8 @@ NOCOPY_TARGET =     1
 DEPENDENCIES =      libbz2 zlib libpng
 
 # What files we need to download, and where from.
-DOWNLOAD_SITES =    https://download.savannah.gnu.org/releases/freetype/ \
-                    https://sourceforge.net/projects/freetype/files/freetype2/2.13.3/
+DOWNLOAD_SITES =    https://sourceforge.net/projects/freetype/files/freetype2/2.13.3 \
+                    https://download.savannah.gnu.org/releases/freetype
 DOWNLOAD_FILES =    freetype-2.13.3.tar.gz
 
 TARGET =            libfreetype.a
