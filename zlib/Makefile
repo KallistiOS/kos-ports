@@ -19,4 +19,12 @@ INSTALLED_HDRS =    zlib.h zconf.h
 # KOS Distributed extras (to be copied into the build tree)
 KOS_DISTFILES =     KOSMakefile.mk kos_zlib.c
 
+# Set zconf.h to match the flags we build libz.a with
+PREBUILD =          zlib_prebuild
+
 include ${KOS_PORTS}/scripts/kos-ports.mk
+zlib_prebuild:
+	cd "build/${PORTNAME}-${PORTVERSION}" && \
+	sed -e 's|^#if HAVE_UNISTD_H-0|#if 1|' \
+	    -e 's|^#if HAVE_STDARG_H-0|#if 1|' \
+	    zconf.h > zconf.h.new && mv zconf.h.new zconf.h
