@@ -6,8 +6,7 @@ MAINTAINER =        Luke Benstead <kazade@gmail.com>
 LICENSE =           MIT License
 SHORT_DESC =        OpenAL implementation for KOS
 
-# No dependencies beyond the base system.
-DEPENDENCIES =
+PORT_BUILD =        cmake
 
 # What files we need to download, and where from.
 GIT_REPOSITORY =    https://gitlab.com/simulant/aldc.git
@@ -16,7 +15,6 @@ TARGET =            libAL.a
 INSTALLED_HDRS =    include/AL/al.h include/AL/alc.h include/AL/alut.h
 HDR_COMDIR =        AL
 
-# KOS Distributed extras (to be copied into the build tree)
-KOS_DISTFILES =     KOSMakefile.mk
+CMAKE_ARGS =        -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=OFF -DBUILD_SAMPLES=OFF
 
 include ${KOS_PORTS}/scripts/kos-ports.mk
