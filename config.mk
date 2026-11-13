@@ -1,6 +1,6 @@
 # Select how to download files inside the kos-ports tree. Examples are given for
 # cURL and wget.
-FETCH_CMD = curl --progress-bar -O -L
+FETCH_CMD = curl --fail --progress-bar -O -L
 #FETCH_CMD = wget --progress=bar
 
 # Set the command that will be used for extracting archive files. Currently this

@@ -19,4 +19,9 @@ HDR_INSTDIR =       oggvorbis
 # KOS Distributed extras (to be copied into the build tree)
 KOS_DISTFILES =     KOSMakefile.mk
 
+PREBUILD =          liboggvorbisplay_prebuild
+
 include ${KOS_PORTS}/scripts/kos-ports.mk
+
+liboggvorbisplay_prebuild:
+	patch -p1 -d build/${PORTNAME}-${PORTVERSION} < files/${PORTNAME}-${PORTVERSION}.patch

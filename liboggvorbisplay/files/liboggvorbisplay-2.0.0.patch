@@ -1,0 +1,19 @@
+--- a/liboggvorbisplay/sndoggvorbis.c
++++ b/liboggvorbisplay/sndoggvorbis.c
+@@ -12 +12,2 @@
+ #include <kos.h>
++#include <stdint.h>
+@@ -23,5 +24,5 @@
+-static uint8 pcm_buffer[BUF_SIZE + 16384] __attribute__((aligned(32)));
+-static uint8 *pcm_ptr=pcm_buffer;		/* place we write to */
+-
+-static int32 pcm_count=0;			/* bytes in buffer */
+-static int32 last_read=0;			/* number of bytes the sndstream driver grabbed at last callback */
++static char pcm_buffer[BUF_SIZE + 16384] __attribute__((aligned(32)));
++static char *pcm_ptr=pcm_buffer;		/* place we write to */
++
++static int32_t pcm_count=0;			/* bytes in buffer */
++static int32_t last_read=0;			/* number of bytes the sndstream driver grabbed at last callback */
+@@ -204 +205 @@
+-	uint32 s_s, s_ms, e_s, e_ms;
++	uint32_t s_s, s_ms, e_s, e_ms;

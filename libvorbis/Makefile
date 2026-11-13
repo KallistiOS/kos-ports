@@ -15,7 +15,7 @@ DOWNLOAD_FILES =    ${PORTNAME}-${PORTVERSION}.tar.gz
 TARGET =            libvorbis.a
 INSTALLED_HDRS =    include/vorbis/codec.h include/vorbis/vorbisenc.h \
                     include/vorbis/vorbisfile.h
-HDR_INSTDIR =       vorbis
+HDR_COMDIR =        vorbis
 
 # KOS Distributed extras (to be copied into the build tree)
 KOS_DISTFILES =     KOSMakefile.mk

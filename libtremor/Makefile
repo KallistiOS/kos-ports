@@ -15,7 +15,7 @@ GIT_BRANCH =        lowmem
 
 TARGET =            libtremor.a
 INSTALLED_HDRS =    ivorbiscodec.h ivorbisfile.h sndoggvorbis.h
-HDR_INSTDIR =       vorbis
+HDR_COMDIR =        vorbis
 
 # KOS Distributed extras (to be copied into the build tree)
 KOS_DISTFILES =     KOSMakefile.mk sndoggvorbis.h sndoggvorbis.c main.c \
